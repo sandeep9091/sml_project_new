@@ -1,0 +1,4 @@
+#Sun Nov 19 22:01:50 IST 2023
+base.0=D\:\\mobileappsv3\\spoorthymactcs\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
