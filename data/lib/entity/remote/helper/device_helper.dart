@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:data/entity/remote/base/header_entity.dart';
-import 'package:data/network/network_properties.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';

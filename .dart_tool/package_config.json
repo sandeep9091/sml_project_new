@@ -272,6 +272,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "fluttertoast",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/fluttertoast-8.2.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "freezed_annotation",
       "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/freezed_annotation-2.4.1",
       "packageUri": "lib/",
@@ -324,6 +330,12 @@
       "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "loading_animation_widget",
+      "rootUri": "file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/loading_animation_widget-1.2.0+4",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
     },
     {
       "name": "logging",
@@ -668,7 +680,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-11-19T10:41:39.441641Z",
+  "generated": "2023-11-23T17:21:45.895702Z",
   "generator": "pub",
   "generatorVersion": "3.1.4"
 }

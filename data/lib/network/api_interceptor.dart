@@ -1,11 +1,9 @@
 import 'package:data/entity/remote/base/header_entity.dart';
-import 'package:data/network/network_properties.dart';
 import 'package:data/source/secure_storage/secure_storage_ds.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../db/constants/pref_keys.dart';
-import '../db/preferences/preferences.dart';
 import '../entity/remote/helper/device_helper.dart';
 import '../entity/remote/helper/encyption_helper.dart';
 

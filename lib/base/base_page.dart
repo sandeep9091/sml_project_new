@@ -3,8 +3,13 @@ import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
+import 'package:spoorthymactcs/main/navigation/app_router.dart';
+import 'package:spoorthymactcs/ui/molecules/loader/common_loader.dart';
+import 'package:spoorthymactcs/utils/extension/base_page_extensions.dart';
+import 'package:spoorthymactcs/utils/status.dart';
+import 'dart:async';
 import '../ui/app_svg.dart';
 
 import '../utils/asset_utils.dart';
@@ -28,6 +33,9 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
   VM? _viewModel;
 
   bool get attached => _viewModel != null;
+  StreamSubscription? errorSubscription;
+  StreamSubscription? toastSubscription;
+  StreamSubscription? statusSubscription;
 
   @override
   Widget build(BuildContext context) {
@@ -154,12 +162,48 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
     return null;
   }
 
+    @override
+  void dispose() {
+    errorSubscription?.cancel();
+    toastSubscription?.cancel();
+    statusSubscription?.cancel();
+    super.dispose();
+  }
+
   void _onBaseModelReady(VM model) {
     _viewModel = model;
-    model.error.listen((event) {});
-    model.toast.listen((message) {
-      //showShortToast(message);
+    errorSubscription?.cancel();
+    errorSubscription = model.error.listen((event) async {
+      // String apiErrorStatus = event?.error.apiErrorStatus ?? "";
+      // String apiErrorCode = event?.error.apiErrorCode ?? "";
+      String errMessage = event.type == ErrorType.NET_NO_INTERNET_CONNECTION
+          ? "Can't connect right now. Please check your internet connection"
+          : event.error.description;
+      var errCode = event.error.apiErrorStatus;
+      if (errMessage.isEmpty) {
+        errMessage = event.error.message;
+      }
+      if (errCode == '10002') {
+        context.goNamed(AppRoute.login.name);
+      } else if (errMessage.isNotEmpty) {
+        showToast(errMessage);
+      }
     });
+    toastSubscription?.cancel();
+    toastSubscription = model.toast.listen((message) {
+      debugPrint("message: $message");
+      showToast(message);
+    });
+    statusSubscription?.cancel();
+    statusSubscription = model.status.listen((event) {
+      if (!mounted) return;
+      if (event == Status.LOADING) {
+        CommonLoader(context);
+      } else {
+        if (mounted) if (context.canPop()) context.pop();
+      }
+    });
+
     model.setContext(context);
     onModelReady(model);
   }

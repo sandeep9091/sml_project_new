@@ -36,10 +36,15 @@ class BasePageViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+    void statusClose() {
+    showLoader(Status.ERROR);
+  }
+
   @override
   void dispose() {
     _error.close();
     _toast.close();
+    _status.close();
     super.dispose();
   }
 }

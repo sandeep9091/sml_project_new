@@ -16,6 +16,9 @@ final dashboardViewModelProvider =
     ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
   (ref) => DashboardPageViewModel(
     ref.read(getModulesUseCaseProvider),
+    ref.read(getGenderListUseCaseProvider),
+    ref.read(getCadersUseCaseProvider),
+    ref
   ),
 );
 

@@ -9,6 +9,7 @@
 import 'package:connectivity_plus_web/connectivity_plus_web.dart';
 import 'package:device_info_plus/src/device_info_plus_web.dart';
 import 'package:flutter_secure_storage_web/flutter_secure_storage_web.dart';
+import 'package:fluttertoast/fluttertoast_web.dart';
 import 'package:package_info_plus/src/package_info_plus_web.dart';
 import 'package:shared_preferences_web/shared_preferences_web.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -18,6 +19,7 @@ void registerPlugins([final Registrar? pluginRegistrar]) {
   ConnectivityPlusPlugin.registerWith(registrar);
   DeviceInfoPlusWebPlugin.registerWith(registrar);
   FlutterSecureStorageWeb.registerWith(registrar);
+  FluttertoastWebPlugin.registerWith(registrar);
   PackageInfoPlusWebPlugin.registerWith(registrar);
   SharedPreferencesPlugin.registerWith(registrar);
   registrar.registerMessageHandler();

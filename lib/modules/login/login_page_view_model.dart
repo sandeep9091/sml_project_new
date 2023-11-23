@@ -40,10 +40,11 @@ TextEditingController controllerUserName = TextEditingController();
               createCall: () => _loginUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        showLoader(event.status);
+        //showLoader(event.status);
         if(event.status == Status.SUCCESS){
           if(event.data!.data.isNotEmpty){
-            AppCommonUtils().secureStorage().setValue(key: 'loginResponse',value: event.data!.data.toString());
+            String modelDataString = jsonEncode(event.data?.toJson());
+            AppCommonUtils().secureStorage().setValue(key: 'loginResponse',value: modelDataString);
             ProviderScope.containerOf(modelcontext!).
             read(loginNotifierProvider.notifier).setData(event.data!.data);
           }

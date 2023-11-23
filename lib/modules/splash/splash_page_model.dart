@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'dart:convert';
 
@@ -58,22 +60,21 @@ class SplashViewModel extends BasePageViewModel {
   // }
 
   checkUser(BuildContext context) async{
-
-    //LoginResponse? loginResponse;
-    String userData;
-    userData =  await AppCommonUtils().secureStorage().getValue(key: 'loginResponse');
-    
+    try{
+          String userData =  await AppCommonUtils().secureStorage().getValue(key: 'loginResponse') ?? "";
     if(userData.isNotEmpty){
-      // List<LoginResponseData> loginResponseData = jsonDecode(userData);
-      // if(loginResponseData.isNotEmpty){
-      //   ProviderScope.containerOf(modelcontext!).
-      //       read(loginNotifierProvider.notifier).setData(loginResponseData);
-      //       context.pushNamed(AppRoute.dashboard.name);
-      // }else{
-      //   context.pushNamed(AppRoute.login.name);
-      // }
-      context.pushNamed(AppRoute.login.name);
+      LoginResponse? loginResponse = LoginResponse.fromJson(jsonDecode(userData));
+      if(loginResponse != null){
+        await ProviderScope.containerOf(modelcontext!).
+            read(loginNotifierProvider.notifier).setData(loginResponse.data);
+            context.pushNamed(AppRoute.dashboard.name);
+      }else{
+        context.pushNamed(AppRoute.login.name);
+      }
     }else{
+      context.pushNamed(AppRoute.login.name);
+    }
+    }catch(e){
       context.pushNamed(AppRoute.login.name);
     }
   }

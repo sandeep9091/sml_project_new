@@ -1,66 +1,65 @@
-class LoginResponse {
-  final int sCode;
-  final String sMessage;
-  final List<LoginResponseData> data;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const LoginResponse(
-      {required this.sCode,
-      required this.sMessage,
-      required this.data});
+part 'login_response.g.dart';
+part 'login_response.freezed.dart';
+
+@freezed
+class LoginResponse with _$LoginResponse {
+  factory LoginResponse({
+    required int sCode,
+    required String sMessage,
+    required List<LoginResponseData> data,
+  }) = _LoginResponse;
+
+  factory LoginResponse.fromJson(Map<String, Object?> json) =>
+      _$LoginResponseFromJson(json);
 }
 
-class LoginResponseData {
-  final UserInfo? userInfo;
+@freezed
+class LoginResponseData with _$LoginResponseData {
+  factory LoginResponseData({
+    UserInfo? userInfo,
+  }) = _LoginResponseData;
 
-  const LoginResponseData(
-      {required this.userInfo});
+  factory LoginResponseData.fromJson(Map<String, Object?> json) =>
+      _$LoginResponseDataFromJson(json);
 }
 
-class UserInfo {
-  final String id;
-  final String uname;
-  final String password;
-  final String gender;
-  final String description;
-  final String cader;
-  final String cadername;
-  final String department;
-  final String createDt;
-  final String modifyDt;
-  final bool active;
-  final int underscoreV;
-  final String secure;
-  final int loggTime;
-  final UserCader? userCader;
+@freezed
+class UserInfo with _$UserInfo {
 
-  const UserInfo(
-      {required this.id,
-      required this.uname,
-      required this.password,
-      required this.gender,
-      required this.description,
-      required this.cader,
-      required this.cadername,
-      required this.department,
-      required this.createDt,
-      required this.modifyDt,
-      required this.active,
-      required this.underscoreV,
-      required this.loggTime,
-      required this.userCader,
-      required this.secure});
+
+    factory UserInfo({
+      required String id,
+  required String uname,
+  required String password,
+  required String gender,
+  required String description,
+  required String cader,
+  required String cadername,
+  required String department,
+  required String createDt,
+  required String modifyDt,
+  required bool active,
+  required int underscoreV,
+  required String secure,
+  required int loggTime,
+  UserCader? userCader,
+  }) = _UserInfo;
+
+  factory UserInfo.fromJson(Map<String, Object?> json) =>
+      _$UserInfoFromJson(json);
 }
 
-class UserCader {
-  final String id;
-  final String cdname;
-  final bool active;
-  final String code;
+@freezed
+class UserCader with _$UserCader{
+  factory UserCader({
+    required String id,
+      required String cdname,
+      required bool active,
+      required String code
+  }) = _UserCader;
 
-  const UserCader(
-      {required this.id,
-      required this.cdname,
-      required this.active,
-      required this.code
-      });
+  factory UserCader.fromJson(Map<String, Object?> json) =>
+      _$UserCaderFromJson(json);
 }

@@ -6,7 +6,7 @@ class AppColor {
   static const transparent = Colors.transparent;
 
   static const main = Color(0xFF3A18C2);
-
+  static const toastBgColor = Color(0xffa3a3a3);
   static const Color bgColor = Color(0xffFFFFFF);
   static const Color splashTitle = main;
   static const semiBlack = Color(0xff221F20);
