@@ -41,14 +41,14 @@ class AppViewModel extends BaseViewModel {
                   color: AppColor.white,
                 )),
             textSelectionTheme: const TextSelectionThemeData(
-              cursorColor: AppColor.black,
-              selectionHandleColor: AppColor.black,
-              selectionColor: AppColor.black,
+              cursorColor: AppColor.blue,
+              //selectionHandleColor: AppColor.black,
+              //selectionColor: AppColor.black,
             ),
             inputDecorationTheme: InputDecorationTheme(
                 hintStyle: TextStyle(
                   fontFamily: 'Montserrat',
-                  color: AppColor.black.withOpacity(0.6),
+                  color: AppColor.grey.withOpacity(0.4),
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,

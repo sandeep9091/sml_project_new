@@ -1,5 +1,8 @@
+import 'package:domain/model/get_modules_response/get_modules_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spoorthymactcs/di/notifier/get_modules_notifier.dart';
+import 'package:spoorthymactcs/utils/common_utils.dart';
 
 import '../../base/base_page.dart';
 import '../../ui/molecules/counter_widget.dart';
@@ -122,9 +125,6 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
             ),
           ]),
         ),
-        const SizedBox(
-          height: 5,
-        ),
         Container(
           margin: const EdgeInsets.all(10),
           padding: const EdgeInsets.all(10),
@@ -190,8 +190,80 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
             ),
           ]),
         ),
+        const SizedBox(height: 5,),
+        const Expanded(child: GetModulesWidget())
       ],
     ),
     );
+  }
+}
+
+class GetModulesWidget extends ConsumerWidget {
+  const GetModulesWidget({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    List<GetModulesResponseData> modulesData = ref.watch(getModulesNotifierProvider);
+    if(modulesData.isNotEmpty){
+      return Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+            alignment: Alignment.centerLeft,
+            child: Text(
+                  modulesData[0].mdname,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                    color: AppColor.black,
+                    fontSize: 18,
+                    fontFamily: FontUtils.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: modulesData[0].mdchilds.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    
+                  ),
+              itemBuilder: (BuildContext context, int index){
+                  List<MdChilds> mdchilds = modulesData[0].mdchilds;
+                  return Container(
+                  margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                  //padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                  decoration: BoxDecoration(
+                    color: AppColor.blue.withOpacity(0.05),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    border: Border.all(width: 2.0,color: AppColor.blue)
+                  ),
+                  child: Center(
+                    child: Text(
+                      mdchilds[index].submdname,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                    color: AppColor.blue,
+                    fontSize: 18,
+                    fontFamily: FontUtils.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                    ),
+                  ),
+              );
+              }),
+          ),
+        ],
+      );
+    }else{
+      return const SizedBox();
+    }
+    
   }
 }

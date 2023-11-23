@@ -82,22 +82,13 @@ class DeviceInfoHelper {
     //       key: PrefKeys.language, value: language);
     // }
     return HeaderEntity(
-      language: locale.toUpperCase(),
-      // TODO: change channel name to salestoolftth when realse
-      channelName: 'BSNL',
-      deviceOS: deviceOS,
-      appModel: deviceOS,
-      xOS: deviceOS,
-      appOEM: appOEM,
-      appVersion: appVersion,
-
-      authKey: NetworkProperties.AUTH_KEY,
-      osVersion: osVersion,
-      forwardIP:
-          await _secureStorageDataSource.getValue(key: PrefKeys.forwardIP),
-      userAgent:
-          await _secureStorageDataSource.getValue(key: PrefKeys.userAgent),
-      // deviceUniqueID: deviceUniqueID,
+      contentType: "application/json",
+      // channelName: 'SML',
+      // deviceOS: deviceOS,
+      // appModel: deviceOS,
+      // xOS: deviceOS,
+      // appOEM: appOEM,
+      // appVersion: appVersion,
     );
   }
 

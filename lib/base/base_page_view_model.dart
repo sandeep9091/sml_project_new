@@ -1,4 +1,5 @@
 import 'package:domain/error/app_error.dart';
+import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:spoorthymactcs/utils/status.dart';
 
@@ -14,8 +15,12 @@ class BasePageViewModel extends BaseViewModel {
   Stream<String> get toast => _toast.stream;
    Stream<Status> get status => _status.stream;
 
-  void showToastWithError(AppError error) {
-    _error.sink.add(error);
+  void showToastWithError(AppError? error) {
+    try {
+      _error.sink.add(error!);
+    } catch (exception) {
+      debugPrint(exception.toString());
+    }
   }
 
   void showToastWithString(String message) {

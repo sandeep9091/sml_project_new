@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:domain/usecase/common_usecase/login_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rxdart/subjects.dart';
@@ -9,7 +10,6 @@ import 'package:spoorthymactcs/utils/extension/stream_extention.dart';
 import 'package:spoorthymactcs/utils/request_manager.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
 import 'package:domain/model/login/login_response.dart';
-import 'package:domain/usecase/login_usecase/login_usecase.dart';
 import '../../base/base_page_view_model.dart';
 import '../../di/notifier/login_notifier.dart';
 import '../../utils/common_utils.dart';

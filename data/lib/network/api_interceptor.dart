@@ -24,14 +24,13 @@ class ApiInterceptor extends InterceptorsWrapper {
     } else {
       HeaderEntity appHeader = await _deviceHelper.getDeviceInfo();
 
-      appHeader.currentDateTime = DateTime.now().toString();
-      appHeader.uniqueTimeStamp =
-          DateTime.now().microsecondsSinceEpoch.toString();
+      //appHeader.currentDateTime = DateTime.now().toString();
+      //appHeader.uniqueTimeStamp = DateTime.now().microsecondsSinceEpoch.toString();
 
       //This needs to be changed - need to handle dynamically, based on language selection
       String lang =
           await _secureStorageDataSource.getValue(key: PrefKeys.language);
-      appHeader.language = lang.isEmpty ? 'en' : lang;
+      //appHeader.language = lang.isEmpty ? 'en' : lang;
 
       String uid =
           "${_deviceHelper.uuid}${DateTime.now().microsecondsSinceEpoch.toString()}";
@@ -55,7 +54,7 @@ class ApiInterceptor extends InterceptorsWrapper {
         var tokenId = await _secureStorageDataSource.getValue(
           key: PrefKeys.tokenId,
         );
-        appHeader.tokenId = tokenId;
+        //appHeader.tokenId = tokenId;
 
         String salt = EncryptionHelper.getOddNumber(tokenId);
 
@@ -73,10 +72,10 @@ class ApiInterceptor extends InterceptorsWrapper {
         //   debugPrint(
         //       "\n\tSECURITY Request URL: ${options.uri.toString().toLowerCase()} :: Header: ${appHeader.resposeTokenId!}");
         // }
-        appHeader.oAuth = requestBody;
-        appHeader.signatureValue = requestBody;
-        appHeader.authorisation = NetworkProperties.AKEY;
-        appHeader.authKey = NetworkProperties.AUTH_KEY;
+        //appHeader.oAuth = requestBody;
+        //appHeader.signatureValue = requestBody;
+        //appHeader.authorisation = NetworkProperties.AKEY;
+        //appHeader.authKey = NetworkProperties.AUTH_KEY;
       }
 
       // if (!options.path.contains("payments/v1_2/orders/get")) {
@@ -88,32 +87,6 @@ class ApiInterceptor extends InterceptorsWrapper {
       options.headers.addAll(appHeader.toJson());
       // }
 
-      if (options.path.contains("profile/uploadphoto")) {
-        var tokenId = await _secureStorageDataSource.getValue(
-          key: PrefKeys.tokenId,
-        );
-        String salt = EncryptionHelper.getOddNumber(tokenId.toString());
-        String hashSaltValue = "parent\$" +
-            (appHeader.deviceOS ?? '') +
-            "\$$tokenId&SALT=" +
-            salt +
-            ")";
-        debugPrint(hashSaltValue);
-        String requestBody = EncryptionHelper.getSHA512(
-          hashSaltValue,
-        );
-        Map<String, dynamic> extraHeaders = {
-          "X-IMI-TOKENID": tokenId,
-          "type": "image",
-          "X-IMI-HASH": requestBody,
-          "Content-Type":
-              "application/json,multipart/form-data; boundary=------VohpleBoundary4QuqLuM1cE5lMwCy"
-        };
-        options.headers.addEntries(extraHeaders.entries);
-        appHeader.authorisation = NetworkProperties.AKEY;
-        options.headers.remove("X-IMI-SIGNATURE");
-        options.headers.remove("x-imi-oauth");
-      }
       debugPrint("headers------- ${options.headers}");
     }
     options;

@@ -13,9 +13,14 @@ class AppColor {
   static const semiGrey = Color(0xff686873);
   static const txtboxHintColor = Color(0xFF858585);
   static const grey = Color(0xFF9E9E9E);
+  static const grey400 = Color(0xFFBDBDBD);
+  static const grey350 = Color(0xFFD6D6D6);
+  static const grey300 = Color(0xFFE0E0E0);
+  static const grey200 = Color(0xFFEEEEEE);
+  static const yellowDark = Color(0xFFC79807);
   static const white = Color(0xffFFFFFF);
   static const black = Color(0xff000000);
-  static const blue = Color(0xFF4520DA);
+  static const blue = Color(0xFF2196F3);
   static const red = Color(0xFFFF6686);
   static const lightBlue = Color(0xFFECF7FF);
   static const lavender = Color(0xFFEADEF4);

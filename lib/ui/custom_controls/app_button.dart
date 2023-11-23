@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/color_utils.dart';
-import '../../utils/text_style.dart';
+import '../../utils/font_utils.dart';
 
 class AppButton extends StatelessWidget {
   final String title;
@@ -82,7 +82,7 @@ class AppButton extends StatelessWidget {
                               ? AppColor.white
                               : AppColor.black,
                       fontWeight: FontWeight.bold,
-                      fontFamily: FontFamilyEnum.montserrat.toString(),
+                      fontFamily: FontUtils.primary.toString(),
                       fontSize: 14,
                     ),
                   ),

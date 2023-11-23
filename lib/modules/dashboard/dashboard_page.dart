@@ -51,4 +51,10 @@ class DashboardPageState
   ProviderBase provideBase() {
     return dashboardViewModelProvider;
   }
+
+  @override
+  void onPageInit(DashboardPageViewModel model) {
+    model.getModulesData(context);
+    super.onPageInit(model);
+  }
 }

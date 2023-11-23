@@ -15,7 +15,7 @@ final loginViewModelProvider =
 final dashboardViewModelProvider =
     ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
   (ref) => DashboardPageViewModel(
-    //ref.read(loginUseCaseProvider),
+    ref.read(getModulesUseCaseProvider),
   ),
 );
 

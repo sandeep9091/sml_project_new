@@ -93,6 +93,16 @@ class AppCommonUtils {
     }
   }
 
+    static String formatEpochToDateTime(int epoch) {
+    try {
+      var dt = DateTime.fromMillisecondsSinceEpoch(epoch);
+      var finalDate = DateFormat('dd-MM-yyyy, hh:mm a').format(dt);
+      return finalDate;
+    } catch (e) {
+      return '';
+    }
+  }
+
   String getMobileSubString(String num) {
     if (num.length > 10) {
       return num.substring(2, num.length);
@@ -107,5 +117,26 @@ class AppCommonUtils {
     String imgBase64 = base64Encode(Uint8List.view(buffer));
     String imageConverted = "data:image/png;base64,$imgBase64";
     return imageConverted;
+  }
+
+  LinearGradient generateRandomGradient() {
+    // Generate two random colors
+    Color color1 = getRandomColor();
+    Color color2 = getRandomColor();
+
+    // Create a gradient with the random colors
+    return LinearGradient(
+      colors: [color1, color2],
+    );
+  }
+
+  Color getRandomColor() {
+    // Generate random RGB values
+    int red = Random().nextInt(256);
+    int green = Random().nextInt(256);
+    int blue = Random().nextInt(256);
+
+    // Create a color from the RGB values
+    return Color.fromARGB(255, red, green, blue);
   }
 }

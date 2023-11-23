@@ -92,7 +92,7 @@ class AppTextField extends StatefulWidget {
     this.borderRadius = 15.0,
     this.onChanged,
     this.filled = false,
-    this.fontSize = 14,
+    this.fontSize = 16,
     this.labelFontSize = 14,
     this.filledColor = AppColor.white,
     this.onFieldSubmitted,
@@ -151,7 +151,7 @@ class AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         _focusNode.requestFocus();
         widget.onTap?.call();
@@ -194,6 +194,7 @@ class AppTextFieldState extends State<AppTextField> {
             child: Row(
               children: [
                 widget.prefixIcon?.call() ?? const SizedBox.shrink(),
+                const SizedBox(width: 5),
                 Expanded(
                   child: Center(
                     child: TextFormField(
