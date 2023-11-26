@@ -4,10 +4,8 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../base/base_widget.dart';
 import '../di/app/app_modules.dart';
-import '../generated/l10n.dart';
 import 'app_viewmodel.dart';
 import 'navigation/app_router.dart';
-import 'navigation/route_paths.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});

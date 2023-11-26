@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'appColors.dart';
+import 'package:spoorthymactcs/utils/color_utils.dart';
 import 'appStyles.dart';
 
 class AppButton extends StatelessWidget {
@@ -57,11 +56,11 @@ class AppButton extends StatelessWidget {
             borderRadius:
                 BorderRadius.all(Radius.circular(borderRadius ?? 90.0)),
             border: isBorder
-                ? Border.all(color: borderColor ?? AppColors.primary)
+                ? Border.all(color: borderColor ?? AppColor.primary)
                 : const Border(),
             color: isEnable
-                ? (backgroundColor ?? AppColors.primary)
-                : AppColors.grey,
+                ? (backgroundColor ?? AppColor.primary)
+                : AppColor.grey,
           ),
           child: Center(
             child: busy ?? false
@@ -70,14 +69,14 @@ class AppButton extends StatelessWidget {
                     width: 18,
                     child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation(
-                          AppColors.white,
+                          AppColor.white,
                         ),
                         strokeWidth: 2.0),
                   )
                 : Text(
                     title,
                     style: TextStyle(
-                      color: textColor ?? AppColors.white,
+                      color: textColor ?? AppColor.white,
                       fontSize: fontSize,
                       fontFamily: FontUtils.primary,
                       fontWeight: FontWeight.w700,

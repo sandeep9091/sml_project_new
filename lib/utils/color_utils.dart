@@ -4,7 +4,7 @@ class AppColor {
   AppColor._();
 
   static const transparent = Colors.transparent;
-
+  static const primary = Color(0xFF3A18C2);
   static const main = Color(0xFF3A18C2);
   static const toastBgColor = Color(0xffa3a3a3);
   static const Color bgColor = Color(0xffFFFFFF);
@@ -39,4 +39,20 @@ class AppColor {
   static const borderColor = Color.fromARGB(68, 210, 210, 210);
 
   static const borderShadow = Color.fromARGB(46, 69, 32, 218);
+
+  //static Color primary = const Color(0xff1a5786);
+  static Color controlsHintColor = const Color(0xFFc7c7c7);
+  //static Color white = Colors.white;
+  //static Color grey = const Color(0xFF808080);
+  //static Color semiGrey = const Color(0xFF787276);
+  //static Color greyLight = const Color(0xFFC5C6D0);
+  static Color primaryText = fromHex('#182651');
+  static Color primaryButton = fromHex('#314ca3');
+
+  static Color fromHex(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
+  }
 }

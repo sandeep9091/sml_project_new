@@ -1,4 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spoorthymactcs/modules/branches/branches_page_view_model.dart';
+import 'package:spoorthymactcs/modules/companies/companies_page_view_model.dart';
+import 'package:spoorthymactcs/modules/users/users_page_view_model.dart';
 
 import '../../modules/dashboard/dashboard_page_view_model.dart';
 import '../../modules/login/login_page_view_model.dart';
@@ -19,6 +22,28 @@ final dashboardViewModelProvider =
     ref.read(getGenderListUseCaseProvider),
     ref.read(getCadersUseCaseProvider),
     ref
+  ),
+);
+
+final branchesViewModelProvider =
+    ChangeNotifierProvider.autoDispose<BranchesPageViewModel>(
+  (ref) => BranchesPageViewModel(
+    ref.read(branchesUseCaseProvider),
+  ),
+);
+
+final companiesViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CompaniesPageViewModel>(
+  (ref) => CompaniesPageViewModel(
+    ref.read(companiesUseCaseProvider),
+  ),
+);
+
+final usersViewModelProvider =
+    ChangeNotifierProvider.autoDispose<UsersPageViewModel>(
+  (ref) => UsersPageViewModel(
+    ref.read(usersUseCaseProvider),
+    ref.read(commonUseCaseProvider)
   ),
 );
 

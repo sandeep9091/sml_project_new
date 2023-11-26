@@ -51,7 +51,7 @@ class SideMenu extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        loginData?.userInfo?.uname ?? '',
+                        loginData.userInfo?.uname ?? '',
                         maxLines: 1,
                         overflow: TextOverflow.visible,
                         style: const TextStyle(
@@ -63,11 +63,9 @@ class SideMenu extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  leading: Container(
-                    child: Image.asset(
-                      AssetUtils.logoRound,
-                      width: 50,
-                    ),
+                  leading: Image.asset(
+                    AssetUtils.logoRound,
+                    width: 50,
                   ),
                 ),
               ),
@@ -78,7 +76,7 @@ class SideMenu extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                 Text(
-                    loginData?.userInfo?.cadername ??"",
+                    loginData.userInfo?.cadername ??"",
                     overflow: TextOverflow.visible,
                     style: const TextStyle(
                       color: AppColor.yellowDark,
@@ -102,7 +100,7 @@ class SideMenu extends ConsumerWidget {
                           fontWeight: FontWeight.normal,
                         ),
                       ),
-                      Text(AppCommonUtils.formatEpochToDateTime(loginData!.userInfo?.loggTime??0),
+                      Text(AppCommonUtils.formatEpochToDateTime(loginData.userInfo?.loggTime??0),
                             style: const TextStyle(
                               color: AppColor.semiBlack,
                               fontSize: 14,

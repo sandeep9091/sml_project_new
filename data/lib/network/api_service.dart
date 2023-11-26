@@ -1,6 +1,9 @@
-import 'package:data/entity/remote/response/users_entity/users_response_entity.dart';
+import 'package:data/entity/services/response/branches_response_entity.dart';
+import 'package:data/entity/services/response/companies_list_response_entity.dart';
 import 'package:data/entity/services/response/get_caders_response_entity.dart';
 import 'package:data/entity/services/response/get_gender_list_response_entity.dart';
+import 'package:data/entity/services/response/users_list_response_entity.dart';
+import 'package:data/entity/user/response/common_response_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -35,6 +38,23 @@ abstract class ApiService {
   Future<HttpResponse<GetGenderListResponseEntity>> getGenderList(
       @Body() CommonRequestEntity commonRequestEntity);
 
-  @GET('/api/users')
-  Future<HttpResponse<UserDataEntity>> getUsers();
+  /// get Branches
+  @POST("/branchlist")
+  Future<HttpResponse<BranchesResponseEntity>> getBranchesList(
+      @Body() CommonRequestEntity branchesRequestEntity);
+
+  /// get Companies List
+  @POST("/companylist")
+  Future<HttpResponse<CompaniesListResponseEntity>> getCompaniesList(
+      @Body() CommonRequestEntity companiesListRequestEntity);
+
+  /// get Users List
+  @POST("/smlGetUsers")
+  Future<HttpResponse<UsersListResponseEntity>> getUsersList(
+      @Body() CommonRequestEntity usersListRequestEntity);
+
+  /// save Users Data
+  @POST("/smlcreateuser")
+  Future<HttpResponse<CommonResponseEntity>> saveFormData(
+      @Body() CommonRequestEntity createUserRequestEntity);
 }

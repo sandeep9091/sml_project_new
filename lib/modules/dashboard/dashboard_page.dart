@@ -1,7 +1,4 @@
 import 'package:spoorthymactcs/di/login/login_modules.dart';
-import 'package:spoorthymactcs/main/app_viewmodel.dart';
-
-import '../../utils/asset_utils.dart';
 import '../../utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

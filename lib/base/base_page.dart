@@ -10,10 +10,6 @@ import 'package:spoorthymactcs/ui/molecules/loader/common_loader.dart';
 import 'package:spoorthymactcs/utils/extension/base_page_extensions.dart';
 import 'package:spoorthymactcs/utils/status.dart';
 import 'dart:async';
-import '../ui/app_svg.dart';
-
-import '../utils/asset_utils.dart';
-import '../utils/color_utils.dart';
 import 'base_page_view_model.dart';
 import 'base_widget.dart';
 

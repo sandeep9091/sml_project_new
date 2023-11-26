@@ -9,6 +9,7 @@ import 'package:domain/usecase/services/get_caders_usecase.dart';
 import 'package:domain/usecase/services/get_gender_list_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:spoorthymactcs/di/notifier/get_caders_notifier.dart';
 import 'package:spoorthymactcs/di/notifier/get_genders_notifier.dart';
 import 'package:spoorthymactcs/di/notifier/get_modules_notifier.dart';
@@ -118,6 +119,15 @@ class DashboardPageViewModel extends BasePageViewModel {
         secure: jsonEncode({
           'cader':loginData.userInfo?.userCader?.code
         })));
+    }
+  }
+
+  renderModulePages(BuildContext context, MdChilds childData){
+    String route = childData.routerLink;
+    if(route.isNotEmpty){
+      context.push(route);
+    }else{
+      const SizedBox.shrink();
     }
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/color_utils.dart';
-import '../../app_svg.dart';
 
 class DrawerItem extends StatelessWidget {
   final String label;

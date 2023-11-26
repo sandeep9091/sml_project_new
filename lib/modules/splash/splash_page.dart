@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../base/base_page.dart';
 import '../../di/providers/splash/splash_modules.dart';
-import '../../utils/color_utils.dart';
 import 'splash_page_model.dart';
 import 'splash_page_view.dart';
 

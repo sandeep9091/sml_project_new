@@ -2,10 +2,8 @@ import 'package:domain/model/get_modules_response/get_modules_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spoorthymactcs/di/notifier/get_modules_notifier.dart';
-import 'package:spoorthymactcs/utils/common_utils.dart';
 
 import '../../base/base_page.dart';
-import '../../ui/molecules/counter_widget.dart';
 import '../../utils/asset_utils.dart';
 import '../../utils/color_utils.dart';
 import '../../utils/font_utils.dart';
@@ -191,7 +189,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
           ]),
         ),
         const SizedBox(height: 5,),
-        const Expanded(child: GetModulesWidget())
+        Expanded(child: GetModulesWidget(model: model,))
       ],
     ),
     );
@@ -199,7 +197,8 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
 }
 
 class GetModulesWidget extends ConsumerWidget {
-  const GetModulesWidget({super.key});
+  const GetModulesWidget({super.key,required this.model});
+  final DashboardPageViewModel model;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -236,27 +235,32 @@ class GetModulesWidget extends ConsumerWidget {
                   ),
               itemBuilder: (BuildContext context, int index){
                   List<MdChilds> mdchilds = modulesData[0].mdchilds;
-                  return Container(
-                  margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                  //padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                  decoration: BoxDecoration(
-                    color: AppColor.blue.withOpacity(0.05),
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(width: 2.0,color: AppColor.blue)
-                  ),
-                  child: Center(
-                    child: Text(
-                      mdchilds[index].submdname,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                    color: AppColor.blue,
-                    fontSize: 18,
-                    fontFamily: FontUtils.primary,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  return GestureDetector(
+                    onTap: (){
+                      model.renderModulePages(context,mdchilds[index]);
+                    },
+                    child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                    //padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                    decoration: BoxDecoration(
+                      color: AppColor.blue.withOpacity(0.05),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      border: Border.all(width: 2.0,color: AppColor.blue)
                     ),
-                  ),
-              );
+                    child: Center(
+                      child: Text(
+                        mdchilds[index].submdname,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                      color: AppColor.blue,
+                      fontSize: 18,
+                      fontFamily: FontUtils.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                      ),
+                    ),
+                                ),
+                  );
               }),
           ),
         ],

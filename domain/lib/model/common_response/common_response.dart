@@ -1,19 +1,12 @@
 import 'package:domain/model/common_response/common_data.dart';
 
 class CommonResponse {
-  final String? code;
-  final String? message;
-  final String? statusCode;
-  final String? channel;
-  final bool? status;
-  final CommonData? data;
+  final int sCode;
+  final String sMessage;
+  final List<dynamic> data;
 
-  CommonResponse({
-    this.code,
-    this.message,
-    this.statusCode,
-    this.channel,
-    this.status,
-    this.data,
-  });
+  CommonResponse(
+    {required this.sCode,
+      required this.sMessage,
+      required this.data});
 }

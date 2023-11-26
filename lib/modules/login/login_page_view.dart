@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spoorthymactcs/common_utils/appButton.dart';
-import 'package:spoorthymactcs/common_utils/appColors.dart';
 import 'package:spoorthymactcs/common_utils/appTextField.dart';
 import 'package:spoorthymactcs/main/navigation/app_router.dart';
 import 'package:spoorthymactcs/ui/stream_builder/app_stream_builder.dart';
+import 'package:spoorthymactcs/utils/color_utils.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
 
 import '../../base/base_page.dart';
@@ -54,7 +54,7 @@ class LoginPageView extends BasePageViewWidget<LoginPageViewModel> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Text('Spoorthy Mactcs ltd.', style: TextStyle(color: AppColors.primaryText,fontSize: 30,fontWeight: FontWeight.bold)),
+                          Text('Spoorthy Mactcs ltd.', style: TextStyle(color: AppColor.primaryText,fontSize: 30,fontWeight: FontWeight.bold)),
                           const SizedBox(
                             height: 20,
                           ),
@@ -140,7 +140,7 @@ model.showToastWithString("Something went wrong, Please try again");
                         },
                                 dataBuilder: (context,data){
                           return AppButton(
-                        backgroundColor: AppColors.primaryButton,
+                        backgroundColor: AppColor.primaryButton,
                         isEnable: true,
                         busy: data?.status == Status.LOADING,
                         borderRadius: 10,

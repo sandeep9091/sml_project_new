@@ -21,6 +21,7 @@ class AssetUtils {
 
   static const String logo = _image + "logo.jpg";
   static const String logoRound = _image + "logo_round.jpg";
+  static const String noDocuments = _image + "noDocuments.png";
 
   //PNG Images End
 }

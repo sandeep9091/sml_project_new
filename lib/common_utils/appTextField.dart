@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:spoorthymactcs/ui/molecules/app_error_widget.dart';
 
 import '../../utils/color_utils.dart';
 import '../../utils/font_utils.dart';
-import '../utils/app_error_widget.dart';
 
 class AppTextField extends StatefulWidget {
   final double width;
@@ -15,7 +15,7 @@ class AppTextField extends StatefulWidget {
   final TextInputAction? inputAction;
   final TextInputType? inputType;
   final String? labelText;
-  final String hintText;
+  final String? hintText;
   final String? initialValue;
   final bool? autoFocus;
   final FormFieldValidator<String>? validator;
@@ -57,6 +57,7 @@ class AppTextField extends StatefulWidget {
   final Border? border;
   final Function(bool hasFocus)? onFocusChange;
   final TextStyle? textStyle;
+  final bool isMandatory;
 
   const AppTextField({
     this.onTap,
@@ -70,7 +71,7 @@ class AppTextField extends StatefulWidget {
     this.inputAction = TextInputAction.done,
     this.inputType,
     this.labelText,
-    required this.hintText,
+    this.hintText,
     this.initialValue,
     this.autoFocus = false,
     this.validator,
@@ -113,6 +114,7 @@ class AppTextField extends StatefulWidget {
     this.onFocusChange,
     this.border,
     this.textStyle,
+    this.isMandatory = false
   }) : super(key: key);
 
   @override
@@ -164,12 +166,17 @@ class AppTextFieldState extends State<AppTextField> {
               ? const SizedBox.shrink()
               : Padding(
                   padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: Text(
-                    widget.labelText!,
-                    style: const TextStyle(
-                        color: AppColor.grey,
-                        fontSize: 14,
-                        fontFamily: FontUtils.primary),
+                  child: Row(
+                    children: [
+                      Text(
+                        widget.labelText!,
+                        style: const TextStyle(
+                            color: AppColor.grey,
+                            fontSize: 14,
+                            fontFamily: FontUtils.primary),
+                      ),
+                      widget.isMandatory ? const Icon(Icons.star,color: Colors.red,size: 8,): const SizedBox.shrink()
+                    ],
                   ),
                 ),
           Container(
@@ -223,7 +230,7 @@ class AppTextFieldState extends State<AppTextField> {
                       obscuringCharacter: widget.obscuringCharacter,
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(0.0),
-                        hintText: widget.hintText,
+                        hintText: widget.hintText ?? "",
                         hintMaxLines: 1,
                         counterText: "",
                         alignLabelWithHint: true,
