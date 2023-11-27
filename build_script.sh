@@ -32,8 +32,7 @@ then
     exit 0
 fi
 TIMESTAMP=`date +%Y_%m_%d_%H_%M_%S`
-BASE_PATH='/Users/venkata.k/flutter_builds/bsnl/Builds'
-# BASE_PATH='/Users/umeshnaidu.c/Workspace/Builds/BSNL-Flutter'
+BASE_PATH='/Users/sandy/flutter_builds/bsnl/Builds'
 
 if [ $BUILD_OS == 'android' ] 
 then
@@ -74,7 +73,7 @@ then
     if [ $LIVE_STAGING == 'live' ]
     then
         echo "Building Live APP."
-        flutter build apk --target=lib/main.dart --build-number=$BUILD_NUMBER --build-name=$BUILD_NAME --obfuscate --split-debug-info=$DEBUG_INFO_PATH/ BASE_URL="https://mybsnl.bsnl.co.in/api/v2" --dart-define AKEY="642d1cc69d90666962726e" --dart-define AUTHKEY="APPYM8205D04"  --dart-define ENKEY="M72S912O2L"  
+        flutter build apk --target=lib/main.dart --build-number=$BUILD_NUMBER --build-name=$BUILD_NAME --obfuscate --split-debug-info=$DEBUG_INFO_PATH/ BASE_URL="https://smlservices.onrender.com/sml" 
         mv build/app/outputs/flutter-apk/app-release.apk $APK_PATH
         echo "Build copied to "$APK_PATH
         echo "\nBuilding completed\n\n"
@@ -83,7 +82,7 @@ then
     if [ $LIVE_STAGING == 'staging' ]
     then
         echo "Building STAGING APP."
-        flutter build apk --build-number=$BUILD_NUMBER --build-name=$BUILD_NAME --dart-define BASE_URL="https://stg-mybsnl.bsnl.co.in/api/v2" --dart-define AKEY="642d1cc69d90666962726e" --dart-define AUTHKEY="APPYM8205D04"  --dart-define ENKEY="M72S912O2L"
+        flutter build apk --build-number=$BUILD_NUMBER --build-name=$BUILD_NAME --dart-define BASE_URL="https://smlservices.onrender.com/sml"
         mv build/app/outputs/flutter-apk/app-release.apk $APK_PATH
         echo "Build copied to "$APK_PATH
         echo "\nBuilding completed\n\n"
@@ -97,7 +96,7 @@ then
     if [ $LIVE_STAGING == 'live' ]
     then
         echo "Building Live APP."
-        flutter build appbundle --target=lib/main.dart --build-number=$BUILD_NUMBER --build-name=$BUILD_NAME --obfuscate --split-debug-info=$DEBUG_INFO_PATH/ --dart-define BASE_URL="https://hifi.ioh.co.id/api/v1" --dart-define ENKEY=ftth --dart-define GKEY="AIzaSyDtG3DXU-CMxR9ruZvp3_bXJYGV7tpwXCg" --dart-define AKEY=722c13dc9a986271696f7438 --dart-define PAY_URL="https://hifi.ioh.co.id/#/" --dart-define SKIP_HASH="FALSE" --dart-define QISCUS_APPID="apsbg-f2i0efdmhzsdiav" --dart-define QISCUS_CHANNEL_ID="126875"
+        flutter build appbundle --target=lib/main.dart --build-number=$BUILD_NUMBER --build-name=$BUILD_NAME --obfuscate --split-debug-info=$DEBUG_INFO_PATH/ --dart-define BASE_URL="https://smlservices.onrender.com/sml"
         mv build/app/outputs/bundle/release/app-release.aab $BUNDLE_PATH
         echo "Build copied to "$BUNDLE_PATH
         echo "\nBuilding completed\n\n"
@@ -106,7 +105,7 @@ then
     if [ $LIVE_STAGING == 'staging' ]
     then
         echo "Building STAGING APP."
-        flutter build appbundle --obfuscate --split-debug-info=$DEBUG_INFO_PATH/ --dart-define BASE_URL="https://stg-mybsnl.bsnl.co.in/api/v2" --dart-define AKEY="642d1cc69d90666962726e" --dart-define AUTHKEY="APPYM8205D04"  --dart-define ENKEY="M72S912O2L"  --dart-define SKIP_HASH="TRUE" 
+        flutter build appbundle --obfuscate --split-debug-info=$DEBUG_INFO_PATH/ --dart-define BASE_URL="https://smlservices.onrender.com/sml"
         mv build/app/outputs/bundle/release/app-release.aab $BUNDLE_PATH
         echo "Build copied to "$BUNDLE_PATH
         echo "\nBuilding completed\n\n"
@@ -119,7 +118,7 @@ then
     echo 'final archive path:'$IOS_PATH
     if [ $LIVE_STAGING == 'live' ]
     then
-        flutter build ipa --target=lib/main.dart --obfuscate --split-debug-info=$DEBUG_INFO_PATH/ --build-number=$IOS_BUILD_NUMBER --build-name=$IOS_BUILD_NAME  --dart-define BASE_URL="https://mybsnl.bsnl.co.in/api/v2" --dart-define AKEY="642d1cc69d90666962726e" --dart-define AUTHKEY="APPYM8205D04"  --dart-define ENKEY="M72S912O2L"  
+        flutter build ipa --target=lib/main.dart --obfuscate --split-debug-info=$DEBUG_INFO_PATH/ --build-number=$IOS_BUILD_NUMBER --build-name=$IOS_BUILD_NAME  --dart-define BASE_URL="https://smlservices.onrender.com/sml" 
         mv build/ios/archive $IOS_PATH
         echo 'Build copied to '$IOS_PATH
         echo "\nBuilding completed\n\n"
@@ -127,7 +126,7 @@ then
 
     if [ $LIVE_STAGING == 'staging' ]
     then
-        flutter build ipa --target=lib/main.dart --build-number=$IOS_BUILD_NUMBER --build-name=$IOS_BUILD_NAME --dart-define BASE_URL="https://stg-mybsnl.bsnl.co.in/api/v2" --dart-define BILLDESK_URL="https://pguat.billdesk.io" --dart-define AKEY="642d1cc69d90666962726e" --dart-define AUTHKEY="APPYM8205D04"  --dart-define ENKEY="M72S912O2L" --dart-define DEV_MODE="TRUE" --export-options-plist=$EXPORT_OPTIONS_PLIST_PATH
+        flutter build ipa --target=lib/main.dart --build-number=$IOS_BUILD_NUMBER --build-name=$IOS_BUILD_NAME --dart-define BASE_URL="https://smlservices.onrender.com/sml" --export-options-plist=$EXPORT_OPTIONS_PLIST_PATH
         mv build/ios/archive $IOS_PATH
         mv build/ios/ipa $IOS_PATH
         echo 'Build copied to '$IOS_PATH

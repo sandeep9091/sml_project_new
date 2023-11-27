@@ -31,13 +31,12 @@ class CommonLoader {
                         children: [
                           Image.asset(
                             AssetUtils.logoRound,
-                            scale: 1,
-
+                            scale: 0.5,
                           ),
                           const SizedBox(
                             height: 8,
                           ),
-                          Text("please Wait",
+                          Text("please Wait...",
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontFamily: FontUtils.primary.toString(),

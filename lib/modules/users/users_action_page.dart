@@ -1,6 +1,8 @@
+import 'package:domain/model/common_response/common_response.dart';
 import 'package:domain/model/get_modules_response/users_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:spoorthymactcs/common_utils/appButton.dart';
 import 'package:spoorthymactcs/common_utils/appTextField.dart';
 import 'package:spoorthymactcs/di/login/login_modules.dart';
@@ -8,7 +10,10 @@ import 'package:spoorthymactcs/modules/users/users_page_view_model.dart';
 import 'package:spoorthymactcs/ui/molecules/app_checkbox.dart';
 import 'package:spoorthymactcs/ui/molecules/app_dropdown.dart';
 import 'package:spoorthymactcs/ui/molecules/common_app_bar.dart';
+import 'package:spoorthymactcs/ui/stream_builder/app_stream_builder.dart';
 import 'package:spoorthymactcs/utils/color_utils.dart';
+import 'package:spoorthymactcs/utils/resource.dart';
+import 'package:spoorthymactcs/utils/status.dart';
 
 class UsersActionPage extends StatelessWidget {
   const UsersActionPage({super.key,this.singleUser,required this.type});
@@ -138,9 +143,14 @@ class UsersActionPage extends StatelessWidget {
                 });
             }), 
           const SizedBox(height: 20),
-          AppButton(
+          AppStreamBuilder<Resource>(
+          stream: model.commonSaveStream,
+          initialData: Resource.none(),
+          onError: (error) {},
+          dataBuilder: ((context, data) {
+            return AppButton(
             title: "Save",
-            busy: false,
+            busy: data?.status == Status.LOADING,
             isEnable: formEnabled,
             onPressed: (){
               if(model.controllerUserName.text.isNotEmpty && model.controllerPassword.text.isNotEmpty && 
@@ -149,7 +159,10 @@ class UsersActionPage extends StatelessWidget {
               }else{
                 model.showToastWithString("Some Fields are missing");
               }
-            },)
+            },);
+          }),
+        ),
+          
         ]),
       ),
     )

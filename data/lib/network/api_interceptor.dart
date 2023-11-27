@@ -54,12 +54,12 @@ class ApiInterceptor extends InterceptorsWrapper {
         );
         //appHeader.tokenId = tokenId;
 
-        String salt = EncryptionHelper.getOddNumber(tokenId);
+        //String salt = EncryptionHelper.getOddNumber(tokenId);
 
-        String requestBody = EncryptionHelper.genSignature(
-          request,
-          salt,
-        );
+        // String requestBody = EncryptionHelper.genSignature(
+        //   request,
+        //   salt,
+        // );
 
         // if (NetworkProperties.checkResponseTampered) {
         //   appHeader.resposeTokenId =

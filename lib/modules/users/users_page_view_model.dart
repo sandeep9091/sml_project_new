@@ -11,6 +11,7 @@ import 'package:domain/usecase/common_usecase/common_forms_usecase.dart';
 import 'package:domain/usecase/services/users_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:spoorthymactcs/base/base_page_view_model.dart';
 import 'package:spoorthymactcs/di/notifier/get_caders_notifier.dart';
@@ -19,6 +20,7 @@ import 'package:spoorthymactcs/di/notifier/login_notifier.dart';
 import 'package:spoorthymactcs/utils/extension/stream_extention.dart';
 import 'package:spoorthymactcs/utils/request_manager.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
+import 'package:spoorthymactcs/utils/status.dart';
 
 class UsersPageViewModel extends BasePageViewModel {
   TextEditingController controllerUserName = TextEditingController();
@@ -42,6 +44,7 @@ class UsersPageViewModel extends BasePageViewModel {
 
   /// Stream for content
   Stream<Resource<UsersListResponse>> get usersListStream => _usersListResponse.stream;
+  Stream<Resource<CommonResponse>> get commonSaveStream => _commonResponse.stream;
 
 
   UsersPageViewModel(this._usersUseCase,this._commonUseCase) {
@@ -59,8 +62,11 @@ class UsersPageViewModel extends BasePageViewModel {
       RequestManager(value,
               createCall: () => _commonUseCase.execute(params: value))
           .asFlow()
-          .listen((event) {
-        showLoader(event.status);
+          .listen((event) async{
+          if(event.status == Status.SUCCESS){
+            await getUsersList(modelcontext!);
+            modelcontext?.pop();
+          }
         _commonResponse.safeAdd(event);
       });
     });
