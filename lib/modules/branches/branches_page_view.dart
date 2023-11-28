@@ -13,6 +13,8 @@ import 'package:spoorthymactcs/utils/font_utils.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
 import 'package:spoorthymactcs/utils/status.dart';
 
+import 'branches_action_page.dart';
+
 
 class BranchesPageView extends BasePageViewWidget<BranchesPageViewModel> {
     const BranchesPageView(ProviderBase model, {Key? key}) : super(model, key: key);
@@ -46,7 +48,11 @@ class BranchesPageView extends BasePageViewWidget<BranchesPageViewModel> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CommonTitleValueWidget(title: "Company",value: eachBranch.cname,width: MediaQuery.of(context).size.width *.70,),
-                          CommonEditViewButton(editButtonAction: () {},viewButtonAction: () {},)
+                          CommonEditViewButton(editButtonAction: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => BranchesActionPage(singleBranch: eachBranch,type: "EDIT",)));
+                          },viewButtonAction: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => BranchesActionPage(singleBranch: eachBranch,type: "VIEW",)));
+                          },)
                         ],
                       ),
                       CommonTitleValueWidget(title: "Branch",value: "${eachBranch.bname} / ${eachBranch.bcode} / ${eachBranch.bOpnDt}",),

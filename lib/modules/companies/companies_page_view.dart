@@ -12,6 +12,8 @@ import 'package:spoorthymactcs/utils/color_utils.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
 import 'package:spoorthymactcs/utils/status.dart';
 
+import 'companies_action_page.dart';
+
 
 class CompaniesPageView extends BasePageViewWidget<CompaniesPageViewModel> {
     const CompaniesPageView(ProviderBase model, {Key? key}) : super(model, key: key);
@@ -45,7 +47,11 @@ class CompaniesPageView extends BasePageViewWidget<CompaniesPageViewModel> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CommonTitleValueWidget(title: "Name",value: eachCompany.cname,width: MediaQuery.of(context).size.width *.70,),
-                          CommonEditViewButton(editButtonAction: () {},viewButtonAction: () {},)
+                          CommonEditViewButton(editButtonAction: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => CompaniesActionPage(eachCompany: eachCompany,type: "EDIT",)));
+                          },viewButtonAction: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => CompaniesActionPage(eachCompany: eachCompany,type: "VIEW",)));
+                          },)
                         ],
                       ),
                       CommonTitleValueWidget(title: "Address",value: eachCompany.cadress),

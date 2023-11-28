@@ -123,9 +123,9 @@ class UsersActionPage extends StatelessWidget {
           AppTextField(
                 labelText: "Description",
                 //hintText: "Enter User Name",
-                inputType: TextInputType.name,
+                inputType: TextInputType.multiline,
                 borderRadius: 5,
-                maxLines: 3,
+                maxLines: 10,
                 controller: model.controllerDescription,
                 padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 5),
                 enabled: formEnabled,

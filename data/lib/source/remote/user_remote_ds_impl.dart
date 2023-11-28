@@ -45,7 +45,8 @@ class UserRemoteDSImpl extends UserRemoteDataSource {
       {required CommonUseCaseParams params}) async {
     String secure = base64.encode(params.secure.codeUnits);
 
-    return await _apiService.saveFormData(
+    return await _apiService.saveFormsData(
+      params.endPointUrl,
       CommonRequestEntity(
         secure: secure
       ),

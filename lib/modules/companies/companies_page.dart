@@ -6,6 +6,8 @@ import 'package:spoorthymactcs/modules/companies/companies_page_view.dart';
 import 'package:spoorthymactcs/modules/companies/companies_page_view_model.dart';
 import 'package:spoorthymactcs/ui/molecules/common_app_bar.dart';
 
+import 'companies_action_page.dart';
+
 
 class CompaniesPage extends BasePage<CompaniesPageViewModel> {
   const CompaniesPage({Key? key}) : super(key: key);
@@ -31,9 +33,14 @@ class CompaniesPageState
 
   @override
   PreferredSizeWidget? buildAppbar() {
-    return const CommonAppBar(
-      titleWidget: Text("Companies"),
+    return CommonAppBar(
+      titleWidget: const Text("Companies"),
       enalbeTitle: true,
+      enableActions: true,
+      actionButtonOnTap: (){
+        Navigator.push(context,MaterialPageRoute(builder: (context) => const CompaniesActionPage(type: "ADD",)),
+        );
+      },
     );
   }
 

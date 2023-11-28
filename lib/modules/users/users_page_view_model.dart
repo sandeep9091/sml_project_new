@@ -17,6 +17,7 @@ import 'package:spoorthymactcs/base/base_page_view_model.dart';
 import 'package:spoorthymactcs/di/notifier/get_caders_notifier.dart';
 import 'package:spoorthymactcs/di/notifier/get_genders_notifier.dart';
 import 'package:spoorthymactcs/di/notifier/login_notifier.dart';
+import 'package:spoorthymactcs/main/navigation/route_paths.dart';
 import 'package:spoorthymactcs/utils/extension/stream_extention.dart';
 import 'package:spoorthymactcs/utils/request_manager.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
@@ -89,6 +90,7 @@ class UsersPageViewModel extends BasePageViewModel {
   saveUserData({required String flag, UsersListResponseData? singleUser}){
     _commonRequest.safeAdd(
       CommonUseCaseParams(
+        endPointUrl: RoutePaths.usersSave,
         secure: jsonEncode(
           {
             "id": (flag == "EDIT") ? singleUser?.id : null,

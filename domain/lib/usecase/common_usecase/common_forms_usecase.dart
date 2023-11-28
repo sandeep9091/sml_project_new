@@ -23,7 +23,8 @@ class CommonUseCase
 
 class CommonUseCaseParams extends Params {
   final String secure;
-  CommonUseCaseParams({required this.secure});
+  final String endPointUrl;
+  CommonUseCaseParams({required this.secure,required this.endPointUrl});
 
   @override
   Either<AppError, bool> verify() {

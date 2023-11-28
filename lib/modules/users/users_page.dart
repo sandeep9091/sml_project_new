@@ -39,7 +39,7 @@ class UsersPageState
       enableActions: true,
       actionButtonOnTap: (){
         Navigator.push(context,MaterialPageRoute(builder: (context) => const UsersActionPage(type: "ADD",)),
-  );
+        );
       },
     );
   }

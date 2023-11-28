@@ -57,4 +57,10 @@ abstract class ApiService {
   @POST("/smlcreateuser")
   Future<HttpResponse<CommonResponseEntity>> saveFormData(
       @Body() CommonRequestEntity createUserRequestEntity);
+
+    /// save Forms Data
+  @POST("{endPointUrl}")
+  Future<HttpResponse<CommonResponseEntity>> saveFormsData(
+      @Path("endPointUrl") endPointUrl,
+      @Body() CommonRequestEntity createUserRequestEntity);
 }

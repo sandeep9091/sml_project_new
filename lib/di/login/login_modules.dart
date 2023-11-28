@@ -29,6 +29,8 @@ final branchesViewModelProvider =
     ChangeNotifierProvider.autoDispose<BranchesPageViewModel>(
   (ref) => BranchesPageViewModel(
     ref.read(branchesUseCaseProvider),
+    ref.read(companiesUseCaseProvider),
+    ref.read(commonUseCaseProvider)
   ),
 );
 
@@ -36,6 +38,7 @@ final companiesViewModelProvider =
     ChangeNotifierProvider.autoDispose<CompaniesPageViewModel>(
   (ref) => CompaniesPageViewModel(
     ref.read(companiesUseCaseProvider),
+    ref.read(commonUseCaseProvider)
   ),
 );
 
