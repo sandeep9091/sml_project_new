@@ -18,6 +18,7 @@ class SideMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ValueNotifier<bool> isLoading = ValueNotifier(false);
     List<LoginResponseData> loginResponseData = ref.watch(loginNotifierProvider);
     LoginResponseData? loginData;
     if(loginResponseData.isNotEmpty){
@@ -118,11 +119,12 @@ class SideMenu extends ConsumerWidget {
           ),
           GestureDetector(
             onTap: () async{
-                      await AppCommonUtils().secureStorage().setValue(key: 'loginResponse',value: "");
-                      ProviderScope.containerOf(context).invalidate(loginNotifierProvider);
-                      ProviderScope.containerOf(context).invalidate(getModulesNotifierProvider);
-                      
-                      context.goNamed(AppRoute.login.name);
+              isLoading.value = true;
+              await AppCommonUtils().secureStorage().setValue(key: 'loginResponse',value: "");
+              ref.invalidate(loginNotifierProvider);
+              ref.invalidate(getModulesNotifierProvider);
+              
+              context.goNamed(AppRoute.login.name);
                     },
             child: Container(
               padding: const EdgeInsets.symmetric(vertical:15,horizontal: 10),
@@ -130,26 +132,39 @@ class SideMenu extends ConsumerWidget {
               child: Column(
                 children: [
                   Divider(thickness: 1.0,color: AppColor.grey.withOpacity(0.5)),
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        Icon(Icons.logout,color: Colors.black,),
-                        SizedBox(width: 5),
-                        Text(
-                            "Sign Out",
-                            maxLines: 1,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: AppColor.blue,
-                              fontSize: 16,
-                              fontFamily: FontUtils.primary,
-                              fontWeight: FontWeight.bold,
-                              
-                            ),
-                          ),
-                      ],
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Row(
+                          children: [
+                            Icon(Icons.logout,color: Colors.black,),
+                             SizedBox(width: 5),
+                            Text(
+                                "Sign Out",
+                                maxLines: 1,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  color: AppColor.blue,
+                                  fontSize: 16,
+                                  fontFamily: FontUtils.primary,
+                                  fontWeight: FontWeight.bold,
+                                  
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                      ValueListenableBuilder(
+                                valueListenable: isLoading, 
+                                builder: (context, bool isLoading, child){
+                                  return SizedBox(
+                                    height: 17, width: 17,
+                                    child: isLoading? const CircularProgressIndicator(strokeWidth: 2.0,): const SizedBox(),
+                                  );
+                                })
+                    ],
                   ),
                 ],
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spoorthymactcs/modules/borrowers/borrowers_page_view_model.dart';
 import 'package:spoorthymactcs/modules/branches/branches_page_view_model.dart';
 import 'package:spoorthymactcs/modules/companies/companies_page_view_model.dart';
 import 'package:spoorthymactcs/modules/users/users_page_view_model.dart';
@@ -50,4 +51,12 @@ final usersViewModelProvider =
   ),
 );
 
+final borrowersViewModelProvider =
+    ChangeNotifierProvider.autoDispose<BorrowersPageViewModel>(
+  (ref) => BorrowersPageViewModel(
+    ref.read(branchesUseCaseProvider),
+    ref.read(borrowersUseCaseProvider),
+    ref.read(commonUseCaseProvider)
+  ),
+);
 

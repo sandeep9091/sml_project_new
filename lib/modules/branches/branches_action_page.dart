@@ -21,6 +21,25 @@ class BranchesActionPage extends StatelessWidget {
   final BranchesResponseData? singleBranch;
   final String type;
 
+  Future<void> selectDate(BuildContext context, BranchesPageViewModel model) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: model.selectedDate,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+            child: child!,
+          );
+      },
+    );
+    if (picked != null && picked != model.selectedDate) {
+      model.selectedDate = picked;
+      model.getStringFromDate(picked);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     BranchesPageViewModel model = ProviderScope.containerOf(context).read(branchesViewModelProvider);
@@ -28,13 +47,13 @@ class BranchesActionPage extends StatelessWidget {
     if(type == "EDIT" || type == "VIEW"){
       model.controllerBranchName.text = singleBranch?.bname ?? "";
       model.controllerBranchCode.text = singleBranch?.bcode ?? "";
+      model.controllerBranchDate.text = singleBranch?.bOpnDt ?? "";
       model.controllerContactNumber.text = singleBranch?.contactNo ?? "";
       model.controllerState.text = singleBranch?.state ?? "";
       model.controllerDistrict.text = singleBranch?.district ?? "";
       model.controllerPincode.text = singleBranch?.pincode ?? "";
       model.controllerDescription.text = singleBranch?.desc ?? "";
       model.selectedCompany.value = singleBranch?.cId ?? "";
-      //model.selectedCadre.value = singleUser?.cader ?? "";
       model.isActive.value = singleBranch?.active ?? false;
     }else{
       model.controllerBranchName.text = "";
@@ -102,6 +121,20 @@ class BranchesActionPage extends StatelessWidget {
                 onChanged: (String value){
                 },             
                 ),
+          AppTextField(
+              labelText: "Branch Opened On",
+              controller: model.controllerBranchDate,
+              inputType: TextInputType.text,
+              borderRadius: 5.0,
+              enabled: false,
+              padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 5),
+              onFieldSubmitted: (p0) {},
+              suffixIcon: (enabled, value) =>
+                  const Icon(Icons.edit_calendar_rounded,color: AppColor.grey),
+              onTap: () async {
+                selectDate(context, model);
+              },
+            ),
           AppTextField(
                 labelText: "Contact No",
                 inputType: TextInputType.number,

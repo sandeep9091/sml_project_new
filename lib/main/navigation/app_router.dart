@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:spoorthymactcs/modules/borrowers/borrowers_page.dart';
 import 'package:spoorthymactcs/modules/branches/branches_page.dart';
 import 'package:spoorthymactcs/modules/companies/companies_page.dart';
 import 'package:spoorthymactcs/modules/users/users_page.dart';
@@ -16,7 +17,8 @@ enum AppRoute {
   dashboard,
   branches,
   companies,
-  users
+  users,
+  borrowers
 }
 
 final goRouterProvider = Provider<GoRouter>((ref) {
@@ -56,6 +58,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: RoutePaths.users,
         name: AppRoute.users.name,
         builder: (context, state) => const UsersPage(),
+      ),
+      GoRoute(
+        path: RoutePaths.borrowers,
+        name: AppRoute.borrowers.name,
+        builder: (context, state) => const BorrowersPage(),
       ),
     ],
   );

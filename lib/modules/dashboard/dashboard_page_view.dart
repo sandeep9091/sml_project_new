@@ -17,7 +17,8 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
     return Scaffold(
       appBar: AppBar(
       backgroundColor: AppColor.blue,
-      centerTitle: false,
+      centerTitle: true,
+      title: const Text("SML"),
       leading: GestureDetector(
         onTap: () {
           Scaffold.of(context).openDrawer();

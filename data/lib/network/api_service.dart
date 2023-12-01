@@ -1,3 +1,4 @@
+import 'package:data/entity/services/response/borrowers_response_entity.dart';
 import 'package:data/entity/services/response/branches_response_entity.dart';
 import 'package:data/entity/services/response/companies_list_response_entity.dart';
 import 'package:data/entity/services/response/get_caders_response_entity.dart';
@@ -57,6 +58,11 @@ abstract class ApiService {
   @POST("/smlcreateuser")
   Future<HttpResponse<CommonResponseEntity>> saveFormData(
       @Body() CommonRequestEntity createUserRequestEntity);
+
+  /// get Borrowers
+  @POST("/borrowerlist")
+  Future<HttpResponse<BorrowersResponseEntity>> getBorrowersList(
+      @Body() CommonRequestEntity borrowersRequestEntity);
 
     /// save Forms Data
   @POST("{endPointUrl}")

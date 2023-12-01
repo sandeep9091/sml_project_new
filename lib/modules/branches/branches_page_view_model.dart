@@ -10,6 +10,7 @@ import 'package:domain/usecase/services/branches_usecase.dart';
 import 'package:domain/usecase/services/companies_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:spoorthymactcs/base/base_page_view_model.dart';
 import 'package:spoorthymactcs/utils/extension/stream_extention.dart';
@@ -22,6 +23,7 @@ import '../../main/navigation/route_paths.dart';
 class BranchesPageViewModel extends BasePageViewModel {
   TextEditingController controllerBranchName = TextEditingController();
   TextEditingController controllerBranchCode = TextEditingController();
+  TextEditingController controllerBranchDate = TextEditingController();
   TextEditingController controllerContactNumber = TextEditingController();
   TextEditingController controllerState = TextEditingController();
   TextEditingController controllerDistrict = TextEditingController();
@@ -31,6 +33,7 @@ class BranchesPageViewModel extends BasePageViewModel {
   ValueNotifier<String> selectedCompany = ValueNotifier("");
   ValueNotifier<bool> isActive = ValueNotifier(false);
   List<dynamic> companiesList = [];
+  DateTime selectedDate = DateTime.now();
 
   final BranchesUseCase _branchesUseCase;
   final CompaniesUseCase _companiesUseCase;
@@ -121,7 +124,7 @@ class BranchesPageViewModel extends BasePageViewModel {
             "flag": (flag == "EDIT") ? "E" : "S",
             "bname": controllerBranchName.text.trim(),
             "bcode": controllerBranchCode.text.trim(),
-            "b_opn_dt": "27/11/2023",
+            "b_opn_dt": controllerBranchDate.text.trim(),
             "desc": controllerDescription.text.trim(),
             "cId": selectedCompany.value,
             "state": controllerState.text.trim(),
@@ -140,5 +143,12 @@ class BranchesPageViewModel extends BasePageViewModel {
         "id": each.id
       });
       }}
+  }
+
+    getStringFromDate(DateTime picked) {
+    DateTime dateTime = DateTime(picked.year, picked.month, picked.day);
+    DateFormat format = DateFormat("dd/MM/yyyy");
+    String dateString = format.format(dateTime);
+    controllerBranchDate.text = dateString;
   }
 }

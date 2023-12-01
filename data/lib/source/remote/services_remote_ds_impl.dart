@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:data/entity/services/response/borrowers_response_entity.dart';
 import 'package:data/entity/services/response/branches_response_entity.dart';
 import 'package:data/entity/services/response/companies_list_response_entity.dart';
 import 'package:data/entity/services/response/get_caders_response_entity.dart';
@@ -7,6 +8,7 @@ import 'package:data/entity/services/response/users_list_response_entity.dart';
 import 'package:data/entity/user/request/common_request_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/services_datasource.dart';
+import 'package:domain/usecase/services/borrowers_usecase.dart';
 import 'package:domain/usecase/services/branches_usecase.dart';
 import 'package:domain/usecase/services/companies_usecase.dart';
 import 'package:domain/usecase/services/get_caders_usecase.dart';
@@ -73,6 +75,18 @@ class ServicesRemoteDSImpl extends ServicesRemoteDataSource {
     String secure = base64.encode(params.secure.codeUnits);
 
     return await _apiService.getUsersList(
+      CommonRequestEntity(
+        secure: secure
+      ),
+    );
+  }
+
+    @override
+  Future<HttpResponse<BorrowersResponseEntity>> getBorrowersList(
+      {required BorrowersUseCaseParams params}) async {
+    String secure = base64.encode(params.secure.codeUnits);
+
+    return await _apiService.getBorrowersList(
       CommonRequestEntity(
         secure: secure
       ),

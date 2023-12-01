@@ -2,12 +2,14 @@ import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/services_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:dartz/dartz.dart';
+import 'package:domain/model/get_modules_response/borrowers_response.dart';
 import 'package:domain/model/get_modules_response/branches_response.dart';
 import 'package:domain/model/get_modules_response/companies_response.dart';
 import 'package:domain/model/get_modules_response/users_response.dart';
 import 'package:domain/model/services/get_caders_response.dart';
 import 'package:domain/model/services/get_gender_list_response.dart';
 import 'package:domain/repository/services/services_repository.dart';
+import 'package:domain/usecase/services/borrowers_usecase.dart';
 import 'package:domain/usecase/services/branches_usecase.dart';
 import 'package:domain/usecase/services/companies_usecase.dart';
 import 'package:domain/usecase/services/get_caders_usecase.dart';
@@ -75,6 +77,19 @@ class ServicesRepositoryImpl extends ServicesRepository {
   Future<Either<NetworkError, UsersListResponse>> getUsersList(
     {required UsersUseCaseParams params}) async {
     final response = await safeApiCall(_remoteDS.getUsersList(params: params));
+
+    return response!.fold(
+      (l) => Left(l),
+      (r) {
+        return Right(r.data.transform());
+      },
+    );
+  }
+
+      @override
+  Future<Either<NetworkError, BorrowersResponse>> getBorrowersList(
+    {required BorrowersUseCaseParams params}) async {
+    final response = await safeApiCall(_remoteDS.getBorrowersList(params: params));
 
     return response!.fold(
       (l) => Left(l),
