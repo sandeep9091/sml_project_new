@@ -1,0 +1,160 @@
+{
+  "data": [
+    {
+      "lang": "en",
+      "temp": {
+        "desc": "Please help us to improve by giving feedback on your experience.",
+        "questions": [
+          {
+            "id": "1",
+            "question": "My Internet is working satisfactory?",
+            "options": [
+              {
+                "id": "Y",
+                "value": "Yes"
+              },
+              {
+                "id": "N",
+                "value": "No"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "question": "Did you pay for installation?",
+            "options": [
+              {
+                "id": "Y",
+                "value": "yes"
+              },
+              {
+                "id": "N",
+                "value": "No"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "question": "ONT installed is provided by BSNL?",
+            "options": [
+              {
+                "id": "Y",
+                "value": "yes"
+              },
+              {
+                "id": "N",
+                "value": "No, Iam using using own"
+              }
+            ]
+          },
+          {
+            "id": "4",
+            "question": "If yes. Have you paid for it?",
+            "options": [
+              {
+                "id": "Y",
+                "value": "yes"
+              },
+              {
+                "id": "N",
+                "value": "No, free by bsnl"
+              }
+            ]
+          },
+          {
+            "id": "5",
+            "question": "Were you explained about benefits of your plan?",
+            "options": [
+              {
+                "id": "Y",
+                "value": "yes"
+              },
+              {
+                "id": "N",
+                "value": "No"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "lang": "hi",
+      "temp": {
+        "desc": "कृपया अपने अनुभव पर प्रतिक्रिया देकर सुधार करने में हमारी सहायता करें",
+        "questions": [
+          {
+            "id": "1",
+            "question": "मेरा इंटरनेट संतोषजनक ढंग से काम कर रहा है?",
+            "options": [
+              {
+                "id": "Y",
+                "value": "हाँ"
+              },
+              {
+                "id": "N",
+                "value": "नहीं"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "question": "क्या आपने स्थापना के लिए भुगतान किया?",
+            "options": [
+              {
+                "id": "Y",
+                "value": "हाँ"
+              },
+              {
+                "id": "N",
+                "value": "नहीं"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "question": "ओएनटी स्थापित बीएसएनएल द्वारा प्रदान किया गया है?",
+            "options": [
+              {
+                "id": "Y",
+                "value": "हाँ"
+              },
+              {
+                "id": "N",
+                "value": "नहीं, मैं स्वयं का उपयोग कर रहा हूं"
+              }
+            ]
+          },
+          {
+            "id": "4",
+            "question": "यदि हां। क्या आपने इसके लिए भुगतान किया है?",
+            "options": [
+              {
+                "id": "Y",
+                "value": "हाँ"
+              },
+              {
+                "id": "N",
+                "value": "नहीं, बीएसएनएल द्वारा निःशुल्क"
+              }
+            ]
+          },
+          {
+            "id": "5",
+            "question": "क्या आपको अपनी योजना के लाभों के बारे में बताया गया?",
+            "options": [
+              {
+                "id": "Y",
+                "value": "हाँ"
+              },
+              {
+                "id": "N",
+                "value": "नहीं"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
