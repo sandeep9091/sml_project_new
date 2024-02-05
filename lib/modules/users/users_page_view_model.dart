@@ -75,15 +75,16 @@ class UsersPageViewModel extends BasePageViewModel {
 
 
   getUsersList(BuildContext context){
-    List<LoginResponseData> loginResponseData = ProviderScope.containerOf(context).read(loginNotifierProvider);
-    LoginResponseData? loginData;
-    if(loginResponseData.isNotEmpty){
-      loginData = loginResponseData[0];
-    }
-    if(loginData != null){
+    UserInfo? userInfo = ProviderScope.containerOf(context).read(loginUserInfoNotifierProvider);
+    if(userInfo != null){
     _usersListRequest.safeAdd(
       UsersUseCaseParams(
-        secure: jsonEncode(loginData.userInfo?.userCader?.code??"")));
+        secure: {
+          "code": userInfo.userCader?.code ?? "",
+          "create_by": userInfo.id ?? "",
+          "ctrl": "filter"
+        }
+        ));
     }
   }
 
@@ -91,7 +92,7 @@ class UsersPageViewModel extends BasePageViewModel {
     _commonRequest.safeAdd(
       CommonUseCaseParams(
         endPointUrl: RoutePaths.usersSave,
-        secure: jsonEncode(
+        secure: 
           {
             "id": (flag == "EDIT") ? singleUser?.id : null,
             "password": controllerPassword.text.trim(),
@@ -104,7 +105,7 @@ class UsersPageViewModel extends BasePageViewModel {
             "cader": selectedCadre.value,
             "department": null
           }
-        )));
+        ));
   }
 
   updateGenderList(BuildContext context) {

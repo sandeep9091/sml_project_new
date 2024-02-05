@@ -9,7 +9,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart';
 import '../../../db/constants/pref_keys.dart';
-import '../../../db/preferences/preferences.dart';
 import '../../../source/secure_storage/secure_storage_ds.dart';
 
 class DeviceInfoHelper {
@@ -43,8 +42,6 @@ class DeviceInfoHelper {
     String appVersion = info.version;
     String osVersion = "16.2"; //Platform.operatingSystemVersion;
 
-    String locale =
-        await UserPreference.getValue(key: PrefKeys.language) ?? "id";
 
     if (kIsWeb) {
       deviceOS = "WEB";
@@ -73,8 +70,6 @@ class DeviceInfoHelper {
         deviceName = deviceData["name"];
       }
     }
-    String language =
-        await _secureStorageDataSource.getValue(key: PrefKeys.language);
     // if (language.isEmpty) {
     //   language = "en";
     //   await _secureStorageDataSource.setValue(
@@ -82,6 +77,7 @@ class DeviceInfoHelper {
     // }
     return HeaderEntity(
       contentType: "application/json",
+      isCrypto: "N"
       // channelName: 'SML',
       // deviceOS: deviceOS,
       // appModel: deviceOS,

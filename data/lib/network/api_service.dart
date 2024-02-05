@@ -1,10 +1,15 @@
+import 'package:data/entity/services/response/address_master_response_entity.dart';
 import 'package:data/entity/services/response/borrowers_response_entity.dart';
 import 'package:data/entity/services/response/branches_response_entity.dart';
 import 'package:data/entity/services/response/companies_list_response_entity.dart';
 import 'package:data/entity/services/response/get_caders_response_entity.dart';
 import 'package:data/entity/services/response/get_gender_list_response_entity.dart';
+import 'package:data/entity/services/response/get_team_mapper_response_entity.dart';
+import 'package:data/entity/services/response/get_teams_response_entity.dart';
 import 'package:data/entity/services/response/users_list_response_entity.dart';
 import 'package:data/entity/user/response/common_response_entity.dart';
+import 'package:data/entity/user/response/getDashboard_response_entity.dart';
+import 'package:data/entity/user/response/getModulesNew_response_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -23,10 +28,20 @@ abstract class ApiService {
   @POST("/smlsignin")
   Future<HttpResponse<LoginResponseEntity>> login(
       @Body() CommonRequestEntity commonRequestEntity);
+
+  /// get Dashboard Data
+  @POST("/get-dasboard")
+  Future<HttpResponse<GetDashboardResponseEntity>> getDashboardData(
+      @Body() CommonRequestEntity commonRequestEntity);
   
   /// get modules
   @POST("/get-moduleslist")
   Future<HttpResponse<GetModulesResponseEntity>> getModules(
+      @Body() CommonRequestEntity commonRequestEntity);
+
+  /// get modules
+  @POST("/onlypages")
+  Future<HttpResponse<GetModulesNewResponseEntity>> getModulesNew(
       @Body() CommonRequestEntity commonRequestEntity);
 
   /// get Caders
@@ -69,4 +84,19 @@ abstract class ApiService {
   Future<HttpResponse<CommonResponseEntity>> saveFormsData(
       @Path("endPointUrl") endPointUrl,
       @Body() CommonRequestEntity createUserRequestEntity);
+
+  /// get Team mapper
+  @POST("/teammapper")
+  Future<HttpResponse<GetTeamMapperResponseEntity>> getTeamMapper(
+      @Body() CommonRequestEntity getTeamMapperRequestEntity);
+
+  /// get Teams
+  @POST("/getteams")
+  Future<HttpResponse<GetTeamsResponseEntity>> getTeams(
+      @Body() CommonRequestEntity getTeamsRequestEntity);
+
+  /// Address Masters
+  @POST("/addressmasters")
+  Future<HttpResponse<AddressMasterResponseEntity>> getAddressMaster(
+      @Body() CommonRequestEntity getTeamsRequestEntity);
 }

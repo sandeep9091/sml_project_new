@@ -15,12 +15,12 @@ class BorrowersResponseData {
   final String aadhar;
   final String ccode;
   final String description;
-  final String branchId;
-  final String branchName;
-  final String state;
-  final String district;
-  final String pincode;
   final String contactNo;
+  final String countryname;
+  final String state;
+  final String cityname;
+  final String city;
+  final String pincode;
   final bool active;
   final String byemployee;
   final String byemployeename;
@@ -29,6 +29,14 @@ class BorrowersResponseData {
   final String modifyBy;
   final String modifyDt;
   final int underscoreV;
+  final String? aadharPhoto;  
+  final String? rationCardPhoto;  
+  final String? houseTaxReceiptPhoto;  
+  final String? loanApplicationPhoto;  
+  final String? housePhoto;  
+  final String? passportPhoto;  
+  final String? othersPhoto;  
+
 
   const BorrowersResponseData(
       {
@@ -37,10 +45,10 @@ class BorrowersResponseData {
         required this.aadhar,
         required this.ccode,
         required this.description,
-        required this.branchId,
-        required this.branchName,
+        required this.countryname,
+        required this.cityname,
         required this.state,
-        required this.district,
+        required this.city,
         required this.pincode,
         required this.contactNo,
         required this.active,
@@ -51,5 +59,12 @@ class BorrowersResponseData {
         required this.modifyBy,
         required this.modifyDt,
         required this.underscoreV,
+        this.aadharPhoto, 
+        this.rationCardPhoto,
+        this.houseTaxReceiptPhoto,  
+        this.loanApplicationPhoto,  
+        this.housePhoto,  
+        this.passportPhoto,  
+        this.othersPhoto,  
         });
 }

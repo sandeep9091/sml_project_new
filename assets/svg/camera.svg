@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fd3a84"/>
+      <stop offset="1" stop-color="#ffa68d"/>
+    </linearGradient>
+  </defs>
+  <g id="camera" transform="translate(7828 -13)">
+    <circle id="Ellipse_2208" data-name="Ellipse 2208" cx="27.5" cy="27.5" r="27.5" transform="translate(-7828 13)" fill="url(#linear-gradient)"/>
+    <g id="photo-camera-interface-symbol-for-button" transform="translate(-7811 28.64)">
+      <path id="Path_80429" data-name="Path 80429" d="M13.376,12.96A3.262,3.262,0,1,1,10.114,9.7,3.266,3.266,0,0,1,13.376,12.96Zm6.851-4.632v9.265a2.237,2.237,0,0,1-2.237,2.237H2.237A2.237,2.237,0,0,1,0,17.593V8.328A2.237,2.237,0,0,1,2.237,6.091H4.988V5.317A1.957,1.957,0,0,1,6.945,3.36h6.338a1.957,1.957,0,0,1,1.957,1.957V6.09h2.751A2.238,2.238,0,0,1,20.227,8.328ZM15.053,12.96a4.939,4.939,0,1,0-4.94,4.94A4.945,4.945,0,0,0,15.053,12.96Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>

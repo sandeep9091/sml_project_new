@@ -48,6 +48,7 @@ class BranchesPageState
   void onPageInit(BranchesPageViewModel model) {
     model.getBranchesList();
     model.getCompaniesList();
+    model.filterAddressMasterList(context);
     super.onPageInit(model);
   }
 

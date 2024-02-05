@@ -1,6 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
 import 'dart:math';
 import 'package:data/db/constants/pref_keys.dart';
 import 'package:data/source/secure_storage/secure_storage_ds.dart';
@@ -23,12 +25,6 @@ class AppCommonUtils {
   }
 
   SecureStorageDataSource secureStorage() => _secureStorageDataSource;
-  String tokenId = "";
-  getTokenId() async {
-    tokenId = await AppCommonUtils().secureStorage().getValue(
-          key: PrefKeys.tokenId,
-        );
-  }
 
   // getTempDirectory() async {
   //   Directory? appPath = await getApplicationSupportDirectory();
@@ -137,5 +133,30 @@ class AppCommonUtils {
 
     // Create a color from the RGB values
     return Color.fromARGB(255, red, green, blue);
+  }
+  
+  String getBase64String(File imageFile){
+    String base64Image = "";
+    try{
+    List<int> imageBytes = imageFile.readAsBytesSync();
+    base64Image = base64Encode(imageBytes);
+    //  if(bytesData.isNotEmpty){
+    //   base64Image = "data:image/png;base64,$bytesData";
+    //  }
+    }catch(e){}
+    inspect(base64Image);
+    return base64Image;
+  }
+
+  getUploadImagePath(imgPath){
+    if(imgPath != null){
+      if(imgPath.contains("data:image")){
+        return imgPath;
+      }else{
+        return "data:image/png;base64,$imgPath";
+      }
+    }else{
+      return imgPath;
+    }
   }
 }

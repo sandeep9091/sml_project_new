@@ -6,6 +6,7 @@ import 'package:domain/model/common_response/common_response.dart';
 import 'package:domain/model/get_modules_response/borrowers_response.dart';
 import 'package:domain/model/get_modules_response/branches_response.dart';
 import 'package:domain/model/login/login_response.dart';
+import 'package:domain/model/services/address_master_response.dart';
 import 'package:domain/usecase/common_usecase/common_forms_usecase.dart';
 import 'package:domain/usecase/services/borrowers_usecase.dart';
 import 'package:domain/usecase/services/branches_usecase.dart';
@@ -14,8 +15,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:spoorthymactcs/base/base_page_view_model.dart';
+import 'package:spoorthymactcs/di/notifier/address_master_notifier.dart';
 import 'package:spoorthymactcs/di/notifier/login_notifier.dart';
 import 'package:spoorthymactcs/main/navigation/route_paths.dart';
+import 'package:spoorthymactcs/utils/common_utils.dart';
 import 'package:spoorthymactcs/utils/extension/stream_extention.dart';
 import 'package:spoorthymactcs/utils/request_manager.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
@@ -26,13 +29,29 @@ class BorrowersPageViewModel extends BasePageViewModel {
   TextEditingController controllerBorrowerAadhar = TextEditingController();
   TextEditingController controllerBorrowerContactNo = TextEditingController();
   TextEditingController controllerCode = TextEditingController();
-  TextEditingController controllerState = TextEditingController();
-  TextEditingController controllerDistrict = TextEditingController();
   TextEditingController controllerPincode = TextEditingController();
   TextEditingController controllerDescription = TextEditingController();
   ValueNotifier<String> selectedBranch = ValueNotifier("");
   ValueNotifier<bool> isActive = ValueNotifier(false);
    List<dynamic> branchesList = [];
+
+  List<dynamic> countryList = [];
+  List<dynamic> stateList = [];
+  List<dynamic> cityList = [];
+  ValueNotifier<String> selectedCountry = ValueNotifier("");
+  ValueNotifier<String> selectedState = ValueNotifier("");
+  ValueNotifier<String> selectedCity = ValueNotifier("");
+
+  ValueNotifier<bool> isCitySelected = ValueNotifier(false);
+  ValueNotifier<bool> isStateselected = ValueNotifier(false);
+
+  ValueNotifier<String?> filePathAadhar = ValueNotifier(null);
+  ValueNotifier<String?> filePathRationCard = ValueNotifier(null);
+  ValueNotifier<String?> filePathHouseTaxReceipt = ValueNotifier(null);
+  ValueNotifier<String?> filePathLoanApplication = ValueNotifier(null);
+  ValueNotifier<String?> filePathHousePhoto = ValueNotifier(null);
+  ValueNotifier<String?> filePathPassportPhoto = ValueNotifier(null);
+  ValueNotifier<String?> filePathOthers = ValueNotifier(null);
 
   final BranchesUseCase _branchesUseCase;
   final BorrowersUseCase _borrowersUseCase;
@@ -82,54 +101,71 @@ class BorrowersPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) async{
           if(event.status == Status.SUCCESS){
-            await getBorrowersList();
+            showToastWithString(event.data!.sMessage);
+            await getBorrowersList(modelcontext!);
             modelcontext?.pop();
+          }else if(event.status == Status.ERROR){
+            showToastWithError(event.appError);
           }
         _commonResponse.safeAdd(event);
       });
     });
   }
 
-  getBorrowersList(){
-  _borrowersRequest.safeAdd(
+  getBorrowersList(BuildContext context){
+    UserInfo? userInfo= ProviderScope.containerOf(context).read(loginUserInfoNotifierProvider);
+    if(userInfo != null){
+        _borrowersRequest.safeAdd(
       BorrowersUseCaseParams(
-        secure: jsonEncode({})));
+          secure: {
+              "code": "",
+              "create_by": userInfo?.id ??""
+          }
+        ));
+    }
+
   }
 
   getBranchesList(){
   _branchesRequest.safeAdd(
       BranchesUseCaseParams(
-        secure: jsonEncode({})));
+        secure: {}
+        ));
   }
 
   saveBorrowersData({required String flag, BorrowersResponseData? singleBorrower}){
-    List<LoginResponseData> loginResponseData = ProviderScope.containerOf(modelcontext!).read(loginNotifierProvider);
-    LoginResponseData? loginData;
-    if(loginResponseData.isNotEmpty){
-      loginData = loginResponseData[0];
-    }
+    UserInfo? userInfo = ProviderScope.containerOf(modelcontext!).read(loginUserInfoNotifierProvider);
 
     _commonRequest.safeAdd(
       CommonUseCaseParams(
         endPointUrl: RoutePaths.borrowerSave,
-        secure: jsonEncode(
+        secure: 
           {
             "id": (flag == "EDIT") ? singleBorrower?.id : null,
             "active": (flag == "EDIT") ? isActive.value : true,
             "flag": (flag == "EDIT") ? "E" : "S",
             "name": controllerBorrowerName.text.trim(),
             "aadhar": controllerBorrowerAadhar.text.trim(),
-            "ccode": controllerCode.text.trim(),
+            "ccode": null,
             "description": controllerDescription.text.trim(),
-            "branch_id": selectedBranch.value,
-            "state": controllerState.text.trim(),
-            "district": controllerDistrict.text.trim(),
+            "countryname": selectedCountry.value,
+            "state": selectedState.value,
+            "city": selectedCity.value,
+            "cityname": getCityNameFromId(selectedCity.value),
             "pincode": controllerPincode.text.trim(),
             "contact_no": controllerBorrowerContactNo.text.trim(),
-            "byemployee": loginData?.userInfo?.id,
-            "byemployeename": loginData?.userInfo?.uname,
+            "byemployee": userInfo?.id,
+            "byemployeename": userInfo?.uname,
+            "A": AppCommonUtils().getUploadImagePath(filePathAadhar.value),
+            "RC": AppCommonUtils().getUploadImagePath(filePathRationCard.value),
+            "HT": AppCommonUtils().getUploadImagePath(filePathHouseTaxReceipt.value),
+            "LA": AppCommonUtils().getUploadImagePath(filePathLoanApplication.value),
+            "HP": AppCommonUtils().getUploadImagePath(filePathHousePhoto.value),
+            "PP": AppCommonUtils().getUploadImagePath(filePathPassportPhoto.value),
+            "OTHERS": AppCommonUtils().getUploadImagePath(filePathOthers.value),
+            "create_by": userInfo?.id,
           }
-        )));
+        ));
   }
 
   updateBranchesList(List<BranchesResponseData> data) {
@@ -140,6 +176,117 @@ class BorrowersPageViewModel extends BasePageViewModel {
         "id": each.id
       });
       }}
+  }
+
+  disposeAllVariables(){
+   controllerBorrowerName.clear();
+    controllerBorrowerAadhar.clear();
+    controllerBorrowerContactNo.clear();
+    controllerCode.clear();
+    selectedCountry.value = "";
+    selectedState.value = "";
+    selectedCity.value = "";
+    controllerPincode.clear();
+    controllerDescription.clear();
+    selectedBranch.value = "";
+    filePathAadhar.value = null;
+    filePathRationCard.value = null;
+    filePathHouseTaxReceipt.value = null;
+    filePathLoanApplication.value = null;
+    filePathHousePhoto.value = null;
+    filePathPassportPhoto.value = null;
+    filePathOthers.value = null;
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    controllerBorrowerName.dispose();
+    controllerBorrowerAadhar.dispose();
+    controllerBorrowerContactNo.dispose();
+    controllerCode.dispose();
+    selectedCountry.dispose();
+    selectedState.dispose();
+    selectedCity.dispose();
+    controllerPincode.dispose();
+    controllerDescription.dispose();
+    selectedBranch.dispose();
+    filePathAadhar.dispose();
+    filePathRationCard.dispose();
+    filePathHouseTaxReceipt.dispose();
+    filePathLoanApplication.dispose();
+    filePathHousePhoto.dispose();
+    filePathPassportPhoto.dispose();
+    filePathOthers.dispose();
+  }
+
+  filterAddressMasterList(BuildContext context){
+    List<AddressData> addressData = ProviderScope.containerOf(context).read(addressMasterNotifierProvider);
+    for(var x in addressData){
+      countryList.add({
+        "name":x.name,
+        "code":x.code
+      });
+    }
+  }
+
+  filterStatesList(){
+    List<AddressData> addressData = ProviderScope.containerOf(modelcontext!).read(addressMasterNotifierProvider);
+    for(var x in addressData){
+      if(x.name == selectedCountry.value){
+        stateList = x.states; 
+      }
+    }
+    isStateselected.value = !isStateselected.value;
+    isCitySelected.value = !isCitySelected.value;
+    selectedState.value = "";
+    selectedCity.value = "";
+  }
+
+  filterCitiesList(){
+    List<AddressData> addressData = ProviderScope.containerOf(modelcontext!).read(addressMasterNotifierProvider);
+    for(var x in addressData){
+      if(x.name == selectedCountry.value){
+        for(var y in x.states){
+          if(y.name == selectedState.value){
+            cityList = y.cities;
+          }
+        } 
+      }
+    }
+    isCitySelected.value = !isCitySelected.value;
+    selectedCity.value = "";
+  }
+
+  getCityNameFromId(String cityId){
+    List<AddressData> addressData = ProviderScope.containerOf(modelcontext!).read(addressMasterNotifierProvider);
+    for(var x in addressData){
+      for(var y in x.states){
+          for(var z in y.cities){
+            if(z.code == selectedCity.value){
+              return z.cname;
+            }
+        } 
+        } 
+    }
+  }
+
+  updateStateCityData(String city){
+    List<AddressData> addressData = ProviderScope.containerOf(modelcontext!).read(addressMasterNotifierProvider);
+    for(var x in addressData){
+      for(var y in x.states){
+          for(var z in y.cities){
+            if(z.cname == city){
+              stateList = x.states; 
+              cityList = y.cities;
+              selectedCountry.value = x.name;
+              selectedState.value = y.name;
+              selectedCity.value = z.code;
+            }
+        } 
+        } 
+    }
   }
 
 }

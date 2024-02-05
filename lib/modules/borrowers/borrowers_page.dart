@@ -38,15 +38,16 @@ class BorrowersPageState
       enableActions: true,
       actionButtonOnTap: (){
         Navigator.push(context,MaterialPageRoute(builder: (context) => const BorrowersActionPage(type: "ADD",)),
-        );
+        ).then((value) => ProviderScope.containerOf(context).read(borrowersViewModelProvider).disposeAllVariables());
       },
     );
   }
 
   @override
   void onPageInit(BorrowersPageViewModel model) {
-    model.getBorrowersList();
+    model.getBorrowersList(context);
     model.getBranchesList();
+    model.filterAddressMasterList(context);
     super.onPageInit(model);
   }
 }

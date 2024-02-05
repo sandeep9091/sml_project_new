@@ -1,6 +1,7 @@
 import 'package:domain/model/common_response/common_response.dart';
 import 'package:domain/model/get_modules_response/branches_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spoorthymactcs/common_utils/appButton.dart';
@@ -49,18 +50,18 @@ class BranchesActionPage extends StatelessWidget {
       model.controllerBranchCode.text = singleBranch?.bcode ?? "";
       model.controllerBranchDate.text = singleBranch?.bOpnDt ?? "";
       model.controllerContactNumber.text = singleBranch?.contactNo ?? "";
-      model.controllerState.text = singleBranch?.state ?? "";
-      model.controllerDistrict.text = singleBranch?.district ?? "";
       model.controllerPincode.text = singleBranch?.pincode ?? "";
       model.controllerDescription.text = singleBranch?.desc ?? "";
       model.selectedCompany.value = singleBranch?.cId ?? "";
       model.isActive.value = singleBranch?.active ?? false;
+      model.updateStateCityData(singleBranch?.cityname??"");
     }else{
       model.controllerBranchName.text = "";
       model.controllerBranchCode.text = "";
       model.controllerContactNumber.text = "";
-      model.controllerState.text = "";
-      model.controllerDistrict.text = "";
+      model.selectedCountry.value = "";
+      model.selectedState.value = "";
+      model.selectedCity.value = "";
       model.controllerPincode.text = "";
       model.controllerDescription.text = "";
       model.selectedCompany.value = "";
@@ -102,6 +103,7 @@ class BranchesActionPage extends StatelessWidget {
           AppTextField(
                 labelText: "Branch Name",
                 inputType: TextInputType.name,
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]"))],
                 borderRadius: 5,
                 controller: model.controllerBranchName,
                 padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 5),
@@ -113,6 +115,7 @@ class BranchesActionPage extends StatelessWidget {
           AppTextField(
                 labelText: "Branch Code",
                 inputType: TextInputType.name,
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9 ]"))],
                 borderRadius: 5,
                 controller: model.controllerBranchCode,
                 padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 5),
@@ -138,6 +141,7 @@ class BranchesActionPage extends StatelessWidget {
           AppTextField(
                 labelText: "Contact No",
                 inputType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 borderRadius: 5,
                 maxLength: 10,
                 controller: model.controllerContactNumber,
@@ -147,31 +151,90 @@ class BranchesActionPage extends StatelessWidget {
                 onChanged: (String value){
                 },             
                 ),
-          AppTextField(
-                labelText: "State",
-                inputType: TextInputType.name,
-                borderRadius: 5,
-                controller: model.controllerState,
-                padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 5),
-                isMandatory: true,
-                enabled: formEnabled,
-                onChanged: (String value){
-                },             
-                ),
-          AppTextField(
-                labelText: "District",
-                inputType: TextInputType.name,
-                borderRadius: 5,
-                controller: model.controllerDistrict,
-                padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 5),
-                isMandatory: true,
-                enabled: formEnabled,
-                onChanged: (String value){
-                },             
-                ),
+          ValueListenableBuilder(
+                valueListenable: model.selectedCountry,
+                builder: (BuildContext context, selectedValue, child) {
+                  return AppDropDownWidget<dynamic>(
+                      labelText: "Country",
+                      dropdownHeight: 44,
+                      hintText: "Select Country",
+                      borderRadius: 6.0,
+                      buttonBroderColor: AppColor.grey,
+                      isMandatory: true,
+                      isEnabled: formEnabled,
+                      dropDownitems: model.countryList.map(
+                          (e) => DropdownMenuItem<dynamic>(
+                            value: e['name']??"",
+                            child: Text(e['name']??""),
+                          ),
+                        ).toList(),
+                      selectedValue: (model.selectedCountry.value != "" &&
+                              model.countryList.any((element) => element['name'] == model.selectedCountry.value))
+                          ? model.selectedCountry.value
+                          : null,
+                      onChangedMethod: (newValue) {
+                        model.selectedCountry.value = newValue;
+                        model.stateList = [];
+                        model.cityList = [];                        
+                        model.filterStatesList();
+                      });
+                }),
+          ValueListenableBuilder(
+                valueListenable: model.isStateselected,
+                builder: (BuildContext context, selectedValue, child) {
+                  return AppDropDownWidget<dynamic>(
+                      labelText: "State",
+                      dropdownHeight: 44,
+                      hintText: "Select State",
+                      borderRadius: 6.0,
+                      buttonBroderColor: AppColor.grey,
+                      isMandatory: true,
+                      isEnabled: formEnabled,
+                      dropDownitems: model.stateList.map(
+                          (e) => DropdownMenuItem<dynamic>(
+                            value: e.name??"",
+                            child: Text(e.name??""),
+                          ),
+                        ).toList(),
+                      selectedValue: (model.selectedState.value != "" &&
+                              model.stateList.any((element) => element.name == model.selectedState.value))
+                          ? model.selectedState.value
+                          : null,
+                      onChangedMethod: (newValue) {
+                        model.selectedState.value = newValue;
+                        model.cityList = [];
+                        model.filterCitiesList();                        
+                      });
+                }),
+          ValueListenableBuilder(
+                valueListenable: model.isCitySelected,
+                builder: (BuildContext context, selectedValue, child) {
+                  return AppDropDownWidget<dynamic>(
+                      labelText: "City",
+                      dropdownHeight: 44,
+                      hintText: "Select City",
+                      borderRadius: 6.0,
+                      buttonBroderColor: AppColor.grey,
+                      isMandatory: true,
+                      isEnabled: formEnabled,
+                      dropDownitems: model.cityList.map(
+                          (e) => DropdownMenuItem<dynamic>(
+                            value: e.code??"",
+                            child: Text(e.cname??""),
+                          ),
+                        ).toList(),
+                      selectedValue: (model.selectedCity.value != "" &&
+                              model.cityList.any((element) => element.code == model.selectedCity.value))
+                          ? model.selectedCity.value
+                          : null,
+                      onChangedMethod: (newValue) {
+                        model.selectedCity.value = newValue;
+                      });
+                }),
           AppTextField(
                 labelText: "Pincode",
                 inputType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 borderRadius: 5,
                 maxLength: 6,
                 controller: model.controllerPincode,
@@ -184,6 +247,7 @@ class BranchesActionPage extends StatelessWidget {
           AppTextField(
                 labelText: "Description",
                 inputType: TextInputType.multiline,
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]"))],
                 borderRadius: 5,
                 maxLines: 10,
                 controller: model.controllerDescription,
@@ -214,8 +278,7 @@ class BranchesActionPage extends StatelessWidget {
             isEnable: formEnabled,
             onPressed: (){
               if(model.controllerBranchName.text.isNotEmpty && model.controllerBranchCode.text.isNotEmpty && 
-                    model.controllerContactNumber.text.isNotEmpty && model.controllerState.text.isNotEmpty &&
-                    model.controllerDistrict.text.isNotEmpty && model.controllerPincode.text.isNotEmpty){
+                    model.controllerContactNumber.text.isNotEmpty && model.selectedCity.value.isNotEmpty && model.controllerPincode.text.isNotEmpty){
                   model.saveBranchesData(flag: type, singleBranch: singleBranch);
               }else{
                 model.showToastWithString("Some Fields are missing");

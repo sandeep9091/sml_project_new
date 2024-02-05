@@ -9,7 +9,6 @@ import 'package:spoorthymactcs/ui/molecules/common_edit_view_button.dart';
 import 'package:spoorthymactcs/ui/molecules/common_title_value_widget.dart';
 import 'package:spoorthymactcs/ui/stream_builder/app_stream_builder.dart';
 import 'package:spoorthymactcs/utils/color_utils.dart';
-import 'package:spoorthymactcs/utils/font_utils.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
 import 'package:spoorthymactcs/utils/status.dart';
 
@@ -48,7 +47,9 @@ class BranchesPageView extends BasePageViewWidget<BranchesPageViewModel> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CommonTitleValueWidget(title: "Company",value: eachBranch.cname,width: MediaQuery.of(context).size.width *.70,),
-                          CommonEditViewButton(editButtonAction: () {
+                          CommonEditViewButton(
+                            showEditButton: eachBranch.active,
+                            editButtonAction: () {
                             Navigator.push(context,MaterialPageRoute(builder: (context) => BranchesActionPage(singleBranch: eachBranch,type: "EDIT",)));
                           },viewButtonAction: () {
                             Navigator.push(context,MaterialPageRoute(builder: (context) => BranchesActionPage(singleBranch: eachBranch,type: "VIEW",)));
@@ -56,11 +57,12 @@ class BranchesPageView extends BasePageViewWidget<BranchesPageViewModel> {
                         ],
                       ),
                       CommonTitleValueWidget(title: "Branch",value: "${eachBranch.bname} / ${eachBranch.bcode} / ${eachBranch.bOpnDt}",),
-                      CommonTitleValueWidget(title: "Address",value: "${eachBranch.district} / ${eachBranch.state} / ${eachBranch.pincode}",),
+                      CommonTitleValueWidget(title: "Address",value: "${eachBranch.countryname} / ${eachBranch.state} / ${eachBranch.cityname}",),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CommonTitleValueWidget(title: "Mobile",value: eachBranch.contactNo,width: MediaQuery.of(context).size.width *.75,),
+                          CommonTitleValueWidget(title: "Mobile",value: eachBranch.contactNo,width: MediaQuery.of(context).size.width *.37,),
+                          CommonTitleValueWidget(title: "Pincode",value: eachBranch.pincode,width: MediaQuery.of(context).size.width *.37,),
                           ActiveStatusWidget(status: eachBranch.active),
                         ],
                       ),

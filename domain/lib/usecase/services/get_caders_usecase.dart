@@ -20,7 +20,7 @@ class GetCadersUseCase
 }
 
 class GetCadersUseCaseParams extends Params {
-  final String secure;
+  final Map<String,dynamic> secure;
   GetCadersUseCaseParams({required this.secure});
 
   @override

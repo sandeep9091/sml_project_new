@@ -4,8 +4,8 @@ part 'common_request_entity.g.dart';
 
 @JsonSerializable()
 class CommonRequestEntity {
-  @JsonKey(name: "secure", defaultValue: "")
-  final String secure;
+  @JsonKey(name: "secure", defaultValue: {})
+  final dynamic secure;
 
   factory CommonRequestEntity.fromJson(Map<String, Object?> json) =>
       _$CommonRequestEntityFromJson(json);

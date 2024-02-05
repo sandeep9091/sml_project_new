@@ -51,9 +51,7 @@ class DashboardPageState
 
   @override
   void onPageInit(DashboardPageViewModel model) {
-    model.getModulesData(context);
-    model.getGenderData();
-    model.getCadersData(context);
+    model.callAllData(context);
     super.onPageInit(model);
   }
 }

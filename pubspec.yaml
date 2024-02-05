@@ -39,6 +39,12 @@ dependencies:
   fluttertoast: ^8.2.2
   loading_animation_widget: ^1.2.0+4
   dropdown_button2: ^2.1.0
+  carousel_slider: ^4.2.1
+  path_provider: ^2.1.0
+  image_picker: ^0.8.9
+  image_cropper: ^5.0.0
+  crypto: ^3.0.3
+  aescryptojs: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +73,7 @@ flutter:
   assets: 
     - assets/
     - assets/images/
+    - assets/svg/
 
 flutter_app_name:
   name: "SML"

@@ -22,7 +22,7 @@ class CommonUseCase
 }
 
 class CommonUseCaseParams extends Params {
-  final String secure;
+  final Map<String,dynamic> secure;
   final String endPointUrl;
   CommonUseCaseParams({required this.secure,required this.endPointUrl});
 

@@ -8,7 +8,7 @@
             "program": "lib/main.dart",
             "args": [
                 "--dart-define",
-                "BASE_URL=https://smlservices.onrender.com/sml"
+                "BASE_URL=https://nodeservice-mx3q.onrender.com/sml"
             ]
         },
     ]

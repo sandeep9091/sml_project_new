@@ -1,15 +1,15 @@
 import 'package:domain/model/login/login_response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final loginNotifierProvider =
-    StateNotifierProvider<LoginNotifier, List<LoginResponseData>>((ref) {
+final loginUserInfoNotifierProvider =
+    StateNotifierProvider<LoginNotifier, UserInfo?>((ref) {
   return LoginNotifier();
 });
 
-class LoginNotifier extends StateNotifier<List<LoginResponseData>> {
-  LoginNotifier() : super([]);
+class LoginNotifier extends StateNotifier<UserInfo?> {
+  LoginNotifier() : super(null);
 
-  setData(List<LoginResponseData> data) {
+  setData(UserInfo? data) {
     state = data;
   }
 }

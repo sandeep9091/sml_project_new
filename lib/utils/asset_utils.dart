@@ -8,20 +8,21 @@ class AssetUtils {
 
   // SVG Images Start
 
-  static const String headerLogo = _svg + "header/header_logo.svg";
+  static const String camera = "${_svg}camera.svg";
+  static const String gallery = "${_svg}gallery.svg";
 
   // SVG Images End
 
   // PNG Images Start
 
 
-  static const String indianFlag = _image + "india_flag.png";
+  static const String indianFlag = "${_image}india_flag.png";
 
   //static const String nextbtn = _asset + "next_btn.png";
 
-  static const String logo = _image + "logo.jpg";
-  static const String logoRound = _image + "logo_round.jpg";
-  static const String noDocuments = _image + "noDocuments.png";
+  static const String logo = "${_image}logo.jpg";
+  static const String logoRound = "${_image}logo_round.jpg";
+  static const String noDocuments = "${_image}noDocuments.png";
 
   //PNG Images End
 }

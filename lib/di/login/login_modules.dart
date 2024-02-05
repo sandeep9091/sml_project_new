@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spoorthymactcs/di/notifier/get_modules_notifier.dart';
 import 'package:spoorthymactcs/modules/borrowers/borrowers_page_view_model.dart';
 import 'package:spoorthymactcs/modules/branches/branches_page_view_model.dart';
 import 'package:spoorthymactcs/modules/companies/companies_page_view_model.dart';
+import 'package:spoorthymactcs/modules/create_team/create_team_page_view_model.dart';
 import 'package:spoorthymactcs/modules/users/users_page_view_model.dart';
 
 import '../../modules/dashboard/dashboard_page_view_model.dart';
@@ -19,9 +21,12 @@ final loginViewModelProvider =
 final dashboardViewModelProvider =
     ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
   (ref) => DashboardPageViewModel(
+    ref.read(getDashboardUseCaseProvider),
     ref.read(getModulesUseCaseProvider),
+    ref.read(getModulesNewUseCaseProvider),
     ref.read(getGenderListUseCaseProvider),
     ref.read(getCadersUseCaseProvider),
+    ref.read(addressMasterUseCaseProvider),
     ref
   ),
 );
@@ -60,3 +65,12 @@ final borrowersViewModelProvider =
   ),
 );
 
+final createTeamViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CreateTeamPageViewModel>(
+  (ref) => CreateTeamPageViewModel(
+    ref.read(branchesUseCaseProvider),
+    ref.read(getTeamMapperUseCaseProvider),
+    ref.read(getTeamsUseCaseProvider),
+    ref.read(commonUseCaseProvider)
+  ),
+);

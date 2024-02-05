@@ -65,9 +65,11 @@ class SplashViewModel extends BasePageViewModel {
     if(userData.isNotEmpty){
       LoginResponse? loginResponse = LoginResponse.fromJson(jsonDecode(userData));
       if(loginResponse != null){
-        await ProviderScope.containerOf(modelcontext!).
-            read(loginNotifierProvider.notifier).setData(loginResponse.data);
+        if(loginResponse.data.isNotEmpty){
+          await ProviderScope.containerOf(modelcontext!).
+            read(loginUserInfoNotifierProvider.notifier).setData(loginResponse.data[0].userInfo);
             context.pushNamed(AppRoute.dashboard.name);
+        }
       }else{
         context.pushNamed(AppRoute.login.name);
       }

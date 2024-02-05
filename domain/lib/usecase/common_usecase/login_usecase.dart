@@ -22,7 +22,7 @@ class LoginUseCase
 }
 
 class LoginUseCaseParams extends Params {
-  final String secure;
+  final Map<String,dynamic> secure;
   LoginUseCaseParams({required this.secure});
 
   @override

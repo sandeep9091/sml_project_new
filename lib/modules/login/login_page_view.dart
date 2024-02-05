@@ -129,15 +129,15 @@ class LoginPageView extends BasePageViewWidget<LoginPageViewModel> {
                         stream: model.loginStream, 
                         initialData: Resource.none(), 
                         onData: (data){
-                          if(data.status == Status.SUCCESS){
-List<LoginResponseData> loginData = ProviderScope.containerOf(context).read(loginNotifierProvider);
-if(loginData.isNotEmpty){
-  context.pushReplacementNamed(AppRoute.dashboard.name);
-}
-                          }else if(data.status == Status.ERROR){
-model.showToastWithString("Something went wrong, Please try again");
-                          }
-                        },
+                            if(data.status == Status.SUCCESS){
+                            UserInfo? loginData = ProviderScope.containerOf(context).read(loginUserInfoNotifierProvider);
+                            if(loginData != null){
+                              context.pushReplacementNamed(AppRoute.dashboard.name);
+                            }
+                            }else if(data.status == Status.ERROR){
+                            model.showToastWithError(data.appError);
+                            }
+                          },
                                 dataBuilder: (context,data){
                           return AppButton(
                         backgroundColor: AppColor.primaryButton,

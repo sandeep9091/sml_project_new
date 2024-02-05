@@ -32,7 +32,7 @@ then
     exit 0
 fi
 TIMESTAMP=`date +%Y_%m_%d_%H_%M_%S`
-BASE_PATH='/Users/sandy/flutter_builds/bsnl/Builds'
+BASE_PATH='/Users/sandy/flutter_builds/SML/Builds'
 
 if [ $BUILD_OS == 'android' ] 
 then
@@ -60,8 +60,8 @@ then
     mkdir $DEBUG_INFO_PATH
 fi
 
-APK_PATH=$DEBUG_INFO_PATH'/'$BUILD_APP_NAME'bsnl_'$LIVE_STAGING'_'$TIMESTAMP'.apk'
-BUNDLE_PATH=$DEBUG_INFO_PATH'/'$BUILD_APP_NAME'bsnl_'$LIVE_STAGING'_'$TIMESTAMP'.aab'
+APK_PATH=$DEBUG_INFO_PATH'/'$BUILD_APP_NAME'SML_'$LIVE_STAGING'_'$TIMESTAMP'.apk'
+BUNDLE_PATH=$DEBUG_INFO_PATH'/'$BUILD_APP_NAME'SML_'$LIVE_STAGING'_'$TIMESTAMP'.aab'
 IOS_PATH=$DEBUG_INFO_PATH'/'
 
 DEBUG_INFO_PATH=$DEBUG_INFO_PATH/debug_info

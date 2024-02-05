@@ -361,15 +361,10 @@ mixin _$UserInfo {
   String get id => throw _privateConstructorUsedError;
   String get uname => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  String get gender => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String get gendername => throw _privateConstructorUsedError;
   String get cader => throw _privateConstructorUsedError;
-  String get cadername => throw _privateConstructorUsedError;
-  String get department => throw _privateConstructorUsedError;
-  String get createDt => throw _privateConstructorUsedError;
-  String get modifyDt => throw _privateConstructorUsedError;
-  bool get active => throw _privateConstructorUsedError;
-  int get underscoreV => throw _privateConstructorUsedError;
+  String get branchid => throw _privateConstructorUsedError;
+  String get branchname => throw _privateConstructorUsedError;
   String get secure => throw _privateConstructorUsedError;
   int get loggTime => throw _privateConstructorUsedError;
   UserCader? get userCader => throw _privateConstructorUsedError;
@@ -389,15 +384,10 @@ abstract class $UserInfoCopyWith<$Res> {
       {String id,
       String uname,
       String password,
-      String gender,
-      String description,
+      String gendername,
       String cader,
-      String cadername,
-      String department,
-      String createDt,
-      String modifyDt,
-      bool active,
-      int underscoreV,
+      String branchid,
+      String branchname,
       String secure,
       int loggTime,
       UserCader? userCader});
@@ -421,15 +411,10 @@ class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
     Object? id = null,
     Object? uname = null,
     Object? password = null,
-    Object? gender = null,
-    Object? description = null,
+    Object? gendername = null,
     Object? cader = null,
-    Object? cadername = null,
-    Object? department = null,
-    Object? createDt = null,
-    Object? modifyDt = null,
-    Object? active = null,
-    Object? underscoreV = null,
+    Object? branchid = null,
+    Object? branchname = null,
     Object? secure = null,
     Object? loggTime = null,
     Object? userCader = freezed,
@@ -447,42 +432,22 @@ class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      gendername: null == gendername
+          ? _value.gendername
+          : gendername // ignore: cast_nullable_to_non_nullable
               as String,
       cader: null == cader
           ? _value.cader
           : cader // ignore: cast_nullable_to_non_nullable
               as String,
-      cadername: null == cadername
-          ? _value.cadername
-          : cadername // ignore: cast_nullable_to_non_nullable
+      branchid: null == branchid
+          ? _value.branchid
+          : branchid // ignore: cast_nullable_to_non_nullable
               as String,
-      department: null == department
-          ? _value.department
-          : department // ignore: cast_nullable_to_non_nullable
+      branchname: null == branchname
+          ? _value.branchname
+          : branchname // ignore: cast_nullable_to_non_nullable
               as String,
-      createDt: null == createDt
-          ? _value.createDt
-          : createDt // ignore: cast_nullable_to_non_nullable
-              as String,
-      modifyDt: null == modifyDt
-          ? _value.modifyDt
-          : modifyDt // ignore: cast_nullable_to_non_nullable
-              as String,
-      active: null == active
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-      underscoreV: null == underscoreV
-          ? _value.underscoreV
-          : underscoreV // ignore: cast_nullable_to_non_nullable
-              as int,
       secure: null == secure
           ? _value.secure
           : secure // ignore: cast_nullable_to_non_nullable
@@ -523,15 +488,10 @@ abstract class _$$UserInfoImplCopyWith<$Res>
       {String id,
       String uname,
       String password,
-      String gender,
-      String description,
+      String gendername,
       String cader,
-      String cadername,
-      String department,
-      String createDt,
-      String modifyDt,
-      bool active,
-      int underscoreV,
+      String branchid,
+      String branchname,
       String secure,
       int loggTime,
       UserCader? userCader});
@@ -554,15 +514,10 @@ class __$$UserInfoImplCopyWithImpl<$Res>
     Object? id = null,
     Object? uname = null,
     Object? password = null,
-    Object? gender = null,
-    Object? description = null,
+    Object? gendername = null,
     Object? cader = null,
-    Object? cadername = null,
-    Object? department = null,
-    Object? createDt = null,
-    Object? modifyDt = null,
-    Object? active = null,
-    Object? underscoreV = null,
+    Object? branchid = null,
+    Object? branchname = null,
     Object? secure = null,
     Object? loggTime = null,
     Object? userCader = freezed,
@@ -580,42 +535,22 @@ class __$$UserInfoImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      gendername: null == gendername
+          ? _value.gendername
+          : gendername // ignore: cast_nullable_to_non_nullable
               as String,
       cader: null == cader
           ? _value.cader
           : cader // ignore: cast_nullable_to_non_nullable
               as String,
-      cadername: null == cadername
-          ? _value.cadername
-          : cadername // ignore: cast_nullable_to_non_nullable
+      branchid: null == branchid
+          ? _value.branchid
+          : branchid // ignore: cast_nullable_to_non_nullable
               as String,
-      department: null == department
-          ? _value.department
-          : department // ignore: cast_nullable_to_non_nullable
+      branchname: null == branchname
+          ? _value.branchname
+          : branchname // ignore: cast_nullable_to_non_nullable
               as String,
-      createDt: null == createDt
-          ? _value.createDt
-          : createDt // ignore: cast_nullable_to_non_nullable
-              as String,
-      modifyDt: null == modifyDt
-          ? _value.modifyDt
-          : modifyDt // ignore: cast_nullable_to_non_nullable
-              as String,
-      active: null == active
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-      underscoreV: null == underscoreV
-          ? _value.underscoreV
-          : underscoreV // ignore: cast_nullable_to_non_nullable
-              as int,
       secure: null == secure
           ? _value.secure
           : secure // ignore: cast_nullable_to_non_nullable
@@ -639,15 +574,10 @@ class _$UserInfoImpl implements _UserInfo {
       {required this.id,
       required this.uname,
       required this.password,
-      required this.gender,
-      required this.description,
+      required this.gendername,
       required this.cader,
-      required this.cadername,
-      required this.department,
-      required this.createDt,
-      required this.modifyDt,
-      required this.active,
-      required this.underscoreV,
+      required this.branchid,
+      required this.branchname,
       required this.secure,
       required this.loggTime,
       this.userCader});
@@ -662,23 +592,13 @@ class _$UserInfoImpl implements _UserInfo {
   @override
   final String password;
   @override
-  final String gender;
-  @override
-  final String description;
+  final String gendername;
   @override
   final String cader;
   @override
-  final String cadername;
+  final String branchid;
   @override
-  final String department;
-  @override
-  final String createDt;
-  @override
-  final String modifyDt;
-  @override
-  final bool active;
-  @override
-  final int underscoreV;
+  final String branchname;
   @override
   final String secure;
   @override
@@ -688,7 +608,7 @@ class _$UserInfoImpl implements _UserInfo {
 
   @override
   String toString() {
-    return 'UserInfo(id: $id, uname: $uname, password: $password, gender: $gender, description: $description, cader: $cader, cadername: $cadername, department: $department, createDt: $createDt, modifyDt: $modifyDt, active: $active, underscoreV: $underscoreV, secure: $secure, loggTime: $loggTime, userCader: $userCader)';
+    return 'UserInfo(id: $id, uname: $uname, password: $password, gendername: $gendername, cader: $cader, branchid: $branchid, branchname: $branchname, secure: $secure, loggTime: $loggTime, userCader: $userCader)';
   }
 
   @override
@@ -700,21 +620,13 @@ class _$UserInfoImpl implements _UserInfo {
             (identical(other.uname, uname) || other.uname == uname) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
+            (identical(other.gendername, gendername) ||
+                other.gendername == gendername) &&
             (identical(other.cader, cader) || other.cader == cader) &&
-            (identical(other.cadername, cadername) ||
-                other.cadername == cadername) &&
-            (identical(other.department, department) ||
-                other.department == department) &&
-            (identical(other.createDt, createDt) ||
-                other.createDt == createDt) &&
-            (identical(other.modifyDt, modifyDt) ||
-                other.modifyDt == modifyDt) &&
-            (identical(other.active, active) || other.active == active) &&
-            (identical(other.underscoreV, underscoreV) ||
-                other.underscoreV == underscoreV) &&
+            (identical(other.branchid, branchid) ||
+                other.branchid == branchid) &&
+            (identical(other.branchname, branchname) ||
+                other.branchname == branchname) &&
             (identical(other.secure, secure) || other.secure == secure) &&
             (identical(other.loggTime, loggTime) ||
                 other.loggTime == loggTime) &&
@@ -724,23 +636,8 @@ class _$UserInfoImpl implements _UserInfo {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      uname,
-      password,
-      gender,
-      description,
-      cader,
-      cadername,
-      department,
-      createDt,
-      modifyDt,
-      active,
-      underscoreV,
-      secure,
-      loggTime,
-      userCader);
+  int get hashCode => Object.hash(runtimeType, id, uname, password, gendername,
+      cader, branchid, branchname, secure, loggTime, userCader);
 
   @JsonKey(ignore: true)
   @override
@@ -761,15 +658,10 @@ abstract class _UserInfo implements UserInfo {
       {required final String id,
       required final String uname,
       required final String password,
-      required final String gender,
-      required final String description,
+      required final String gendername,
       required final String cader,
-      required final String cadername,
-      required final String department,
-      required final String createDt,
-      required final String modifyDt,
-      required final bool active,
-      required final int underscoreV,
+      required final String branchid,
+      required final String branchname,
       required final String secure,
       required final int loggTime,
       final UserCader? userCader}) = _$UserInfoImpl;
@@ -784,23 +676,13 @@ abstract class _UserInfo implements UserInfo {
   @override
   String get password;
   @override
-  String get gender;
-  @override
-  String get description;
+  String get gendername;
   @override
   String get cader;
   @override
-  String get cadername;
+  String get branchid;
   @override
-  String get department;
-  @override
-  String get createDt;
-  @override
-  String get modifyDt;
-  @override
-  bool get active;
-  @override
-  int get underscoreV;
+  String get branchname;
   @override
   String get secure;
   @override

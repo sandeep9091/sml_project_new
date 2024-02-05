@@ -1,6 +1,7 @@
 import 'package:domain/model/common_response/common_response.dart';
 import 'package:domain/model/get_modules_response/users_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spoorthymactcs/common_utils/appButton.dart';
@@ -14,6 +15,7 @@ import 'package:spoorthymactcs/ui/stream_builder/app_stream_builder.dart';
 import 'package:spoorthymactcs/utils/color_utils.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
 import 'package:spoorthymactcs/utils/status.dart';
+import 'package:aescryptojs/aescryptojs.dart';
 
 class UsersActionPage extends StatelessWidget {
   const UsersActionPage({super.key,this.singleUser,required this.type});
@@ -50,6 +52,7 @@ class UsersActionPage extends StatelessWidget {
                 labelText: "User Name",
                 //hintText: "Enter User Name",
                 inputType: TextInputType.name,
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]"))],
                 borderRadius: 5,
                 controller: model.controllerUserName,
                 padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 5),
@@ -124,6 +127,7 @@ class UsersActionPage extends StatelessWidget {
                 labelText: "Description",
                 //hintText: "Enter User Name",
                 inputType: TextInputType.multiline,
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]"))],
                 borderRadius: 5,
                 maxLines: 10,
                 controller: model.controllerDescription,

@@ -22,7 +22,7 @@ class GetModulesUseCase
 }
 
 class GetModulesUseCaseParams extends Params {
-  final String secure;
+  final Map<String,dynamic> secure;
   GetModulesUseCaseParams({required this.secure});
 
   @override

@@ -4,12 +4,14 @@ part "header_entity.g.dart";
 
 @JsonSerializable()
 class HeaderEntity {
-  // @JsonKey(name: "Content-Type", defaultValue: "application/json")
   @JsonKey(name: "Content-Type", defaultValue: "application/json")
   String contentType;
+  @JsonKey(name: "isCrypto", defaultValue: "N")
+  String isCrypto;
 
   HeaderEntity({
-    required this.contentType
+    required this.contentType,
+    required this.isCrypto
   });
 
   factory HeaderEntity.fromJson(Map<String, dynamic> json) =>

@@ -29,15 +29,15 @@ Map<String, dynamic> _$BorrowersResponseEntityToJson(
 BorrowersResponseDataEntity _$BorrowersResponseDataEntityFromJson(
         Map<String, dynamic> json) =>
     BorrowersResponseDataEntity(
-      id: json['_id'] as String? ?? '',
+      id: json['id'] as String? ?? '',
       name: json['name'] as String? ?? '',
       aadhar: json['aadhar'] as String? ?? '',
       ccode: json['ccode'] as String? ?? '',
       description: json['description'] as String? ?? '',
-      branchId: json['branch_id'] as String? ?? '',
-      branchName: json['branch_name'] as String? ?? '',
+      countryname: json['countryname'] as String? ?? '',
+      cityname: json['cityname'] as String? ?? '',
+      city: json['city'] as String? ?? '',
       state: json['state'] as String? ?? '',
-      district: json['district'] as String? ?? '',
       pincode: json['pincode'] as String? ?? '',
       contactNo: json['contact_no'] as String? ?? '',
       active: json['active'] as bool? ?? false,
@@ -48,20 +48,27 @@ BorrowersResponseDataEntity _$BorrowersResponseDataEntityFromJson(
       modifyBy: json['modify_by'] as String? ?? '',
       modifyDt: json['modify_dt'] as String? ?? '',
       underscoreV: json['__v'] as int? ?? 0,
+      aadharPhoto: json['A'] as String?,
+      rationCardPhoto: json['RC'] as String?,
+      houseTaxReceiptPhoto: json['HTR'] as String?,
+      loanApplicationPhoto: json['LA'] as String?,
+      housePhoto: json['HP'] as String?,
+      passportPhoto: json['PPC'] as String?,
+      othersPhoto: json['OTHERS'] as String?,
     );
 
 Map<String, dynamic> _$BorrowersResponseDataEntityToJson(
         BorrowersResponseDataEntity instance) =>
     <String, dynamic>{
-      '_id': instance.id,
+      'id': instance.id,
       'name': instance.name,
       'aadhar': instance.aadhar,
       'ccode': instance.ccode,
       'description': instance.description,
-      'branch_id': instance.branchId,
-      'branch_name': instance.branchName,
+      'countryname': instance.countryname,
+      'cityname': instance.cityname,
+      'city': instance.city,
       'state': instance.state,
-      'district': instance.district,
       'pincode': instance.pincode,
       'contact_no': instance.contactNo,
       'byemployee': instance.byemployee,
@@ -72,4 +79,11 @@ Map<String, dynamic> _$BorrowersResponseDataEntityToJson(
       'modify_dt': instance.modifyDt,
       'active': instance.active,
       '__v': instance.underscoreV,
+      'A': instance.aadharPhoto,
+      'RC': instance.rationCardPhoto,
+      'HTR': instance.houseTaxReceiptPhoto,
+      'LA': instance.loanApplicationPhoto,
+      'HP': instance.housePhoto,
+      'PPC': instance.passportPhoto,
+      'OTHERS': instance.othersPhoto,
     };

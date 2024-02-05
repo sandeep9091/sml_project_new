@@ -44,9 +44,12 @@ TextEditingController controllerUserName = TextEditingController();
         if(event.status == Status.SUCCESS){
           if(event.data!.data.isNotEmpty){
             String modelDataString = jsonEncode(event.data?.toJson());
-            AppCommonUtils().secureStorage().setValue(key: 'loginResponse',value: modelDataString);
-            ProviderScope.containerOf(modelcontext!).
-            read(loginNotifierProvider.notifier).setData(event.data!.data);
+              if(event.data!.data.isNotEmpty){
+                AppCommonUtils().secureStorage().setValue(key: 'loginResponse',value: modelDataString);
+                ProviderScope.containerOf(modelcontext!).
+                  read(loginUserInfoNotifierProvider.notifier).setData(event.data!.data[0].userInfo);
+              }
+            
           }
         }
         _loginResponse.safeAdd(event);
@@ -57,11 +60,12 @@ TextEditingController controllerUserName = TextEditingController();
   login() async{
     _loginRequest.safeAdd(
       LoginUseCaseParams(
-        secure: jsonEncode({
+        //jsonEncode
+        secure: {
           'flag':'S',
           'uname': controllerUserName.text.toString(),
           'password': controllerPassword.text.toString()
-          })
+          }
       ),
     );
   }

@@ -40,8 +40,18 @@ class CompaniesListResponseDataEntity
   final String id;
   @JsonKey(name: "cname", defaultValue: "")
   final String cname;
+  @JsonKey(name: "countryname", defaultValue: "")
+  final String countryname;
+  @JsonKey(name: "state", defaultValue: "")
+  final String state;
+  @JsonKey(name: "cityname", defaultValue: "")
+  final String cityname;
+  @JsonKey(name: "city", defaultValue: "")
+  final String city;
   @JsonKey(name: "cadress", defaultValue: "")
   final String cadress;
+  @JsonKey(name: "cLogo", defaultValue: "")
+  final String cLogo;
   @JsonKey(name: "ccode", defaultValue: "")
   final String ccode;
   @JsonKey(name: "decs", defaultValue: "")
@@ -60,7 +70,12 @@ class CompaniesListResponseDataEntity
   CompaniesListResponseDataEntity({
     required this.id,
     required this.cname,
+    required this.countryname,
+    required this.state,
+    required this.cityname,
+    required this.city,
     required this.cadress,
+    required this.cLogo,
     required this.ccode,
     required this.decs,
     required this.active,
@@ -76,6 +91,6 @@ class CompaniesListResponseDataEntity
 
   @override
   CompaniesListResponseData transform() {
-    return CompaniesListResponseData(id: id, cname: cname, cadress: cadress, ccode: ccode, decs: decs, active: active, createDt: createDt, modifyBy: modifyBy, modifyDt: modifyDt, underscoreV: underscoreV);
+    return CompaniesListResponseData(id: id, cname: cname, countryname: countryname, state: state, cityname: cityname, city: city, cadress: cadress, cLogo: cLogo, ccode: ccode, decs: decs, active: active, createDt: createDt, modifyBy: modifyBy, modifyDt: modifyDt, underscoreV: underscoreV);
   }
 }

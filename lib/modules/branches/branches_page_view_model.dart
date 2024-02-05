@@ -5,14 +5,19 @@ import 'dart:convert';
 import 'package:domain/model/common_response/common_response.dart';
 import 'package:domain/model/get_modules_response/branches_response.dart';
 import 'package:domain/model/get_modules_response/companies_response.dart';
+import 'package:domain/model/login/login_response.dart';
+import 'package:domain/model/services/address_master_response.dart';
 import 'package:domain/usecase/common_usecase/common_forms_usecase.dart';
 import 'package:domain/usecase/services/branches_usecase.dart';
 import 'package:domain/usecase/services/companies_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:spoorthymactcs/base/base_page_view_model.dart';
+import 'package:spoorthymactcs/di/notifier/address_master_notifier.dart';
+import 'package:spoorthymactcs/di/notifier/login_notifier.dart';
 import 'package:spoorthymactcs/utils/extension/stream_extention.dart';
 import 'package:spoorthymactcs/utils/request_manager.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
@@ -25,8 +30,6 @@ class BranchesPageViewModel extends BasePageViewModel {
   TextEditingController controllerBranchCode = TextEditingController();
   TextEditingController controllerBranchDate = TextEditingController();
   TextEditingController controllerContactNumber = TextEditingController();
-  TextEditingController controllerState = TextEditingController();
-  TextEditingController controllerDistrict = TextEditingController();
   TextEditingController controllerPincode = TextEditingController();
   TextEditingController controllerDescription = TextEditingController();
   //ValueNotifier<String> selectedCadre = ValueNotifier("");
@@ -34,6 +37,16 @@ class BranchesPageViewModel extends BasePageViewModel {
   ValueNotifier<bool> isActive = ValueNotifier(false);
   List<dynamic> companiesList = [];
   DateTime selectedDate = DateTime.now();
+
+    List<dynamic> countryList = [];
+  List<dynamic> stateList = [];
+  List<dynamic> cityList = [];
+  ValueNotifier<String> selectedCountry = ValueNotifier("");
+  ValueNotifier<String> selectedState = ValueNotifier("");
+  ValueNotifier<String> selectedCity = ValueNotifier("");
+
+  ValueNotifier<bool> isCitySelected = ValueNotifier(false);
+  ValueNotifier<bool> isStateselected = ValueNotifier(false);
 
   final BranchesUseCase _branchesUseCase;
   final CompaniesUseCase _companiesUseCase;
@@ -90,6 +103,7 @@ class BranchesPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) async{
           if(event.status == Status.SUCCESS){
+            showToastWithString(event.data!.sMessage);
             await getBranchesList();
             modelcontext?.pop();
           }
@@ -104,20 +118,24 @@ class BranchesPageViewModel extends BasePageViewModel {
   getBranchesList(){
   _branchesRequest.safeAdd(
       BranchesUseCaseParams(
-        secure: jsonEncode({})));
+        secure: {}
+        ));
   }
 
   getCompaniesList(){
   _companiesRequest.safeAdd(
       CompaniesUseCaseParams(
-        secure: jsonEncode({})));
+        secure: {}
+        ));
   }
 
   saveBranchesData({required String flag, BranchesResponseData? singleBranch}){
+    UserInfo? userInfo = ProviderScope.containerOf(modelcontext!).read(loginUserInfoNotifierProvider);
+    
     _commonRequest.safeAdd(
       CommonUseCaseParams(
         endPointUrl: RoutePaths.branchSave,
-        secure: jsonEncode(
+        secure: 
           {
             "id": (flag == "EDIT") ? singleBranch?.id : null,
             "active": (flag == "EDIT") ? isActive.value : true,
@@ -127,12 +145,15 @@ class BranchesPageViewModel extends BasePageViewModel {
             "b_opn_dt": controllerBranchDate.text.trim(),
             "desc": controllerDescription.text.trim(),
             "cId": selectedCompany.value,
-            "state": controllerState.text.trim(),
-            "district": controllerDistrict.text.trim(),
+            "countryname": selectedCountry.value,
+            "state": selectedState.value,
+            "city": selectedCity.value,
+            "cityname": getCityNameFromId(selectedCity.value),
             "pincode": controllerPincode.text.trim(),
             "contact_no": controllerContactNumber.text.trim(),
+            "createby": userInfo?.id,
           }
-        )));
+        ));
   }
 
   updateCompaniesList(List<CompaniesListResponseData> data) {
@@ -150,5 +171,73 @@ class BranchesPageViewModel extends BasePageViewModel {
     DateFormat format = DateFormat("dd/MM/yyyy");
     String dateString = format.format(dateTime);
     controllerBranchDate.text = dateString;
+  }
+
+  filterAddressMasterList(BuildContext context){
+    List<AddressData> addressData = ProviderScope.containerOf(context).read(addressMasterNotifierProvider);
+    for(var x in addressData){
+      countryList.add({
+        "name":x.name,
+        "code":x.code
+      });
+    }
+  }
+
+  filterStatesList(){
+    List<AddressData> addressData = ProviderScope.containerOf(modelcontext!).read(addressMasterNotifierProvider);
+    for(var x in addressData){
+      if(x.name == selectedCountry.value){
+        stateList = x.states; 
+      }
+    }
+    isStateselected.value = !isStateselected.value;
+    isCitySelected.value = !isCitySelected.value;
+    selectedState.value = "";
+    selectedCity.value = "";
+  }
+
+  filterCitiesList(){
+    List<AddressData> addressData = ProviderScope.containerOf(modelcontext!).read(addressMasterNotifierProvider);
+    for(var x in addressData){
+      if(x.name == selectedCountry.value){
+        for(var y in x.states){
+          if(y.name == selectedState.value){
+            cityList = y.cities;
+          }
+        } 
+      }
+    }
+    isCitySelected.value = !isCitySelected.value;
+    selectedCity.value = "";
+  }
+
+  getCityNameFromId(String cityId){
+    List<AddressData> addressData = ProviderScope.containerOf(modelcontext!).read(addressMasterNotifierProvider);
+    for(var x in addressData){
+      for(var y in x.states){
+          for(var z in y.cities){
+            if(z.code == selectedCity.value){
+              return z.cname;
+            }
+        } 
+        } 
+    }
+  }
+
+  updateStateCityData(String city){
+    List<AddressData> addressData = ProviderScope.containerOf(modelcontext!).read(addressMasterNotifierProvider);
+    for(var x in addressData){
+      for(var y in x.states){
+          for(var z in y.cities){
+            if(z.cname == city){
+              stateList = x.states; 
+              cityList = y.cities;
+              selectedCountry.value = x.name;
+              selectedState.value = y.name;
+              selectedCity.value = z.code;
+            }
+        } 
+        } 
+    }
   }
 }

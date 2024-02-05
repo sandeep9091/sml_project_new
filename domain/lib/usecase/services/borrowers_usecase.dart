@@ -20,7 +20,7 @@ class BorrowersUseCase
 }
 
 class BorrowersUseCaseParams extends Params {
-  final String secure;
+  final Map<String,dynamic> secure;
   BorrowersUseCaseParams({required this.secure});
 
   @override

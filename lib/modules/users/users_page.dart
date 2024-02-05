@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spoorthymactcs/base/base_page.dart';
 import 'package:spoorthymactcs/di/login/login_modules.dart';
+import 'package:spoorthymactcs/modules/users/cascade_page.dart';
 import 'package:spoorthymactcs/modules/users/users_action_page.dart';
 import 'package:spoorthymactcs/modules/users/users_page_view.dart';
 import 'package:spoorthymactcs/modules/users/users_page_view_model.dart';
@@ -38,8 +39,9 @@ class UsersPageState
       enalbeTitle: true,
       enableActions: true,
       actionButtonOnTap: (){
-        Navigator.push(context,MaterialPageRoute(builder: (context) => const UsersActionPage(type: "ADD",)),
-        );
+        // Navigator.push(context,MaterialPageRoute(builder: (context) => const UsersActionPage(type: "ADD",)),
+        // );
+        Navigator.push(context,MaterialPageRoute(builder: (context) => CascadingDropdownExample()));
       },
     );
   }

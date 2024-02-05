@@ -64,24 +64,14 @@ class UserInfoEntity extends BaseLayerDataTransformer<
   final String uname;
   @JsonKey(name: "password", defaultValue: '')
   final String password;
-  @JsonKey(name: "gender", defaultValue: '')
-  final String gender;
-  @JsonKey(name: "description", defaultValue: '')
-  final String description;
+  @JsonKey(name: "gendername", defaultValue: '')
+  final String gendername;
   @JsonKey(name: "cader", defaultValue: '')
   final String cader;
-  @JsonKey(name: "cadername", defaultValue: '')
-  final String cadername;
-  @JsonKey(name: "department", defaultValue: '')
-  final String? department;
-  @JsonKey(name: "create_dt", defaultValue: '')
-  final String createDt;
-  @JsonKey(name: "modify_dt", defaultValue: '')
-  final String modifyDt;
-  @JsonKey(name: "active", defaultValue: false)
-  final bool active;
-  @JsonKey(name: "__v", defaultValue: 0)
-  final int underscoreV;
+  @JsonKey(name: "branchid", defaultValue: '')
+  final String branchid;
+  @JsonKey(name: "branchname", defaultValue: '')
+  final String branchname;
   @JsonKey(name: "secure", defaultValue: '')
   final String secure;
   @JsonKey(name: "loggTime", defaultValue: 0)
@@ -93,15 +83,10 @@ class UserInfoEntity extends BaseLayerDataTransformer<
     required this.id,
     required this.uname,
     required this.password,
-    required this.gender,
-    required this.description,
+    required this.gendername,
     required this.cader,
-    required this.cadername,
-    this.department,
-    required this.createDt,
-    required this.modifyDt,
-    required this.active,
-    required this.underscoreV,
+    required this.branchid,
+    required this.branchname,
     required this.secure,
     required this.loggTime,
     this.userCader
@@ -114,7 +99,7 @@ class UserInfoEntity extends BaseLayerDataTransformer<
 
   @override
   UserInfo transform() {
-    return UserInfo(id: id, uname: uname, password: password, gender: gender, description: description, cader: cader, cadername: cadername, department: department!, createDt: createDt, modifyDt: modifyDt, active: active, underscoreV: underscoreV, loggTime: loggTime, userCader: userCader?.transform(), secure: secure);
+    return UserInfo(id: id, uname: uname, password: password, gendername: gendername, cader: cader, branchid: branchid, branchname: branchname, loggTime: loggTime, userCader: userCader?.transform(), secure: secure);
   }
 }
 

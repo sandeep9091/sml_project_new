@@ -20,7 +20,7 @@ class CompaniesUseCase
 }
 
 class CompaniesUseCaseParams extends Params {
-  final String secure;
+  final Map<String,dynamic> secure;
   CompaniesUseCaseParams({required this.secure});
 
   @override

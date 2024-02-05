@@ -8,7 +8,7 @@ part of 'common_request_entity.dart';
 
 CommonRequestEntity _$CommonRequestEntityFromJson(Map<String, dynamic> json) =>
     CommonRequestEntity(
-      secure: json['secure'] as String? ?? '',
+      secure: json['secure'] ?? {},
     );
 
 Map<String, dynamic> _$CommonRequestEntityToJson(

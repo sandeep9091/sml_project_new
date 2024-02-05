@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:spoorthymactcs/modules/borrowers/borrowers_page.dart';
 import 'package:spoorthymactcs/modules/branches/branches_page.dart';
 import 'package:spoorthymactcs/modules/companies/companies_page.dart';
+import 'package:spoorthymactcs/modules/create_team/create_team_page.dart';
 import 'package:spoorthymactcs/modules/users/users_page.dart';
 import '../../modules/dashboard/dashboard_page.dart';
 import '../../modules/login/login_page.dart';
@@ -18,7 +19,8 @@ enum AppRoute {
   branches,
   companies,
   users,
-  borrowers
+  borrowers,
+  createTeam
 }
 
 final goRouterProvider = Provider<GoRouter>((ref) {
@@ -63,6 +65,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: RoutePaths.borrowers,
         name: AppRoute.borrowers.name,
         builder: (context, state) => const BorrowersPage(),
+      ),
+      GoRoute(
+        path: RoutePaths.createTeam,
+        name: AppRoute.createTeam.name,
+        builder: (context, state) => const CreateTeamPage(),
       ),
     ],
   );

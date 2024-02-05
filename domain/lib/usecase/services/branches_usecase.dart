@@ -20,7 +20,7 @@ class BranchesUseCase
 }
 
 class BranchesUseCaseParams extends Params {
-  final String secure;
+  final Map<String,dynamic> secure;
   BranchesUseCaseParams({required this.secure});
 
   @override

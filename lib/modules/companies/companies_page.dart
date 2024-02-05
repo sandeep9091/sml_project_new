@@ -47,6 +47,7 @@ class CompaniesPageState
   @override
   void onPageInit(CompaniesPageViewModel model) {
     model.getCompaniesList();
+    model.filterAddressMasterList(context);
     super.onPageInit(model);
   }
 

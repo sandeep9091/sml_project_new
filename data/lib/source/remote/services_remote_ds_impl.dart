@@ -1,18 +1,24 @@
 import 'dart:convert';
+import 'package:data/entity/services/response/address_master_response_entity.dart';
 import 'package:data/entity/services/response/borrowers_response_entity.dart';
 import 'package:data/entity/services/response/branches_response_entity.dart';
 import 'package:data/entity/services/response/companies_list_response_entity.dart';
 import 'package:data/entity/services/response/get_caders_response_entity.dart';
 import 'package:data/entity/services/response/get_gender_list_response_entity.dart';
+import 'package:data/entity/services/response/get_team_mapper_response_entity.dart';
+import 'package:data/entity/services/response/get_teams_response_entity.dart';
 import 'package:data/entity/services/response/users_list_response_entity.dart';
 import 'package:data/entity/user/request/common_request_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/services_datasource.dart';
+import 'package:domain/usecase/services/address_master_usecase.dart';
 import 'package:domain/usecase/services/borrowers_usecase.dart';
 import 'package:domain/usecase/services/branches_usecase.dart';
 import 'package:domain/usecase/services/companies_usecase.dart';
 import 'package:domain/usecase/services/get_caders_usecase.dart';
 import 'package:domain/usecase/services/get_gender_list_usecase.dart';
+import 'package:domain/usecase/services/get_teams_mapper_usecase.dart';
+import 'package:domain/usecase/services/get_teams_usecase.dart';
 import 'package:domain/usecase/services/users_usecase.dart';
 import 'package:retrofit/dio.dart';
 
@@ -24,7 +30,8 @@ class ServicesRemoteDSImpl extends ServicesRemoteDataSource {
   @override
   Future<HttpResponse<GetCadersResponseEntity>> getCaders(
       {required GetCadersUseCaseParams params}) async {
-    String secure = base64.encode(params.secure.codeUnits);
+    //String secure = base64.encode(params.secure.codeUnits);
+    Map<String,dynamic> secure = params.secure;
 
     return await _apiService.getCaders(
       CommonRequestEntity(
@@ -36,7 +43,8 @@ class ServicesRemoteDSImpl extends ServicesRemoteDataSource {
   @override
   Future<HttpResponse<GetGenderListResponseEntity>> getGenderList(
       {required GetGenderListUseCaseParams params}) async {
-    String secure = base64.encode(params.secure.codeUnits);
+    // String secure = base64.encode(params.secure.codeUnits);
+    Map<String,dynamic> secure = params.secure;
 
     return await _apiService.getGenderList(
       CommonRequestEntity(
@@ -48,7 +56,8 @@ class ServicesRemoteDSImpl extends ServicesRemoteDataSource {
   @override
   Future<HttpResponse<BranchesResponseEntity>> getBranchesList(
       {required BranchesUseCaseParams params}) async {
-    String secure = base64.encode(params.secure.codeUnits);
+    // String secure = base64.encode(params.secure.codeUnits);
+    Map<String,dynamic> secure = params.secure;
 
     return await _apiService.getBranchesList(
       CommonRequestEntity(
@@ -60,7 +69,8 @@ class ServicesRemoteDSImpl extends ServicesRemoteDataSource {
     @override
   Future<HttpResponse<CompaniesListResponseEntity>> getCompaniesList(
       {required CompaniesUseCaseParams params}) async {
-    String secure = base64.encode(params.secure.codeUnits);
+    // String secure = base64.encode(params.secure.codeUnits);
+    Map<String,dynamic> secure = params.secure;
 
     return await _apiService.getCompaniesList(
       CommonRequestEntity(
@@ -72,7 +82,7 @@ class ServicesRemoteDSImpl extends ServicesRemoteDataSource {
       @override
   Future<HttpResponse<UsersListResponseEntity>> getUsersList(
       {required UsersUseCaseParams params}) async {
-    String secure = base64.encode(params.secure.codeUnits);
+    Map<String,dynamic> secure = params.secure;
 
     return await _apiService.getUsersList(
       CommonRequestEntity(
@@ -81,12 +91,48 @@ class ServicesRemoteDSImpl extends ServicesRemoteDataSource {
     );
   }
 
-    @override
+  @override
   Future<HttpResponse<BorrowersResponseEntity>> getBorrowersList(
       {required BorrowersUseCaseParams params}) async {
-    String secure = base64.encode(params.secure.codeUnits);
+    Map<String,dynamic> secure = params.secure;
 
     return await _apiService.getBorrowersList(
+      CommonRequestEntity(
+        secure: secure
+      ),
+    );
+  }
+
+  @override
+  Future<HttpResponse<GetTeamMapperResponseEntity>> getTeamMapper(
+      {required GetTeamMapperUseCaseParams params}) async {
+    Map<String,dynamic> secure = params.secure;
+
+    return await _apiService.getTeamMapper(
+      CommonRequestEntity(
+        secure: secure
+      ),
+    );
+  }
+
+  @override
+  Future<HttpResponse<GetTeamsResponseEntity>> getTeams(
+      {required GetTeamsUseCaseParams params}) async {
+    Map<String,dynamic> secure = params.secure;
+
+    return await _apiService.getTeams(
+      CommonRequestEntity(
+        secure: secure
+      ),
+    );
+  }
+
+  @override
+  Future<HttpResponse<AddressMasterResponseEntity>> getAddressMaster(
+      {required AddressMasterUseCaseParams params}) async {
+    Map<String,dynamic> secure = params.secure;
+
+    return await _apiService.getAddressMaster(
       CommonRequestEntity(
         secure: secure
       ),

@@ -46,7 +46,9 @@ class UsersPageView extends BasePageViewWidget<UsersPageViewModel> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CommonTitleValueWidget(title: "Name",value: eachUser.uname,width: MediaQuery.of(context).size.width *.70,),
-                          CommonEditViewButton(editButtonAction: () {
+                          CommonEditViewButton(
+                            showEditButton: eachUser.active,
+                            editButtonAction: () {
                             Navigator.push(context,MaterialPageRoute(builder: (context) => UsersActionPage(singleUser: eachUser,type: "EDIT",)));
                           },viewButtonAction: () {
                             Navigator.push(context,MaterialPageRoute(builder: (context) => UsersActionPage(singleUser: eachUser,type: "VIEW",)));

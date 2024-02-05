@@ -4,12 +4,12 @@ part 'error.g.dart';
 
 @JsonSerializable()
 class Error {
+  @JsonKey(name: "S_CODE")
   final int code;
+  @JsonKey(name: "S_MSG", defaultValue: "")
   final String message;
-  final String msg;
-  final String requestId;
 
-  Error(this.code, this.message, this.msg, this.requestId);
+  Error(this.code, this.message);
 
   factory Error.fromJson(Map<String, dynamic> json) => _$ErrorFromJson(json);
 

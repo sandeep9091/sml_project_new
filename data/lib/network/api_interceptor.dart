@@ -26,8 +26,6 @@ class ApiInterceptor extends InterceptorsWrapper {
       //appHeader.uniqueTimeStamp = DateTime.now().microsecondsSinceEpoch.toString();
 
       //This needs to be changed - need to handle dynamically, based on language selection
-      String lang =
-          await _secureStorageDataSource.getValue(key: PrefKeys.language);
       //appHeader.language = lang.isEmpty ? 'en' : lang;
 
       String uid =
@@ -49,9 +47,6 @@ class ApiInterceptor extends InterceptorsWrapper {
             (options.data as Map<String, dynamic>).remove("headeruniqueid");
           } finally {}
         }
-        var tokenId = await _secureStorageDataSource.getValue(
-          key: PrefKeys.tokenId,
-        );
         //appHeader.tokenId = tokenId;
 
         //String salt = EncryptionHelper.getOddNumber(tokenId);
@@ -124,8 +119,6 @@ class ApiInterceptor extends InterceptorsWrapper {
     String tokenid = "";
     if (response.headers.map.containsKey('X-IMI-TOKENID')) {
       tokenid = response.headers.value('X-IMI-TOKENID') ?? "";
-      await _secureStorageDataSource.setValue(
-          key: PrefKeys.tokenId, value: tokenid);
     }
     if (response.data != null) {
       try {

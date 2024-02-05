@@ -36,7 +36,7 @@ class BorrowersResponseEntity
 @JsonSerializable()
 class BorrowersResponseDataEntity
     extends BaseLayerDataTransformer<BorrowersResponseDataEntity, BorrowersResponseData> {
-  @JsonKey(name: "_id", defaultValue: "")
+  @JsonKey(name: "id", defaultValue: "")
   final String id;
   @JsonKey(name: "name", defaultValue: "")
   final String name;
@@ -46,14 +46,14 @@ class BorrowersResponseDataEntity
   final String ccode;
   @JsonKey(name: "description", defaultValue: "")
   final String description;
-  @JsonKey(name: "branch_id", defaultValue: "")
-  final String branchId;
-  @JsonKey(name: "branch_name", defaultValue: "")
-  final String branchName;
+  @JsonKey(name: "countryname", defaultValue: "")
+  final String countryname;
+  @JsonKey(name: "cityname", defaultValue: "")
+  final String cityname;
+  @JsonKey(name: "city", defaultValue: "")
+  final String city;
   @JsonKey(name: "state", defaultValue: "")
   final String state;
-  @JsonKey(name: "district", defaultValue: "")
-  final String district;
   @JsonKey(name: "pincode", defaultValue: "")
   final String pincode;
   @JsonKey(name: "contact_no", defaultValue: "")
@@ -74,6 +74,20 @@ class BorrowersResponseDataEntity
   final bool active;
    @JsonKey(name: "__v", defaultValue: 0)
   final int underscoreV;
+  @JsonKey(name: "A", defaultValue: null)
+  final String? aadharPhoto;
+  @JsonKey(name: "RC", defaultValue: null)
+  final String? rationCardPhoto;
+  @JsonKey(name: "HTR", defaultValue: null)
+  final String? houseTaxReceiptPhoto;
+  @JsonKey(name: "LA", defaultValue: null)
+  final String? loanApplicationPhoto;
+  @JsonKey(name: "HP", defaultValue: null)
+  final String? housePhoto;
+  @JsonKey(name: "PPC", defaultValue: null)
+  final String? passportPhoto;
+  @JsonKey(name: "OTHERS", defaultValue: null)
+  final String? othersPhoto;
 
   BorrowersResponseDataEntity({
     required this.id,
@@ -81,10 +95,10 @@ class BorrowersResponseDataEntity
     required this.aadhar,
     required this.ccode,
     required this.description,
-    required this.branchId,
-    required this.branchName,
+    required this.countryname,
+    required this.cityname,
+    required this.city,
     required this.state,
-    required this.district,
     required this.pincode,
     required this.contactNo,
     required this.active,
@@ -94,7 +108,14 @@ class BorrowersResponseDataEntity
     required this.createDt,
     required this.modifyBy,
     required this.modifyDt,
-    required this.underscoreV
+    required this.underscoreV,
+    this.aadharPhoto,
+    this.rationCardPhoto,
+    this.houseTaxReceiptPhoto,
+    this.loanApplicationPhoto,
+    this.housePhoto,
+    this.passportPhoto,
+    this.othersPhoto,
   });
 
   factory BorrowersResponseDataEntity.fromJson(Map<String, Object?> json) =>
@@ -103,6 +124,6 @@ class BorrowersResponseDataEntity
 
   @override
   BorrowersResponseData transform() {
-    return BorrowersResponseData(id: id, name: name, aadhar: aadhar, ccode: ccode, description: description, branchId: branchId, branchName: branchName, state: state, district: district, pincode: pincode, contactNo: contactNo, active: active, byemployee: byemployee, byemployeename: byemployeename, createBy: createBy, createDt: createDt, modifyBy: modifyBy, modifyDt: modifyDt, underscoreV: underscoreV);
+    return BorrowersResponseData(id: id, name: name, aadhar: aadhar, ccode: ccode, description: description, countryname: countryname, cityname: cityname,city:city, state: state, pincode: pincode, contactNo: contactNo, active: active, byemployee: byemployee, byemployeename: byemployeename, createBy: createBy, createDt: createDt, modifyBy: modifyBy, modifyDt: modifyDt, underscoreV: underscoreV, aadharPhoto: aadharPhoto, rationCardPhoto: rationCardPhoto, houseTaxReceiptPhoto: houseTaxReceiptPhoto, loanApplicationPhoto: loanApplicationPhoto, housePhoto: housePhoto, passportPhoto: passportPhoto, othersPhoto: othersPhoto);
   }
 }

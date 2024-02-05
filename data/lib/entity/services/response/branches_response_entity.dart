@@ -50,14 +50,20 @@ class BranchesResponseDataEntity
   final String desc;
   @JsonKey(name: "b_opn_dt", defaultValue: "")
   final String bOpnDt;
+  @JsonKey(name: "countryname", defaultValue: "")
+  final String countryname;
   @JsonKey(name: "state", defaultValue: "")
   final String state;
-  @JsonKey(name: "district", defaultValue: "")
-  final String district;
+  @JsonKey(name: "cityname", defaultValue: "")
+  final String cityname;
+  @JsonKey(name: "city", defaultValue: "")
+  final String city;
   @JsonKey(name: "pincode", defaultValue: "")
   final String pincode;
   @JsonKey(name: "contact_no", defaultValue: "")
   final String contactNo;
+  @JsonKey(name: "create_by", defaultValue: "")
+  final String createBy;
   @JsonKey(name: "create_dt", defaultValue: "")
   final String createDt;
   @JsonKey(name: "modify_by", defaultValue: "")
@@ -66,7 +72,7 @@ class BranchesResponseDataEntity
   final String modifyDt;
   @JsonKey(name: "active", defaultValue: false)
   final bool active;
-   @JsonKey(name: "__v", defaultValue: 0)
+  @JsonKey(name: "__v", defaultValue: 0)
   final int underscoreV;
 
   BranchesResponseDataEntity({
@@ -77,11 +83,14 @@ class BranchesResponseDataEntity
     required this.cname,
     required this.desc,
     required this.bOpnDt,
+    required this.countryname,
     required this.state,
-    required this.district,
+    required this.cityname,
+    required this.city,
     required this.pincode,
     required this.contactNo,
     required this.active,
+    required this.createBy,
     required this.createDt,
     required this.modifyBy,
     required this.modifyDt,
@@ -94,6 +103,6 @@ class BranchesResponseDataEntity
 
   @override
   BranchesResponseData transform() {
-    return BranchesResponseData(id: id, bname: bname, bcode: bcode, cId: cId, cname: cname, desc: desc, bOpnDt: bOpnDt, state: state, district: district, pincode: pincode, contactNo: contactNo, active: active, createDt: createDt, modifyBy: modifyBy, modifyDt: modifyDt, underscoreV: underscoreV);
+    return BranchesResponseData(id: id, bname: bname, bcode: bcode, cId: cId, cname: cname, desc: desc, bOpnDt: bOpnDt, countryname: countryname, state: state, cityname: cityname, city: city, pincode: pincode, contactNo: contactNo, active: active, createBy: createBy, createDt: createDt, modifyBy: modifyBy, modifyDt: modifyDt, underscoreV: underscoreV);
   }
 }

@@ -19,10 +19,8 @@ class SideMenu extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ValueNotifier<bool> isLoading = ValueNotifier(false);
-    List<LoginResponseData> loginResponseData = ref.watch(loginNotifierProvider);
-    LoginResponseData? loginData;
-    if(loginResponseData.isNotEmpty){
-      loginData = loginResponseData[0];
+    UserInfo? userInfo = ref.watch(loginUserInfoNotifierProvider);
+    if(userInfo != null){
       return Container(
       //height: double.maxFinite,
       color: AppColor.white,
@@ -52,7 +50,7 @@ class SideMenu extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        loginData.userInfo?.uname ?? '',
+                        userInfo?.uname ?? '',
                         maxLines: 1,
                         overflow: TextOverflow.visible,
                         style: const TextStyle(
@@ -77,7 +75,7 @@ class SideMenu extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                 Text(
-                    loginData.userInfo?.cadername ??"",
+                    userInfo.userCader?.cdname ??"",
                     overflow: TextOverflow.visible,
                     style: const TextStyle(
                       color: AppColor.yellowDark,
@@ -101,7 +99,7 @@ class SideMenu extends ConsumerWidget {
                           fontWeight: FontWeight.normal,
                         ),
                       ),
-                      Text(AppCommonUtils.formatEpochToDateTime(loginData.userInfo?.loggTime??0),
+                      Text(AppCommonUtils.formatEpochToDateTime(userInfo?.loggTime??0),
                             style: const TextStyle(
                               color: AppColor.semiBlack,
                               fontSize: 14,
@@ -121,9 +119,9 @@ class SideMenu extends ConsumerWidget {
             onTap: () async{
               isLoading.value = true;
               await AppCommonUtils().secureStorage().setValue(key: 'loginResponse',value: "");
-              ref.invalidate(loginNotifierProvider);
+              ref.invalidate(loginUserInfoNotifierProvider);
               ref.invalidate(getModulesNotifierProvider);
-              
+              ref.invalidate(getDashboardNotifierProvider);
               context.goNamed(AppRoute.login.name);
                     },
             child: Container(

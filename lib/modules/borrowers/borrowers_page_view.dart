@@ -46,10 +46,12 @@ class BorrowersPageView extends BasePageViewWidget<BorrowersPageViewModel> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CommonTitleValueWidget(title: "Name",value: eachBorrower.name,width: MediaQuery.of(context).size.width *.70,),
-                          CommonEditViewButton(editButtonAction: () {
-                            Navigator.push(context,MaterialPageRoute(builder: (context) => BorrowersActionPage(singleBorrower: eachBorrower,type: "EDIT",)));
+                          CommonEditViewButton(
+                            showEditButton: eachBorrower.active,
+                            editButtonAction: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => BorrowersActionPage(singleBorrower: eachBorrower,type: "EDIT",))).then((value) => model.disposeAllVariables());
                           },viewButtonAction: () {
-                            Navigator.push(context,MaterialPageRoute(builder: (context) => BorrowersActionPage(singleBorrower: eachBorrower,type: "VIEW",)));
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => BorrowersActionPage(singleBorrower: eachBorrower,type: "VIEW",))).then((value) => model.disposeAllVariables());
                           },)
                         ],
                       ),
@@ -62,12 +64,13 @@ class BorrowersPageView extends BasePageViewWidget<BorrowersPageViewModel> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                        CommonTitleValueWidget(title: "Branch",value: eachBorrower.branchName,width: MediaQuery.of(context).size.width *.42,),
-                        CommonTitleValueWidget(title: "Code",value: eachBorrower.ccode,width: MediaQuery.of(context).size.width *.30,),
+                      CommonTitleValueWidget(title: "Description",value: eachBorrower.description,width: MediaQuery.of(context).size.width *.75,),
+                        //CommonTitleValueWidget(title: "Branch",value: eachBorrower.branchName,width: MediaQuery.of(context).size.width *.42,),
+                        //CommonTitleValueWidget(title: "Code",value: eachBorrower.ccode,width: MediaQuery.of(context).size.width *.30,),
                         ActiveStatusWidget(status: eachBorrower.active),
                       ],),
-                      CommonTitleValueWidget(title: "Address",value: "${eachBorrower.district} / ${eachBorrower.state} / ${eachBorrower.pincode}",),
-                      CommonTitleValueWidget(title: "Description",value: eachBorrower.description,),
+                      CommonTitleValueWidget(title: "Address",value: "${eachBorrower.countryname} / ${eachBorrower.state} / ${eachBorrower.cityname}",),
+                      //CommonTitleValueWidget(title: "Description",value: eachBorrower.description,),
                   
                     ],
                   )

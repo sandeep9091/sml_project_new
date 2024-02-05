@@ -30,12 +30,16 @@ class AppCheckbox extends StatelessWidget {
                 activeColor: AppColor.green,
                 
               ),//SizedBox
-              Text(
-                checkboxText ?? 'Active',
-                style: const TextStyle(
-                            color: AppColor.semiBlack,
-                            fontSize: 14,
-                            fontFamily: FontUtils.primary),
+              SizedBox(
+                width: 100,
+                child: Text(
+                  checkboxText ?? 'Active',
+                  style: const TextStyle(
+                              color: AppColor.semiBlack,
+                              fontSize: 14,
+                              overflow: TextOverflow.visible,
+                              fontFamily: FontUtils.primary),
+                ),
               ), //Checkbox
             ], //<Widget>[]
           );

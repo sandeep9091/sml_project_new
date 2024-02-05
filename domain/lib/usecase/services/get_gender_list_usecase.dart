@@ -20,7 +20,7 @@ class GetGenderListUseCase
 }
 
 class GetGenderListUseCaseParams extends Params {
-  final String secure;
+  final Map<String,dynamic> secure;
   GetGenderListUseCaseParams({required this.secure});
 
   @override
