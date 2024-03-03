@@ -5,6 +5,7 @@ import '../../utils/color_utils.dart';
 class CommonEditViewButton extends StatelessWidget {
   final bool showEditButton;
   final bool showViewButton;
+  final bool isHistoryIcon;
   final Function()? editButtonAction;
   final Function()? viewButtonAction;
   const CommonEditViewButton({
@@ -12,7 +13,8 @@ class CommonEditViewButton extends StatelessWidget {
     required this.editButtonAction,
     required this.viewButtonAction,
     this.showEditButton = true,
-    this.showViewButton = true
+    this.showViewButton = true,
+    this.isHistoryIcon = false
   });
 
   @override
@@ -33,10 +35,10 @@ class CommonEditViewButton extends StatelessWidget {
             ),
             const SizedBox(width: 5,),
             Visibility(
-              visible: showViewButton,
+              visible: showViewButton || isHistoryIcon,
               child: InkWell(
                 onTap: viewButtonAction,
-                child: const SizedBox(width: 22, height: 20, child: Icon(Icons.remove_red_eye,size: 20,color: AppColor.grey,)),
+                child: SizedBox(width: 22, height: 20, child: Icon(isHistoryIcon?Icons.history:Icons.remove_red_eye,size: 20,color: AppColor.grey,)),
               ),
             ),
         ],

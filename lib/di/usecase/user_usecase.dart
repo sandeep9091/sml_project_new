@@ -9,10 +9,12 @@ import 'package:domain/usecase/services/address_master_usecase.dart';
 import 'package:domain/usecase/services/borrowers_usecase.dart';
 import 'package:domain/usecase/services/branches_usecase.dart';
 import 'package:domain/usecase/services/companies_usecase.dart';
+import 'package:domain/usecase/services/generate_loans_usecase.dart';
 import 'package:domain/usecase/services/get_caders_usecase.dart';
 import 'package:domain/usecase/services/get_gender_list_usecase.dart';
 import 'package:domain/usecase/services/get_teams_mapper_usecase.dart';
 import 'package:domain/usecase/services/get_teams_usecase.dart';
+import 'package:domain/usecase/services/recovery_history_usecase.dart';
 import 'package:domain/usecase/services/users_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -70,5 +72,13 @@ final getTeamMapperUseCaseProvider = Provider<GetTeamMapperUseCase>(
 
 final getTeamsUseCaseProvider = Provider<GetTeamsUseCase>(
   (ref) => GetTeamsUseCase(ref.read(servicesRepositoryProvider)),
+);
+
+final generateLoansUseCaseProvider = Provider<GenerateLoansUseCase>(
+  (ref) => GenerateLoansUseCase(ref.read(servicesRepositoryProvider)),
+);
+
+final recoveryHistoryUseCaseProvider = Provider<RecoveryHistoryUseCase>(
+  (ref) => RecoveryHistoryUseCase(ref.read(servicesRepositoryProvider)),
 );
 

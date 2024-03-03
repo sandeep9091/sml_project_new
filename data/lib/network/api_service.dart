@@ -13,6 +13,9 @@ import 'package:data/entity/user/response/getModulesNew_response_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../entity/services/response/generate_loans_response_entity.dart';
+import '../entity/services/response/get_only_created_borrowers_response_entity.dart';
+import '../entity/services/response/recover_history_response_entity.dart';
 import '../entity/user/request/common_request_entity.dart';
 import '../entity/user/response/getModules_response_entity.dart';
 import '../entity/user/response/login_response_entity.dart';
@@ -99,4 +102,19 @@ abstract class ApiService {
   @POST("/addressmasters")
   Future<HttpResponse<AddressMasterResponseEntity>> getAddressMaster(
       @Body() CommonRequestEntity getTeamsRequestEntity);
+
+  /// get loans list
+  @POST("/gnloanslist")
+  Future<HttpResponse<GenerateLoansResponseEntity>> generateLoans(
+      @Body() CommonRequestEntity generateLoansRequestEntity);
+
+  /// get Only Created Borrowers
+  @POST("/getOnlyCreatedBorrowers")
+  Future<HttpResponse<GetOnlyCreatedBorrowersResponseEntity>> getOnlyCreatedBorrowers(
+      @Body() CommonRequestEntity getOnlyCreatedBorrowersRequestEntity);
+
+  /// get history payments
+  @POST("/historypayments")
+  Future<HttpResponse<RecoveryHistoryResponseEntity>> getRecoveryHistory(
+      @Body() CommonRequestEntity getRecoveryHistoryRequestEntity);
 }

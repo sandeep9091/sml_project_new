@@ -19,6 +19,7 @@ class RoutePaths {
   static const String branchSave = "/create-branch";
   static const String borrowerSave = "/create-borrower";
   static const String createTeamSave = "/create-team";
+  static const String recoverypayment = "/payment";
 
 
 }

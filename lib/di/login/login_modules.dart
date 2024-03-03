@@ -7,7 +7,11 @@ import 'package:spoorthymactcs/modules/create_team/create_team_page_view_model.d
 import 'package:spoorthymactcs/modules/users/users_page_view_model.dart';
 
 import '../../modules/dashboard/dashboard_page_view_model.dart';
+import '../../modules/disbursements/disbursements_page_view_model.dart';
+import '../../modules/generate_loans/generate_loans_page_view_model.dart';
+import '../../modules/loan_approvals/loan_approvals_page_view_model.dart';
 import '../../modules/login/login_page_view_model.dart';
+import '../../modules/recovery/recovery_page_view_model.dart';
 import '../usecase/user_usecase.dart';
 
 
@@ -27,6 +31,7 @@ final dashboardViewModelProvider =
     ref.read(getGenderListUseCaseProvider),
     ref.read(getCadersUseCaseProvider),
     ref.read(addressMasterUseCaseProvider),
+    ref.read(usersUseCaseProvider),
     ref
   ),
 );
@@ -72,5 +77,38 @@ final createTeamViewModelProvider =
     ref.read(getTeamMapperUseCaseProvider),
     ref.read(getTeamsUseCaseProvider),
     ref.read(commonUseCaseProvider)
+  ),
+);
+
+final generateLoansViewModelProvider =
+    ChangeNotifierProvider.autoDispose<GenerateLoansPageViewModel>(
+  (ref) => GenerateLoansPageViewModel(
+    ref.read(generateLoansUseCaseProvider),
+    ref.read(getTeamMapperUseCaseProvider),
+    ref.read(getTeamsUseCaseProvider),
+    ref.read(commonUseCaseProvider)
+  ),
+);
+
+final loanApprovalsViewModelProvider =
+    ChangeNotifierProvider.autoDispose<LoanApprovalsPageViewModel>(
+  (ref) => LoanApprovalsPageViewModel(
+    ref.read(generateLoansUseCaseProvider)
+  ),
+);
+
+final disbursementsViewModelProvider =
+    ChangeNotifierProvider.autoDispose<DisbursementsPageViewModel>(
+  (ref) => DisbursementsPageViewModel(
+    ref.read(generateLoansUseCaseProvider)
+  ),
+);
+
+final recoveryViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RecoveryPageViewModel>(
+  (ref) => RecoveryPageViewModel(
+    ref.read(generateLoansUseCaseProvider),
+    ref.read(commonUseCaseProvider),
+    ref.read(recoveryHistoryUseCaseProvider)
   ),
 );

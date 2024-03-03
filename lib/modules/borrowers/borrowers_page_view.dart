@@ -25,11 +25,11 @@ class BorrowersPageView extends BasePageViewWidget<BorrowersPageViewModel> {
         initialData: Resource.none(), 
         dataBuilder: (context, data){
           if(data?.status == Status.SUCCESS){
-            if(data!.data!.data.isNotEmpty){
+            if((data?.data?.data ?? []).isNotEmpty){
               return ListView.builder(
-                itemCount: data.data!.data.length,
+                itemCount: data?.data?.data.length,
                 itemBuilder: (context, index){
-                  BorrowersResponseData eachBorrower = data.data!.data[index];
+                  BorrowersResponseData eachBorrower = data!.data!.data[index];
                   return Container(
                     margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
                     padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),

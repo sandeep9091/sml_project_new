@@ -28,7 +28,7 @@ class BranchesPageView extends BasePageViewWidget<BranchesPageViewModel> {
           if(data?.status == Status.SUCCESS){
             if(data!.data!.data.isNotEmpty){
               return ListView.builder(
-                itemCount: data.data!.data.length,
+                itemCount: data.data?.data.length,
                 itemBuilder: (context, index){
                   BranchesResponseData eachBranch = data.data!.data[index];
                   return Container(

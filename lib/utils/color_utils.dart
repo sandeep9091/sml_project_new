@@ -22,6 +22,7 @@ class AppColor {
   static const black = Color(0xff000000);
   static const blue = Color(0xFF2196F3);
   static const red = Color(0xFFFF6686);
+  static const yellow = Color.fromRGBO(158, 143, 7, 1);
   static const lightBlue = Color(0xFFECF7FF);
   static const lavender = Color(0xFFEADEF4);
   static const lightCyan = Color.fromARGB(100, 196, 226, 224);
@@ -40,12 +41,7 @@ class AppColor {
 
   static const borderShadow = Color.fromARGB(46, 69, 32, 218);
 
-  //static Color primary = const Color(0xff1a5786);
   static Color controlsHintColor = const Color(0xFFc7c7c7);
-  //static Color white = Colors.white;
-  //static Color grey = const Color(0xFF808080);
-  //static Color semiGrey = const Color(0xFF787276);
-  //static Color greyLight = const Color(0xFFC5C6D0);
   static Color primaryText = fromHex('#182651');
   static Color primaryButton = fromHex('#314ca3');
 

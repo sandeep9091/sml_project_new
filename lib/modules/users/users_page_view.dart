@@ -27,7 +27,7 @@ class UsersPageView extends BasePageViewWidget<UsersPageViewModel> {
           if(data?.status == Status.SUCCESS){
             if(data!.data!.data.isNotEmpty){
               return ListView.builder(
-                itemCount: data.data!.data.length,
+                itemCount: data.data?.data.length,
                 itemBuilder: (context, index){
                   UsersListResponseData eachUser = data.data!.data[index];
                   return Container(

@@ -19,6 +19,13 @@ import 'package:domain/usecase/services/get_teams_mapper_usecase.dart';
 import 'package:domain/usecase/services/get_teams_usecase.dart';
 import 'package:domain/usecase/services/users_usecase.dart';
 
+import '../../model/get_modules_response/generate_loans_response.dart';
+import '../../model/get_modules_response/get_only_created_borrowers_response.dart';
+import '../../model/get_modules_response/recovery_history_response.dart';
+import '../../usecase/services/generate_loans_usecase.dart';
+import '../../usecase/services/get_only_created_borrowers_usecase.dart';
+import '../../usecase/services/recovery_history_usecase.dart';
+
 abstract class ServicesRepository {
 
   Future<Either<NetworkError, GetCadersResponse>> getCaders(
@@ -47,4 +54,13 @@ abstract class ServicesRepository {
 
   Future<Either<NetworkError, AddressMasterResponse>> getAddressMaster(
     {required AddressMasterUseCaseParams params});
+
+  Future<Either<NetworkError, GenerateLoansResponse>> generateLoans(
+    {required GenerateLoansUseCaseParams params});
+
+  Future<Either<NetworkError, GetOnlyCreatedBorrowersResponse>> getOnlyCreatedBorrowers(
+    {required GetOnlyCreatedBorrowersUseCaseParams params});
+
+  Future<Either<NetworkError, RecoveryHistoryResponse>> getRecoveryHistory(
+    {required RecoveryHistoryUseCaseParams params});
 }

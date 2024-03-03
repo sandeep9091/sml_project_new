@@ -23,6 +23,7 @@ import 'package:spoorthymactcs/utils/request_manager.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
 import 'package:spoorthymactcs/utils/status.dart';
 
+
 class UsersPageViewModel extends BasePageViewModel {
   TextEditingController controllerUserName = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
@@ -34,13 +35,16 @@ class UsersPageViewModel extends BasePageViewModel {
   List<dynamic> cadreList = [];
 
    final UsersUseCase _usersUseCase;
+
    final CommonUseCase _commonUseCase;
 
   final PublishSubject<UsersUseCaseParams> _usersListRequest = PublishSubject();
+
   final PublishSubject<CommonUseCaseParams> _commonRequest = PublishSubject();
 
   /// Handle response and states for  content
   final BehaviorSubject<Resource<UsersListResponse>> _usersListResponse = BehaviorSubject();
+
   final BehaviorSubject<Resource<CommonResponse>> _commonResponse = BehaviorSubject();
 
   /// Stream for content
@@ -71,6 +75,8 @@ class UsersPageViewModel extends BasePageViewModel {
         _commonResponse.safeAdd(event);
       });
     });
+
+
   }
 
 
@@ -87,6 +93,8 @@ class UsersPageViewModel extends BasePageViewModel {
         ));
     }
   }
+
+
 
   saveUserData({required String flag, UsersListResponseData? singleUser}){
     _commonRequest.safeAdd(

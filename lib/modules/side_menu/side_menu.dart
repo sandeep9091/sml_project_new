@@ -89,6 +89,31 @@ class SideMenu extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      const Text('Branch : ',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: AppColor.grey400,
+                          fontSize: 14,
+                          fontFamily: FontUtils.primary,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      Text(userInfo.branchname,
+                            style: const TextStyle(
+                              color: AppColor.semiBlack,
+                              fontSize: 14,
+                              fontFamily: FontUtils.primary,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                    ],
+                  ),
+              const SizedBox(height: 5),
+              Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
                       const Text('Signed In : ',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

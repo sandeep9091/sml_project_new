@@ -7,8 +7,12 @@ import 'package:spoorthymactcs/modules/companies/companies_page.dart';
 import 'package:spoorthymactcs/modules/create_team/create_team_page.dart';
 import 'package:spoorthymactcs/modules/users/users_page.dart';
 import '../../modules/dashboard/dashboard_page.dart';
+import '../../modules/disbursements/disbursements_page.dart';
+import '../../modules/generate_loans/generate_loans_page.dart';
+import '../../modules/loan_approvals/loan_approvals_page.dart';
 import '../../modules/login/login_page.dart';
 
+import '../../modules/recovery/recovery_page.dart';
 import '../../modules/splash/splash_page.dart';
 import 'route_paths.dart';
 
@@ -20,7 +24,11 @@ enum AppRoute {
   companies,
   users,
   borrowers,
-  createTeam
+  createTeam,
+  generateLoans,
+  loanApprovals,
+  loanDisbursement,
+  recoveryPostings
 }
 
 final goRouterProvider = Provider<GoRouter>((ref) {
@@ -70,6 +78,26 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: RoutePaths.createTeam,
         name: AppRoute.createTeam.name,
         builder: (context, state) => const CreateTeamPage(),
+      ),
+      GoRoute(
+        path: RoutePaths.generateLoans,
+        name: AppRoute.generateLoans.name,
+        builder: (context, state) => const GenerateLoansPage(),
+      ),
+      GoRoute(
+        path: RoutePaths.loanApprovals,
+        name: AppRoute.loanApprovals.name,
+        builder: (context, state) => const LoanApprovalsPage(),
+      ),
+      GoRoute(
+        path: RoutePaths.loanDisbursement,
+        name: AppRoute.loanDisbursement.name,
+        builder: (context, state) => const DisbursementsPage(),
+      ),
+      GoRoute(
+        path: RoutePaths.recoveryPostings,
+        name: AppRoute.recoveryPostings.name,
+        builder: (context, state) => const RecoveryPage(),
       ),
     ],
   );

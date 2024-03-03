@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:domain/model/get_modules_response/dashboard_response.dart';
 import 'package:domain/model/get_modules_response/get_modules_new_response.dart';
 import 'package:domain/model/get_modules_response/get_modules_response.dart';
+import 'package:domain/model/get_modules_response/users_response.dart';
 import 'package:domain/model/login/login_response.dart';
 import 'package:domain/model/services/address_master_response.dart';
 import 'package:domain/model/services/get_caders_response.dart';
@@ -13,15 +14,18 @@ import 'package:domain/usecase/common_usecase/get_modules_usecase.dart';
 import 'package:domain/usecase/services/address_master_usecase.dart';
 import 'package:domain/usecase/services/get_caders_usecase.dart';
 import 'package:domain/usecase/services/get_gender_list_usecase.dart';
+import 'package:domain/usecase/services/users_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:spoorthymactcs/di/login/login_modules.dart';
 import 'package:spoorthymactcs/di/notifier/address_master_notifier.dart';
 import 'package:spoorthymactcs/di/notifier/get_caders_notifier.dart';
 import 'package:spoorthymactcs/di/notifier/get_genders_notifier.dart';
 import 'package:spoorthymactcs/di/notifier/get_modules_notifier.dart';
 import 'package:spoorthymactcs/di/notifier/login_notifier.dart';
 import 'package:spoorthymactcs/utils/status.dart';
+import '../../di/notifier/users_list_notifier.dart';
 import '../../utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -36,6 +40,7 @@ class DashboardPageViewModel extends BasePageViewModel {
   final GetGenderListUseCase _getGenderListUseCase;
   final GetCadersUseCase _getCadersUseCase;
   final AddressMasterUseCase _addressMasterUseCase;
+     final UsersUseCase _allUsersUseCase;
 
   final PublishSubject<GetDashboardUseCaseParams> _getDashboardRequest = PublishSubject();
   final PublishSubject<GetModulesUseCaseParams> _getModulesRequest = PublishSubject();
@@ -43,6 +48,7 @@ class DashboardPageViewModel extends BasePageViewModel {
   final PublishSubject<GetGenderListUseCaseParams> _getGenderListRequest = PublishSubject();
   final PublishSubject<GetCadersUseCaseParams> _getCadersRequest = PublishSubject();
   final PublishSubject<AddressMasterUseCaseParams> _getAddressMasterRequest = PublishSubject();
+    final PublishSubject<UsersUseCaseParams> _allUsersListRequest = PublishSubject();
 
   /// Handle response and states for  content
   final BehaviorSubject<Resource<GetDashboardResponse>> _getDashboardResponse = BehaviorSubject();
@@ -51,6 +57,7 @@ class DashboardPageViewModel extends BasePageViewModel {
   final BehaviorSubject<Resource<GetGenderListResponse>> _getGenderListResponse = BehaviorSubject();
   final BehaviorSubject<Resource<GetCadersResponse>> _getCadersResponse = BehaviorSubject();
   final BehaviorSubject<Resource<AddressMasterResponse>> _getAddressMasterResponse = BehaviorSubject();
+    final BehaviorSubject<Resource<UsersListResponse>> _allUsersListResponse = BehaviorSubject();
 
   /// Stream for content
   Stream<Resource<GetDashboardResponse>> get getDashboardResponse => _getDashboardResponse.stream;
@@ -61,7 +68,7 @@ class DashboardPageViewModel extends BasePageViewModel {
   final ChangeNotifierProviderRef ref;
 
   DashboardPageViewModel(this._getDashboardUseCase,this._getModulesUseCase,this._getModulesnewUseCase,this._getGenderListUseCase,this._getCadersUseCase, 
-  this._addressMasterUseCase,this.ref) {
+  this._addressMasterUseCase,this._allUsersUseCase,this.ref) {
     _getDashboardRequest.listen((value) {
       RequestManager(value,
               createCall: () => _getDashboardUseCase.execute(params: value))
@@ -135,6 +142,20 @@ class DashboardPageViewModel extends BasePageViewModel {
         _getAddressMasterResponse.safeAdd(event);
       });
     });
+
+      _allUsersListRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _allUsersUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        if(event.status == Status.SUCCESS){
+            if((event.data?.data??[]).isNotEmpty){
+              ProviderScope.containerOf(modelcontext!).read(allUsersListNotifierProvider.notifier).setData(event.data?.data??[]);
+            }
+          }
+        _allUsersListResponse.safeAdd(event);
+      });
+    });
   }
 
   getModulesData(BuildContext context) {
@@ -183,6 +204,16 @@ class DashboardPageViewModel extends BasePageViewModel {
         secure: {}));
   }
 
+    getAllUsersList(BuildContext context){
+    _allUsersListRequest.safeAdd(
+      UsersUseCaseParams(
+        secure: {
+          "code": "HRPM",
+          "ctrl": "nofilter"
+        }
+        ));
+  }
+
   renderModulePages(BuildContext context, Modules childData){
     String route = childData.path;
     if(route.isNotEmpty){
@@ -198,5 +229,6 @@ class DashboardPageViewModel extends BasePageViewModel {
     getGenderData();
     getCadersData(context);
     getAddressMaster();
+    getAllUsersList(context);
   }
 }
