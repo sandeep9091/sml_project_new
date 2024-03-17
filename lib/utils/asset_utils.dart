@@ -20,8 +20,8 @@ class AssetUtils {
 
   //static const String nextbtn = _asset + "next_btn.png";
 
-  static const String logo = "${_image}logo.jpg";
-  static const String logoRound = "${_image}logo_round.jpg";
+  static const String logo = "${_image}logo.png";
+  static const String logoRound = "${_image}logo_round.png";
   static const String noDocuments = "${_image}noDocuments.png";
 
   //PNG Images End

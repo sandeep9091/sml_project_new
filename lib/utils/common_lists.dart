@@ -89,7 +89,7 @@ class CommonLists{
     },
     {
       "label": "Daily",
-      "value": 1
+      "value": 2
     },
     {
       "label": "Monthly",
@@ -148,7 +148,7 @@ class CommonLists{
     },
     {
       "label": "Rs.45,000",
-      "value": 40000
+      "value": 45000
     },
     {
       "label": "Rs.50,000",
@@ -220,6 +220,43 @@ class CommonLists{
       "label": "12",
       "value": 6
     },
+  ];
+
+  static List<Map<String, dynamic>> loanStatusList = [
+    {
+      "label": "Approved",
+      "value": "A"
+    },
+    {
+      "label": "Rejected",
+      "value": "R"
+    },
+    {
+      "label": "Cancel",
+      "value": "C"
+    }
+  ];
+
+  static List<Map<String, dynamic>> disbursementStatusList = [
+    {
+      "label": "Approved",
+      "value": "A"
+    },
+    {
+      "label": "Cancel",
+      "value": "C"
+    }
+  ];
+
+  static List<Map<String, dynamic>> paymentType = [
+    {
+      "label": "Online",
+      "value": "Online"
+    },
+    {
+      "label": "Cash",
+      "value": "Cash"
+    }
   ];
 
   static String getPaymentType(String type){

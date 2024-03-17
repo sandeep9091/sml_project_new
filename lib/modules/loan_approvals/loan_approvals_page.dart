@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spoorthymactcs/base/base_page.dart';
 import 'package:spoorthymactcs/ui/molecules/common_app_bar.dart';
 import '../../di/login/login_modules.dart';
+import '../../di/notifier/login_notifier.dart';
 import 'loan_approvals_page_view.dart';
 import 'loan_approvals_page_view_model.dart';
 
@@ -38,7 +39,9 @@ class LoanApprovalsPageState
   }
 
   @override
-  void onPageInit(LoanApprovalsPageViewModel model) {
+  void onPageInit(LoanApprovalsPageViewModel model) async{
+    model.userInfo= await ProviderScope.containerOf(context).read(loginUserInfoNotifierProvider);
+    model.getBorrowersList();
     model.getGeneratedLoans();
     super.onPageInit(model);
   }

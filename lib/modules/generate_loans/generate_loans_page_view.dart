@@ -14,6 +14,7 @@ import '../../ui/molecules/approve_status_widget.dart';
 import '../../ui/molecules/common_edit_view_button.dart';
 import '../../ui/molecules/common_title_value_widget.dart';
 import '../../utils/common_lists.dart';
+import 'generate_loans_action_page.dart';
 import 'generate_loans_page_view_model.dart';
 
 
@@ -39,7 +40,7 @@ class GenerateLoansPageView extends BasePageViewWidget<GenerateLoansPageViewMode
                   decoration: BoxDecoration(
                     //color: AppColor.red,
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(width: 2.0,color: AppColor.blue)
+                    border: Border.all(width: 2.0,color: AppColor.primary)
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -51,11 +52,10 @@ class GenerateLoansPageView extends BasePageViewWidget<GenerateLoansPageViewMode
                           CommonTitleValueWidget(title: "Name",value: eachGeneratedLoan.borrower,width: MediaQuery.of(context).size.width *.70,),
                           CommonEditViewButton(
                             showEditButton: false,
-                            showViewButton: false,
                             editButtonAction: () {
-                            //Navigator.push(context,MaterialPageRoute(builder: (context) => BorrowersActionPage(singleBorrower: eachBorrower,type: "EDIT",))).then((value) => model.disposeAllVariables());
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => GenerateLoansActionPage(eachGeneratedLoan: eachGeneratedLoan,type: "EDIT",))).then((value) => model.disposeAllVariables());
                           },viewButtonAction: () {
-                            //Navigator.push(context,MaterialPageRoute(builder: (context) => BorrowersActionPage(singleBorrower: eachBorrower,type: "VIEW",))).then((value) => model.disposeAllVariables());
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => GenerateLoansActionPage(eachGeneratedLoan: eachGeneratedLoan,type: "VIEW",))).then((value) => model.disposeAllVariables());
                           },),
                         ],
                       ),
@@ -75,7 +75,7 @@ class GenerateLoansPageView extends BasePageViewWidget<GenerateLoansPageViewMode
                       const SizedBox(height: 5),
                       const Divider(height: 2,color: AppColor.grey,endIndent: 10,indent: 10,),
                       const SizedBox(height: 5),
-                      CommonTitleValueWidget(title: "SMT",value: "${eachGeneratedLoan.smtcode}",),
+                      CommonTitleValueWidget(title: "SMT",value: eachGeneratedLoan.smtcode,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

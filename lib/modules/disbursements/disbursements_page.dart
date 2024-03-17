@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spoorthymactcs/base/base_page.dart';
 import 'package:spoorthymactcs/ui/molecules/common_app_bar.dart';
 import '../../di/login/login_modules.dart';
+import '../../di/notifier/login_notifier.dart';
 import 'disbursements_page_view.dart';
 import 'disbursements_page_view_model.dart';
 
@@ -38,7 +39,9 @@ class DisbursementsPageState
   }
 
   @override
-  void onPageInit(DisbursementsPageViewModel model) {
+  void onPageInit(DisbursementsPageViewModel model) async{
+    model.userInfo= await ProviderScope.containerOf(context).read(loginUserInfoNotifierProvider);
+    model.getBorrowersList();
     model.getGeneratedLoans();
     super.onPageInit(model);
   }

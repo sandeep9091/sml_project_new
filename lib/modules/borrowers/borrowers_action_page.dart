@@ -1,9 +1,6 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:domain/model/get_modules_response/borrowers_response.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,14 +11,12 @@ import 'package:spoorthymactcs/di/login/login_modules.dart';
 import 'package:spoorthymactcs/modules/borrowers/borrowers_page_view_model.dart';
 import 'package:spoorthymactcs/ui/molecules/app_checkbox.dart';
 import 'package:spoorthymactcs/ui/molecules/app_dropdown.dart';
-import 'package:spoorthymactcs/ui/molecules/bottomSheet/photo_picker/photo_picker_bottomsheet.dart';
 import 'package:spoorthymactcs/ui/molecules/choose_photo_widget.dart';
 import 'package:spoorthymactcs/ui/molecules/common_app_bar.dart';
 import 'package:spoorthymactcs/ui/molecules/show_photo_widget.dart';
 import 'package:spoorthymactcs/ui/stream_builder/app_stream_builder.dart';
 import 'package:spoorthymactcs/utils/color_utils.dart';
 import 'package:spoorthymactcs/utils/common_utils.dart';
-import 'package:spoorthymactcs/utils/font_utils.dart';
 import 'package:spoorthymactcs/utils/resource.dart';
 import 'package:spoorthymactcs/utils/status.dart';
 

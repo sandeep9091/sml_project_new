@@ -41,7 +41,7 @@ class AppViewModel extends BaseViewModel {
                   color: AppColor.white,
                 )),
             textSelectionTheme: const TextSelectionThemeData(
-              cursorColor: AppColor.blue,
+              cursorColor: AppColor.primary,
               //selectionHandleColor: AppColor.black,
               //selectionColor: AppColor.black,
             ),

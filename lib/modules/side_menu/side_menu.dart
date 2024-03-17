@@ -1,3 +1,4 @@
+import 'package:data/entity/remote/helper/device_helper.dart';
 import 'package:domain/model/login/login_response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
@@ -169,7 +170,7 @@ class SideMenu extends ConsumerWidget {
                                 maxLines: 1,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                  color: AppColor.blue,
+                                  color: AppColor.primary,
                                   fontSize: 16,
                                   fontFamily: FontUtils.primary,
                                   fontWeight: FontWeight.bold,
@@ -182,11 +183,19 @@ class SideMenu extends ConsumerWidget {
                       ValueListenableBuilder(
                                 valueListenable: isLoading, 
                                 builder: (context, bool isLoading, child){
-                                  return SizedBox(
+                                  return isLoading?SizedBox(
                                     height: 17, width: 17,
                                     child: isLoading? const CircularProgressIndicator(strokeWidth: 2.0,): const SizedBox(),
-                                  );
-                                })
+                                  ):Text(AppCommonUtils().appVersion,
+                                      style: const TextStyle(
+                                        color: AppColor.grey400,
+                                        fontSize: 14,
+                                        fontFamily: FontUtils.primary,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    );
+                                }),
+                      
                     ],
                   ),
                 ],

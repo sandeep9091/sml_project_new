@@ -11,6 +11,8 @@ class BranchesResponse {
 
 class BranchesResponseData {
   final String id;
+  final String branchid;
+  final int clientCount;
   final String bname;
   final String bcode;
   final String cId;
@@ -33,6 +35,8 @@ class BranchesResponseData {
   const BranchesResponseData(
       {
         required this.id,
+        required this.branchid,
+        required this.clientCount,
         required this.bname,
         required this.bcode,
         required this.cId,

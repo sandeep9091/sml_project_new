@@ -4,7 +4,7 @@ class AppColor {
   AppColor._();
 
   static const transparent = Colors.transparent;
-  static const primary = Color(0xFF3A18C2);
+  static const primary = Color(0xff5b5bb6);
   static const main = Color(0xFF3A18C2);
   static const toastBgColor = Color(0xffa3a3a3);
   static const Color bgColor = Color(0xffFFFFFF);

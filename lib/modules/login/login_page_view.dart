@@ -45,11 +45,11 @@ class LoginPageView extends BasePageViewWidget<LoginPageViewModel> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           const SizedBox(
-                            height: 100,
+                            height: 50,
                           ),
                           Image.asset(
-                          AssetUtils.logo,
-                          width: 100,
+                          AssetUtils.logoRound,
+                          width: 150,
                         ),
                           const SizedBox(
                             height: 20,

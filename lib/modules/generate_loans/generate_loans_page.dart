@@ -4,6 +4,8 @@ import 'package:spoorthymactcs/base/base_page.dart';
 import 'package:spoorthymactcs/ui/molecules/common_app_bar.dart';
 
 import '../../di/login/login_modules.dart';
+import '../../di/notifier/login_notifier.dart';
+import 'generate_loans_action_page.dart';
 import 'generate_loans_page_view.dart';
 import 'generate_loans_page_view_model.dart';
 
@@ -32,14 +34,23 @@ class GenerateLoansPageState
 
   @override
   PreferredSizeWidget? buildAppbar() {
-    return const CommonAppBar(
-      titleWidget: Text("Generated Loans"),
+    return CommonAppBar(
+      titleWidget: const Text("Generated Loans"),
       enalbeTitle: true,
+      enableActions: true,
+      actionButtonOnTap: (){
+        //ProviderScope.containerOf(context).read(generateLoansViewModelProvider).getsmtCode(context);
+        Navigator.push(context,MaterialPageRoute(builder: (context) => const GenerateLoansActionPage(type: "ADD",)),
+        ).then((value) => ProviderScope.containerOf(context).read(generateLoansViewModelProvider).disposeAllVariables());
+      },
     );
   }
 
   @override
-  void onPageInit(GenerateLoansPageViewModel model) {
+  void onPageInit(GenerateLoansPageViewModel model) async{
+    model.userInfo= await ProviderScope.containerOf(context).read(loginUserInfoNotifierProvider);
+    model.getBranchesList();
+    model.getBorrowersList();
     model.getGeneratedLoans();
     super.onPageInit(model);
   }

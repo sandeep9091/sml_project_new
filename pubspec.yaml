@@ -37,7 +37,6 @@ dependencies:
   shared_preferences: ^2.0.15
   go_router: ^6.5.5
   fluttertoast: ^8.2.2
-  loading_animation_widget: ^1.2.0+4
   dropdown_button2: ^2.1.0
   carousel_slider: ^4.2.1
   path_provider: ^2.1.0
@@ -79,8 +78,8 @@ flutter_app_name:
   name: "SML"
 
 flutter_icons:
-  image_path_ios: 'assets/images/logo.jpg'
-  image_path_android: 'assets/images/logo.jpg'
+  image_path_ios: 'assets/images/logo.png'
+  image_path_android: 'assets/images/logo.png'
   android: true
   ios: true
 

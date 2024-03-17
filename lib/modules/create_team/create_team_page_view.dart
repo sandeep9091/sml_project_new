@@ -192,7 +192,7 @@ class RenderEachCader extends StatelessWidget {
             eachCaderData.cdname,
             textAlign: TextAlign.center,
             style: TextStyle(
-            color: AppColor.blue,
+            color: AppColor.primary,
             fontSize: 18,
             fontFamily: FontUtils.primary,
             fontWeight: FontWeight.bold,

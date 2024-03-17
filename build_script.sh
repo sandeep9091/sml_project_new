@@ -2,8 +2,8 @@ BUILD_OS=$1
 LIVE_STAGING=$2
 BUILD_NAME=1.0.0
 IOS_BUILD_NAME=1.0.0
-BUILD_NUMBER=2
-IOS_BUILD_NUMBER=7
+BUILD_NUMBER=1
+IOS_BUILD_NUMBER=1
 EXPORT_OPTIONS_PLIST_PATH="ios_export_options/ExportOptions.plist"
 
 
@@ -73,7 +73,7 @@ then
     if [ $LIVE_STAGING == 'live' ]
     then
         echo "Building Live APP."
-        flutter build apk --target=lib/main.dart --build-number=$BUILD_NUMBER --build-name=$BUILD_NAME --obfuscate --split-debug-info=$DEBUG_INFO_PATH/ BASE_URL="https://smlservices.onrender.com/sml" 
+        flutter build apk --target=lib/main.dart --build-number=$BUILD_NUMBER --build-name=$BUILD_NAME --obfuscate --split-debug-info=$DEBUG_INFO_PATH/ BASE_URL="https://nodeservice-mx3q.onrender.com/sml" 
         mv build/app/outputs/flutter-apk/app-release.apk $APK_PATH
         echo "Build copied to "$APK_PATH
         echo "\nBuilding completed\n\n"
@@ -82,7 +82,7 @@ then
     if [ $LIVE_STAGING == 'staging' ]
     then
         echo "Building STAGING APP."
-        flutter build apk --build-number=$BUILD_NUMBER --build-name=$BUILD_NAME --dart-define BASE_URL="https://smlservices.onrender.com/sml"
+        flutter build apk --build-number=$BUILD_NUMBER --build-name=$BUILD_NAME --dart-define BASE_URL="https://nodeservice-mx3q.onrender.com/sml"
         mv build/app/outputs/flutter-apk/app-release.apk $APK_PATH
         echo "Build copied to "$APK_PATH
         echo "\nBuilding completed\n\n"

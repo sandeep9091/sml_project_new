@@ -211,8 +211,7 @@ class AppTextFieldState extends State<AppTextField> {
                       textAlign: widget.textAlign,
                       style: widget.textStyle ??
                           TextStyle(
-                            color: widget.textColor ??
-                                Theme.of(context).primaryColorDark,
+                            color: widget.enabled?(widget.textColor??Theme.of(context).primaryColorDark):Colors.grey,
                             fontSize: widget.fontSize,
                             fontFamily: FontUtils.primary,
                           ),

@@ -38,6 +38,10 @@ class BranchesResponseDataEntity
     extends BaseLayerDataTransformer<BranchesResponseDataEntity, BranchesResponseData> {
   @JsonKey(name: "_id", defaultValue: "")
   final String id;
+  @JsonKey(name: "id", defaultValue: "")
+  final String branchid;
+  @JsonKey(name: "clientCount", defaultValue: 0)
+  final int clientCount;
   @JsonKey(name: "bname", defaultValue: "")
   final String bname;
   @JsonKey(name: "bcode", defaultValue: "")
@@ -77,6 +81,8 @@ class BranchesResponseDataEntity
 
   BranchesResponseDataEntity({
     required this.id,
+    required this.branchid,
+    required this.clientCount,
     required this.bname,
     required this.bcode,
     required this.cId,
@@ -103,6 +109,6 @@ class BranchesResponseDataEntity
 
   @override
   BranchesResponseData transform() {
-    return BranchesResponseData(id: id, bname: bname, bcode: bcode, cId: cId, cname: cname, desc: desc, bOpnDt: bOpnDt, countryname: countryname, state: state, cityname: cityname, city: city, pincode: pincode, contactNo: contactNo, active: active, createBy: createBy, createDt: createDt, modifyBy: modifyBy, modifyDt: modifyDt, underscoreV: underscoreV);
+    return BranchesResponseData(id: id,branchid: branchid,clientCount:clientCount, bname: bname, bcode: bcode, cId: cId, cname: cname, desc: desc, bOpnDt: bOpnDt, countryname: countryname, state: state, cityname: cityname, city: city, pincode: pincode, contactNo: contactNo, active: active, createBy: createBy, createDt: createDt, modifyBy: modifyBy, modifyDt: modifyDt, underscoreV: underscoreV);
   }
 }

@@ -14,10 +14,18 @@ class ApproveStatusWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 3),
       decoration: BoxDecoration(
-        color: status=="A"?AppColor.green.withOpacity(0.5):status=="P"?AppColor.yellow.withOpacity(0.5):AppColor.red.withOpacity(0.5),
+        color: (status=="A"||status=="D")?AppColor.green.withOpacity(0.5):status=="P"?AppColor.yellow.withOpacity(0.5):(status=="R"||status=="C")?AppColor.red.withOpacity(0.5):AppColor.transparent,
         borderRadius: const BorderRadius.all(Radius.circular(5.0))
       ),
       child: status=="A"?const Text("APPROVED",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: AppColor.green,
+                    fontFamily: FontUtils.primary,
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.visible
+                  ),
+                ):(status=="D")?const Text("DISBURSED",
                   style: TextStyle(
                     fontSize: 14,
                     color: AppColor.green,
@@ -33,7 +41,7 @@ class ApproveStatusWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     overflow: TextOverflow.visible
                   ),
-                ):const Text("REJECTED",
+                ):(status=="R")?const Text("REJECTED",
                   style: TextStyle(
                     fontSize: 14,
                     color: AppColor.red,
@@ -41,7 +49,15 @@ class ApproveStatusWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     overflow: TextOverflow.visible
                   ),
-                )
+                ):(status=="C")?const Text("CANCEL",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: AppColor.red,
+                    fontFamily: FontUtils.primary,
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.visible
+                  ),
+                ): const SizedBox()
     
     );
   }

@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'dart:math';
-import 'package:data/db/constants/pref_keys.dart';
 import 'package:data/source/secure_storage/secure_storage_ds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +24,7 @@ class AppCommonUtils {
   }
 
   SecureStorageDataSource secureStorage() => _secureStorageDataSource;
+  String appVersion = "";
 
   // getTempDirectory() async {
   //   Directory? appPath = await getApplicationSupportDirectory();
@@ -159,4 +159,5 @@ class AppCommonUtils {
       return imgPath;
     }
   }
+
 }

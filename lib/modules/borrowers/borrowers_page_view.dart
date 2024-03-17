@@ -36,7 +36,7 @@ class BorrowersPageView extends BasePageViewWidget<BorrowersPageViewModel> {
                   decoration: BoxDecoration(
                     //color: AppColor.red,
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(width: 2.0,color: AppColor.blue)
+                    border: Border.all(width: 2.0,color: AppColor.primary)
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,

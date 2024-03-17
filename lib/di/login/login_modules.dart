@@ -86,21 +86,27 @@ final generateLoansViewModelProvider =
     ref.read(generateLoansUseCaseProvider),
     ref.read(getTeamMapperUseCaseProvider),
     ref.read(getTeamsUseCaseProvider),
-    ref.read(commonUseCaseProvider)
+    ref.read(commonUseCaseProvider),
+    ref.read(borrowersUseCaseProvider),
+    ref.read(branchesUseCaseProvider)
   ),
 );
 
 final loanApprovalsViewModelProvider =
     ChangeNotifierProvider.autoDispose<LoanApprovalsPageViewModel>(
   (ref) => LoanApprovalsPageViewModel(
-    ref.read(generateLoansUseCaseProvider)
+    ref.read(generateLoansUseCaseProvider),
+    ref.read(commonUseCaseProvider),
+    ref.read(borrowersUseCaseProvider)
   ),
 );
 
 final disbursementsViewModelProvider =
     ChangeNotifierProvider.autoDispose<DisbursementsPageViewModel>(
   (ref) => DisbursementsPageViewModel(
-    ref.read(generateLoansUseCaseProvider)
+    ref.read(generateLoansUseCaseProvider),
+    ref.read(commonUseCaseProvider),
+    ref.read(borrowersUseCaseProvider)
   ),
 );
 

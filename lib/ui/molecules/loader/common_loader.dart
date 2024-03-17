@@ -19,7 +19,7 @@ class CommonLoader {
               children: <Widget>[
                 Center(
                   child: Container(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(10),
                     decoration: const BoxDecoration(
                       color: AppColor.white,
                       borderRadius: BorderRadius.all(
@@ -31,7 +31,8 @@ class CommonLoader {
                         children: [
                           Image.asset(
                             AssetUtils.logoRound,
-                            scale: 0.5,
+                            scale: 0.7,
+                            height: 90,
                           ),
                           const SizedBox(
                             height: 8,

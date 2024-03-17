@@ -70,7 +70,8 @@ class RecoveryPostingsWidget extends StatelessWidget {
     List<GenerateLoansResponseData> filteredLoans = [];
     filteredLoans = generatedLoans.where((element) => (element.dueamount!="0" && element.dueamount.isNotEmpty)).toList();
     
-    return ListView.builder(
+  if(filteredLoans.isNotEmpty){
+        return ListView.builder(
                 itemCount: filteredLoans.length,
                 itemBuilder: (context, index){
                   GenerateLoansResponseData eachGeneratedLoan = filteredLoans[index];
@@ -80,7 +81,7 @@ class RecoveryPostingsWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     //color: AppColor.red,
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(width: 2.0,color: AppColor.blue)
+                    border: Border.all(width: 2.0,color: AppColor.primary)
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -109,6 +110,9 @@ class RecoveryPostingsWidget extends StatelessWidget {
                               )
                               );
                             });
+  }else{
+    return const AppErrorWidget();
+  }
   }
 }
 
@@ -122,7 +126,8 @@ class CompletedPaymentsWidget extends StatelessWidget {
         List<GenerateLoansResponseData> filteredLoans = [];
     filteredLoans = generatedLoans.where((element) => element.dueamount=="0").toList();
     
-    return ListView.builder(
+ if(filteredLoans.isNotEmpty){
+       return ListView.builder(
                 itemCount: filteredLoans.length,
                 itemBuilder: (context, index){
                   GenerateLoansResponseData eachGeneratedLoan = filteredLoans[index];
@@ -132,7 +137,7 @@ class CompletedPaymentsWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     //color: AppColor.red,
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(width: 2.0,color: AppColor.blue)
+                    border: Border.all(width: 2.0,color: AppColor.primary)
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -162,5 +167,8 @@ class CompletedPaymentsWidget extends StatelessWidget {
                               )
                               );
                             });
+ }else{
+  return const AppErrorWidget();
+ }
   }
 }

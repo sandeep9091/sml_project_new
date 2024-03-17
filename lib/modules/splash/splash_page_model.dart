@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-//import 'package:package_info_plus/package_info_plus.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rxdart/subjects.dart';
 
 import '../../base/base_page_view_model.dart';
@@ -61,6 +61,8 @@ class SplashViewModel extends BasePageViewModel {
 
   checkUser(BuildContext context) async{
     try{
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      AppCommonUtils().appVersion = packageInfo.version;
           String userData =  await AppCommonUtils().secureStorage().getValue(key: 'loginResponse') ?? "";
     if(userData.isNotEmpty){
       LoginResponse? loginResponse = LoginResponse.fromJson(jsonDecode(userData));

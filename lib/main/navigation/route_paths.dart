@@ -20,6 +20,7 @@ class RoutePaths {
   static const String borrowerSave = "/create-borrower";
   static const String createTeamSave = "/create-team";
   static const String recoverypayment = "/payment";
+  static const String generateloans = "/generateloans";
 
 
 }

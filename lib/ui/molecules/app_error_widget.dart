@@ -31,12 +31,12 @@ class AppErrorWidget extends StatelessWidget {
         children: [
         const SizedBox(width: 10),
         const Image(image: AssetImage(
-                AssetUtils.noDocuments),height: 150,width: 150,),
-        const SizedBox(height: 20),
+                AssetUtils.noDocuments),height: 120,width: 120,color: AppColor.grey,),
+        const SizedBox(height: 10),
         Text(
             str ?? "No Documents, Please try again...",
             style: TextStyle(
-              color: AppColor.semiBlack,
+              color: AppColor.grey,
               fontSize: 20,
               fontFamily: FontUtils.primary.toString(),
               fontWeight: FontWeight.w400,

@@ -18,7 +18,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
   Widget build(BuildContext context, model) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: AppColor.blue,
+      backgroundColor: AppColor.primary,
       centerTitle: true,
       title: const Text("SML"),
       leading: GestureDetector(
@@ -286,17 +286,17 @@ class GetModulesWidget extends ConsumerWidget {
                       margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
                       //padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
                       decoration: BoxDecoration(
-                        color: AppColor.blue.withOpacity(0.05),
+                        color: AppColor.primary.withOpacity(0.05),
                         borderRadius: const BorderRadius.all(Radius.circular(10)),
-                        border: Border.all(width: 2.0,color: AppColor.blue)
+                        border: Border.all(width: 2.0,color: AppColor.primary)
                       ),
                       child: Center(
                         child: Text(
                           filteredData[index].name,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                        color: AppColor.blue,
-                        fontSize: 14,
+                        color: AppColor.primary,
+                        fontSize: 15,
                         fontFamily: FontUtils.primary,
                         fontWeight: FontWeight.bold,
                       ),

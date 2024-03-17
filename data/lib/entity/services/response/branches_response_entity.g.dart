@@ -30,6 +30,8 @@ BranchesResponseDataEntity _$BranchesResponseDataEntityFromJson(
         Map<String, dynamic> json) =>
     BranchesResponseDataEntity(
       id: json['_id'] as String? ?? '',
+      branchid: json['id'] as String? ?? '',
+      clientCount: json['clientCount'] as int? ?? 0,
       bname: json['bname'] as String? ?? '',
       bcode: json['bcode'] as String? ?? '',
       cId: json['cId'] as String? ?? '',
@@ -54,6 +56,8 @@ Map<String, dynamic> _$BranchesResponseDataEntityToJson(
         BranchesResponseDataEntity instance) =>
     <String, dynamic>{
       '_id': instance.id,
+      'id': instance.branchid,
+      'clientCount': instance.clientCount,
       'bname': instance.bname,
       'bcode': instance.bcode,
       'cId': instance.cId,
